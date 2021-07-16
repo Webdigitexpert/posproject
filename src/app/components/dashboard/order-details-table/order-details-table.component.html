@@ -1,0 +1,18 @@
+<div class="order-table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th *ngFor="let column of tableHeadings" scope="col">{{column.label}}</th>
+                <th *ngIf="showActions">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of data;">
+                <td *ngFor="let column of tableHeadings">{{ row[column.field] }}</td>
+                <td *ngIf="showActions">
+                    <app-button *ngIf="actions.delete" [btn_class]="'delete'" (click)=" deleteCustomer(row) "><i class="fa fa-trash"></i></app-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

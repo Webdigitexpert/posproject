@@ -1,0 +1,10 @@
+<div class="inputData"   [ngClass]="input_class">
+    <input [attr.list]="dataListID" autocomplete="off" [formControl]="control" [type]="data.type" [placeholder]="data.placeholder" [name]="data.name">
+    <datalist *ngIf="isDataList" [id]="dataListID">
+        <option value="Edge">
+        <option value="Firefox">
+        <option value="Chrome">
+        <option value="Opera">
+        <option value="Safari">
+      </datalist>
+</div>

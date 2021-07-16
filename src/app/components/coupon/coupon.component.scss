@@ -1,0 +1,57 @@
+.couponDetails{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    p{
+        margin: 0;
+    }
+    form{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+}
+.couponMsg{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        color: rgb(2, 243, 2);
+        i{
+            color: red;
+            cursor: pointer;
+        }
+    } 
+}
+
+::ng-deep {
+    
+    .couponInput input[type="text"]{
+            outline: none;
+            padding-left: 8px;
+            height: 30px;
+            border-radius: 5px;
+            border: 1px solid rgb(190, 188, 188);
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(32,33,36,.28);
+        
+    }
+    .applyCouponBtn{
+        .button{
+            margin-left: 10px;  
+        }
+        button.btn.btn-primary {
+            
+            background: rgb(172, 35, 35);
+            width: 67px;
+            height: 35px;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        button.btn.btn-primary:hover{
+            background: rgb(255, 0, 0);
+        }
+    } 
+}

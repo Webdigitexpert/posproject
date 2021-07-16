@@ -1,0 +1,38 @@
+<div class="table">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th *ngFor="let column of columns">
+          <a class="link">{{ column.label }}</a>
+        </th>
+        <th *ngIf="showActions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of data; let iseven = even" [class]="iseven ? 'table-info' : 'table-secondary'">
+        <td  *ngFor="let column of columns">
+          <p *ngIf="column.field !='product_image'">
+            {{ row[column.field] }}
+          </p>
+          <p *ngIf="column.field =='product_image'">
+            <img src="http://localhost:3000/{{row[column.field]}}" width="80" alt="">
+          </p>
+        </td>
+
+        <td *ngIf="showActions">
+          <div class="btnActions">
+            <app-button [btn_class]="'actionBtns'" *ngIf="actions.delete" (click)="delete(row)"><i
+                class="fa fa-trash"></i>
+            </app-button>
+            <app-button [btn_class]="'actionBtns'" *ngIf="actions.edit" (click)="edit(row)">
+              <i class="fa fa-edit"></i>
+            </app-button>
+            <app-button [btn_class]="'actionBtns'" *ngIf="actions.view" (click)="view(row)">
+              <i class="fa fa-eye"></i>
+            </app-button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

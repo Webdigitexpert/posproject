@@ -1,0 +1,12 @@
+.total_price{
+    border-top: 2px solid rgb(228, 227, 227);
+    padding-top: 20px;
+    h4{
+        font-size: 22px;
+        font-weight: bold;
+    }
+    .price{
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h6>Are you Sure want to Delete?</h6>
+</div>
+
+<div class="modal-footer">
+  <app-button *ngIf="buttons.delete"  (click)="delete()" [btn_class]="'positive'">{{buttons.delete}}</app-button>
+  <app-button *ngIf="buttons.cancel" (click)="onCancel()" [btn_class]="'negative'">{{buttons.cancel}}</app-button>
+  <!-- <app-button *ngIf="buttons.back" (click)="onAction({neutral:1})" [btn_class]="'neutral'">{{buttons.back}}</app-button> -->
+</div>

@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
+  <button type="button" (click)="modal.dismiss('Cross click')">
+    <span class="close" aria-hidden="true">x</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>{{body}}</p>
+  <div>
+    <form [formGroup]="addCustomerForm">
+      <div class="form-group">
+        <label>Customer Name : </label>
+        <app-input-type [data]="name" [control]="addCustomerForm.get('customer_name')" [input_class]="'CustomerData'">
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label>Mobile Number : </label>
+        <app-input-type [data]="mobileNumber" [control]="addCustomerForm.get('customer_mobile')"
+          [input_class]="'CustomerData'"></app-input-type>
+      </div>
+      <div class="form-group">
+        <label>Email : </label>
+        <app-input-type [data]="email" [control]="addCustomerForm.get('customer_email')" [input_class]="'CustomerData'">
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label> Status : </label>
+        <app-select  [control]="addCustomerForm.get('status')"
+          [selectData]="statusOptions" key="state"></app-select>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="modal-footer">
+  <app-button *ngIf="buttons.add" (click)="addCustomer() " [btn_class]="'positive'">{{buttons.add}}</app-button>
+  <app-button *ngIf="buttons.cancel" (click)="cancelCustomer($event)" [btn_class]="'negative'">{{buttons.cancel}}
+  </app-button>
+  <app-button *ngIf="buttons.back" (click)="onAction({neutral:1})" [btn_class]="'neutral'">{{buttons.back}}</app-button>
+</div>

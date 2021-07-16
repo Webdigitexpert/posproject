@@ -1,0 +1,10 @@
+::ng-deep .btn_class .btn{
+    background-color: #fb404b !important;
+    color: #fff !important;
+    border-radius: 3px !important;
+    padding: 7px 40px !important;
+    font-weight: 500 !important;
+    width: 100% !important;
+    height: 40px !important;
+   
+  }

@@ -1,0 +1,42 @@
+.table {
+  /* margin-top: 85px;
+  margin-left: 122px; */
+  width: 100%;
+  padding-top: 67px;
+}
+table th,
+td {
+  text-align: center;
+  vertical-align: baseline;
+    padding: 5px;
+}
+.btnActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+::ng-deep .btnActions .btn {
+  padding: 5px !important;
+  width: 70px;
+  margin-left: 15px;
+  height: 40px;
+  text-align: center;
+}
+::ng-deep .actionBtns button.btn.btn-primary {
+  /* padding: 5px !important; */
+  /* width: 70px; */
+  margin-left: 15px !important;
+  /* height: 40px; */
+  /* text-align: center; */
+  padding: 0 !important;
+  margin-bottom: 0;
+  background: none;
+}
+::ng-deep .actionBtns button.btn.btn-primary i {
+  color: #fb404b;
+}
+::ng-deep .actionBtns {
+  width: 40px;
+  
+}

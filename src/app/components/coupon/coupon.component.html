@@ -1,0 +1,13 @@
+<div *ngIf="enterCoupon" class="couponDetails">
+    <p>Enter Coupon :</p>
+    <form [formGroup]="applyCoupon">
+        <app-input-type [data]="couponDetails" [control]="applyCoupon.get('coupon')"  [input_class]="'couponInput'"></app-input-type>
+    <app-button [class]="'applyCouponBtn'" (click)=addCoupon()>Apply</app-button>
+    </form>
+</div>
+<div class="couponMsg" *ngIf="message">
+    <p>Coupon added successfully</p>
+    <p>
+        <i (click)="cancel()" class="fa fa-times-circle" aria-hidden="true"></i>
+    </p>
+</div>

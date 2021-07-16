@@ -1,0 +1,77 @@
+.modal-header{
+        .close{            
+            border: none;
+            border-radius: 5px;
+            width: 25px;
+            height: 25px;
+            outline: none;
+        }
+        
+}
+.modal-header button{
+    border: none !important;
+    background: none !important;
+    outline: none;
+}
+.productDetails{
+    display: flex;
+    p:last-child{
+        margin:0 0 0 15px;
+    }
+}
+h5{
+    font-size: 20px;
+    span{
+        color: #499bc0;
+    }
+}
+h4{
+    text-align: center;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0;
+}
+::ng-deep{
+    .button.positive button {
+        height: 38px;
+        font-size: 18px;
+        line-height: 0;
+        background: transparent;
+        border: 1px solid #f4c343;
+        font-weight: 500;
+        color: #f4c343;
+        text-transform: capitalize;
+    }
+    .button.positive button:hover{
+        background-color: #f4c343;
+        color: #fff;
+    }
+    .button.negative button {
+        height: 38px;
+        font-size: 18px;
+        line-height: 0;
+        background: transparent;
+        border: 1px solid #ea5255;
+        color: #ea5255;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    .button.negative button:hover{
+        background-color: #ea5255;
+        color: #fff;
+    }
+    .button.neutral button {
+        height: 38px;
+        font-size: 18px;
+        line-height: 0;
+        background: transparent;
+        border: 1px solid #a5c536;
+        color: #a5c536;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    .button.neutral button:hover{
+        background-color: #a5c536;
+        color: #fff;
+    }
+}
