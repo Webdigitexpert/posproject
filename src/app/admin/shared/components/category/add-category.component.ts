@@ -37,7 +37,7 @@ export class AddCategoryComponent implements OnInit {
     {
       state: 'Inactive',
     },
-  ];
+  ]; 
 
   constructor(
     public ngbModal: NgbActiveModal,
