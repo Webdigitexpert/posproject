@@ -1,0 +1,18 @@
+<div class="category_body">
+    <app-search *ngIf="search" [details]="searchDetails" [class]="'cat_search'">
+
+    </app-search>
+    <div class="category_row">
+        <app-button [btn_class]="'addButton'" (click)="searchBar();"><i class="fa fa-search" aria-hidden="true"></i>
+        </app-button>
+        <app-button *ngFor="let category of categories; " [ngClass]="{'highlight': category._id == id}" [btn_class]="'product'" (click)="selectCategory(category)">{{category.category_name}}</app-button>
+    </div>
+    <div class="products_row">
+        <app-products [products]="products"></app-products>
+    </div>
+    <div class="footer_btn">
+        <app-button [btn_class]="'saveSale'">Save</app-button>
+        <app-button [btn_class]="'sale'">Cancel</app-button>
+        <app-button [btn_class]="'pay'">pay</app-button>
+    </div>
+</div>

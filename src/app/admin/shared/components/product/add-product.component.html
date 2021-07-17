@@ -1,0 +1,198 @@
+<div *ngIf="type == 'add'" class="add_product">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="productForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Name</label>
+        <app-input-type
+          [control]="productForm.get('product_name')"
+          [data]="prod_name"
+          [input_class]="'form-data'"
+        >
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Product Category</label>
+        <app-select
+          [control]="productForm.get('category_id')"
+          [selectData]="categoryOptions"
+          key="category_name"
+        ></app-select>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Price</label>
+        <app-input-type
+          [control]="productForm.get('product_price')"
+          [data]="prod_price"
+          [input_class]="'form-data'"
+        >
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Product Image</label>
+        <app-input-type
+          (change)="onFileSelect($event.target.files)"
+          [control]="productForm.get('product_image')"
+          [data]="prod_image"
+          [input_class]="'form-data'"
+        >
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Description</label>
+        <app-textarea
+          [control]="productForm.get('product_description')"
+        ></app-textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Product Status</label>
+        <app-select
+          [control]="productForm.get('status')"
+          [selectData]="statusOptions"
+          key="state"
+        ></app-select>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.add"
+      (click)="onCreate()"
+    >
+      Add
+    </app-button>
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </app-button>
+  </div>
+</div>
+
+<div *ngIf="type == 'edit'" class="edit_product">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="productForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Name</label>
+        <app-input-type
+          [control]="productForm.get('product_name')"
+          [data]="prod_name"
+          [input_class]="'form-data'"
+        >
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Product Category</label>
+        <app-select
+          [control]="productForm.get('category_id')"
+          [selectData]="categoryOptions"
+          key="category_name"
+        ></app-select>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Price</label>
+        <app-input-type
+          [control]="productForm.get('product_price')"
+          [data]="prod_price"
+          [input_class]="'form-data'"
+        >
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Product Image</label>
+        <app-input-type
+          [control]="productForm.get('product_image')"
+          [data]="prod_image"
+          [input_class]="'form-data'"
+        >
+        </app-input-type>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Product Description</label>
+        <app-textarea
+          [control]="productForm.get('product_description')"
+        ></app-textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Product Status</label>
+        <app-select
+          [control]="productForm.get('status')"
+          [selectData]="statusOptions"
+          key="state"
+        ></app-select>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.edit"
+      (click)="onUpdate()"
+    >
+      Save
+    </app-button>
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </app-button>
+  </div>
+</div>
+
+<div *ngIf="type == 'view'" class="view_product">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      {{ data.product_name }}
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- <p>Product Name:{{ viewData.product_name }}</p> -->
+    <div class="left">
+      <p>Product Image:</p>
+      <p class="img">
+        <img src="http://162.241.201.237:7000/{{ data.product_image }}" />
+      </p>
+    </div>
+
+    <div class="right">
+      <p>Product Description:</p>
+      <p class="des">
+        {{ data.product_description }}
+      </p>
+    </div>
+  </div>
+  <p class="price">
+    Product Price:<span> {{ data.product_price }}</span>
+  </p>
+
+  <div class="modal-footer">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.cancel"
+      (click)="onCancel()"
+    >
+      Cancel
+    </app-button>
+  </div>
+</div>

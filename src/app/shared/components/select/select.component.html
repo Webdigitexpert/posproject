@@ -1,0 +1,7 @@
+<div class="select">
+  <select [formControl]="control" class="form-control">
+    <option *ngFor="let select of selectData" [value]="select[key]">
+      {{ select[key] }}
+    </option>
+  </select>
+</div>

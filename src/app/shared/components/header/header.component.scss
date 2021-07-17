@@ -1,0 +1,26 @@
+.header{
+    overflow: hidden;
+    min-height: 50px;
+    border: 1px solid #eee;
+    // box-shadow: 0 4px 6px rgba(32,33,36,.28);
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+    align-items: center;
+    .headerInfo{
+        ul{
+            list-style-type: none;
+            margin: 0;
+        }
+        li{
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 18px !important;
+            a{
+                color: #499bc0;
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+    }
+}

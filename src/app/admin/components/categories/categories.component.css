@@ -1,0 +1,24 @@
+::ng-deep .login_btn .btn {
+  float: right;
+  margin-bottom: 10px;
+  background-color: #fb404b !important;
+  color: #fff !important;
+  border-radius: 3px !important;
+  padding: 7px 40px !important;
+  font-weight: 500 !important;
+  width: 9% !important;
+  height: 40px !important;
+  padding: 0 !important;
+}
+.dashboard {
+  padding: 60px 10px 0;
+}
+.row {
+  margin: 0 !important;
+}
+.sidebar {
+  padding-left: 0;
+}
+.row {
+  margin: 0 !important;
+}

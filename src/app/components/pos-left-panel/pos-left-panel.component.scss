@@ -1,0 +1,51 @@
+.ordersList{
+    padding: 20px 0 20px 20px;
+    .ordersListDetails{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .customerSearch{
+            width: 315px;
+            display: flex;
+            align-items: center;
+            
+            i{
+                cursor: pointer;
+                margin-right: 20px;
+            }
+            i.fa.fa-home:hover{
+                color: red;
+            }
+        }
+    }
+}
+::ng-deep{
+    .customers{
+        width: 300px;
+        input[type="search"]{
+            outline: none;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 6px rgba(32,33,36,.28);
+            padding: 5px 25px;
+            height: 40px;
+        }
+    }
+    .addCustomer button.btn.btn-primary{ 
+        i{
+            font-size: 16px;
+            display: inline-block;
+            line-height: 32px;
+        }
+        background-color: #eee;
+        color: #000;
+        padding: 3px;
+        border-radius: 100%;
+        margin: 0 0 0 8px;
+        height: 37px;
+        width: 37px;
+        text-align: center;
+        cursor: pointer;
+    }
+}

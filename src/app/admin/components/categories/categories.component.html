@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="row">
+  <div class="sidebar col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="dashboard col-md-10">
+    <app-button (click)="opendialog($event)" [btn_class]="'login_btn'">
+      Add New
+    </app-button>
+
+    <app-tables (onDelete)="deleteCategory($event)" (onEdit)="editCategory($event)" (onView)="viewCategory($event)"
+      [data]="categories" [columns]="columns" [actions]="actions"></app-tables>
+  </div>
+</div>

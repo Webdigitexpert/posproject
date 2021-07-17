@@ -1,0 +1,15 @@
+.order-table{
+    margin-top: 17px;
+    table{
+        th{
+            text-transform: capitalize;
+        }
+    }
+    input[type="text"] {
+        outline: none;
+        width: 35px;
+    }
+    i{
+        cursor: pointer;
+    }
+}

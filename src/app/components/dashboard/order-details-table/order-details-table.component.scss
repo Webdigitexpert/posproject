@@ -1,0 +1,32 @@
+::ng-deep{
+    .delete button.btn.btn-primary {
+        background: none;
+        width: 68px;
+        height: 32px;
+        margin: 0;
+        color: #499bc0;
+        text-align: left;
+        padding: 0;
+    }
+    .edit button.btn.btn-primary {
+        background: none;
+        color: #499bc0;
+        width: 68px;
+        text-align: left;
+        height: 32px;
+        margin: 0;
+        padding: 0;
+    }
+}
+.order-table{
+    padding: 20px 0;
+    table{
+        border: 1px solid #eee;
+        box-shadow: 0 4px 6px rgba(32,33,36,.28);
+        width: 66%;
+        background: #fff;
+        th{
+            text-transform: capitalize;
+        }
+    }
+}

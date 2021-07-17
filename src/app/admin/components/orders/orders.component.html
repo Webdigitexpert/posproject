@@ -1,0 +1,16 @@
+<app-header></app-header>
+<div class="row">
+  <div class="sidebar col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="order-table col-md-10">
+    <app-tables
+      [data]="orders"
+      [columns]="columns"
+      [actions]="actions"
+      (onEdit)="edit($event)"
+      (onDelete)="delete($event)"
+    ></app-tables>
+  </div>
+</div>

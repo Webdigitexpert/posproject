@@ -1,0 +1,10 @@
+<app-card>
+    <img (click)="showDialog(product)" class="card-img-top" src="http://localhost:3000/{{product.product_image}}" alt="Card image cap">
+    <div class="card-body">
+        <div class="add">
+            <p class="card-text">${{product.product_price}}</p>
+            <p>+</p>
+        </div>
+    </div>
+    <p (click)="showDialog(product)" class="productName">{{product.product_name}}</p>
+</app-card>

@@ -1,0 +1,43 @@
+::ng-deep{
+    img.card-img-top{
+        height: 73px;
+    }
+     .card-body{
+        padding: 0;
+        background-color: #499bc0;
+        padding: 0 3px;
+        .add{
+            display: flex;
+            justify-content: space-between;
+        }
+        p.card-text {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+        }
+    }
+    p.productName{
+        padding: 0 3px;
+    }
+}
+// .productComponent{
+//     margin-top: 10px;
+//     display: flex;
+//     .add{
+//         display: flex;
+//         padding: 0 5px;
+//         justify-content: space-between;
+//         align-items: center;
+//         p{
+//             margin: 0;
+//         }
+//     }
+//     .add p:last-child{
+//         font-weight: bold;
+//         cursor: pointer;
+//     }
+//     .productName{
+//         padding-left: 3px;
+//         margin: 0;
+//     }
+// }
