@@ -59,7 +59,12 @@ export class CouponsService {
 
   getCoupon(payload:any): Observable<any> {
     const url = `${this.basePath}coupon/${payload}`;    
-    return this.http.delete(url, this.http.headers);
+    return this.http.get(url, this.http.headers);
+  }
+
+  searchCoupon(payload:any): Observable<any> {
+    const url = `${this.basePath}coupon/active/${payload}`;
+    return this.http.get(url,this.http.headers)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
 import { CategoriesService } from '../../shared/services/categories/categories.service';
 @Component({
@@ -13,6 +14,7 @@ export class PosRightPanelComponent implements OnInit {
   public selectedCategory
   public search: boolean = false
   public id
+  public getCategorySearch: FormGroup
   public searchDetails = {
     type: "search",
     placeholder: "Search Categories...",
@@ -28,6 +30,9 @@ export class PosRightPanelComponent implements OnInit {
       this.id = this.categories[0]._id
       this.getProductsByCategoryId(this.selectedCategory._id);
     });
+    this.getCategorySearch = new FormGroup({
+      getCategory : new FormControl('')
+    })
   }
 
   searchBar() {
@@ -38,6 +43,9 @@ export class PosRightPanelComponent implements OnInit {
     this.productsService.getProductByCategoryId(id).subscribe((products) => {
       this.products = products
     });
+    // this.productsService.getProducts().subscribe((products) => {
+    //   this.products = products
+    // });
   }
 
   selectCategory(category) {

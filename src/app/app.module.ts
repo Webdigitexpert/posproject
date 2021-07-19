@@ -26,6 +26,8 @@ import { DiscountComponent } from './components/discount/discount.component';
 import { SearchByDateComponent } from '../../src/app/components/dashboard/search-by-date/search-by-date.component';
 import { EmployeeManagementComponent } from './components/employee-management/employee-management.component';
 import { PosComponent } from './components/pos/pos.component';
+import { CustomerFilterPipe } from './customer-filter.pipe';
+import { CustomerOrdersComponent } from './components/dashboard/customer-orders/customer-orders.component';
 
 
 @NgModule({
@@ -49,6 +51,8 @@ import { PosComponent } from './components/pos/pos.component';
     SearchByDateComponent,
     EmployeeManagementComponent,
     PosComponent,
+    CustomerFilterPipe,
+    CustomerOrdersComponent,
   
   ],
   imports: [

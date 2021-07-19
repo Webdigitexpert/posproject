@@ -3,26 +3,17 @@
         <thead>
             <tr>
                 <th scope="col">Name</th>
-                <th scope="col">code</th>
                 <th scope="col">qty</th>
                 <th scope="col">Price</th>
                 <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Product1</td>
-                <td>123</td>
-                <td class="qty"><input type="text"></td>
-                <td>$35.00</td>
-                <th scope="row"><i class="fa fa-trash-o" aria-hidden="true"></i></th>
-            </tr>
-            <tr>
-                <td>Product2</td>
-                <td>123</td>
-                <td class="qty"><input type="text"></td>
-                <td>$35.00</td>
-                <th scope="row"><i class="fa fa-trash-o" aria-hidden="true"></i></th>
+            <tr *ngFor="let item of items">
+                <td>{{item.product_name}}</td>
+                <td class="qty"><input type="text" [value]="item.qty" (change)="updateQty($event, item)"></td>
+                <td><price [price]="item.product_price"></price></td>
+                <td scope="row"><i class="fa fa-trash-o" aria-hidden="true" (click)="delete(item)"></i></td>
             </tr>
         </tbody>
     </table>

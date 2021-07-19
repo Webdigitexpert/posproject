@@ -1,8 +1,10 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetailsComponent } from 'src/app/dialogs/product-details/product-details.component';
+import { CartService } from 'src/app/shared/services/cart/cart.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog/dialog-service.service';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -11,15 +13,14 @@ import { ProductsService } from 'src/app/shared/services/products/products.servi
 })
 export class ProductComponent implements OnInit {
   @Input() product
+  public imageUrl = environment.imageUrl
 
-  constructor(public model: NgbModal, private dialogService: DialogServiceService, private productService: ProductsService) { }
+  constructor(public model: NgbModal, private dialogService: DialogServiceService, private productService: ProductsService, private cartService: CartService) { }
 
   ngOnInit(): void {
 
   }
-  getProduct(id) {
 
-  }
   showDialog(data) {
     console.log(data)
     this.dialogService.openDialog({
@@ -38,6 +39,10 @@ export class ProductComponent implements OnInit {
       .subscribe((product) => {
         console.log(product)
       })
+  }
+
+  addItem(product) {
+    this.cartService.setCartItem(product);
   }
 
 }

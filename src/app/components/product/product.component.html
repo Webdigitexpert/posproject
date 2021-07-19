@@ -1,9 +1,9 @@
 <app-card>
-    <img (click)="showDialog(product)" class="card-img-top" src="http://localhost:3000/{{product.product_image}}" alt="Card image cap">
+    <img (click)="showDialog(product)" class="card-img-top" src="{{imageUrl}}{{product.product_image}}" alt="Card image cap">
     <div class="card-body">
         <div class="add">
-            <p class="card-text">${{product.product_price}}</p>
-            <p>+</p>
+            <p class="card-text"><price [price]="product.product_price"></price></p>
+            <p (click)="addItem(product)">+1</p>
         </div>
     </div>
     <p (click)="showDialog(product)" class="productName">{{product.product_name}}</p>

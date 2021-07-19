@@ -5,7 +5,7 @@
                 <i class="fa fa-home" aria-hidden="true"></i>
             </p>
             <form  [formGroup]="searchCustomer">
-                <app-search [control]="searchCustomer.get('customerData')" [details]="customerDetails" isDataList="true" [class]="'customers'">
+                <app-search (keyup)="getCustomer($event)"  (details)="getData(customers)" [dataLists]="customerNames" [control]="searchCustomer.get('customerData')" [details]="customerDetails" isDataList="true" [class]="'customers'">
                 </app-search>
             </form>
         </div>
@@ -13,10 +13,8 @@
             <app-button  [btn_class]="'addCustomer'"><i class="fa fa-plus" aria-hidden="true"></i></app-button>
         </div>
     </div>
-    <app-customer-details></app-customer-details>
+    <app-customer-details [customerMobile]="customerMobile" [customerEmail]="customerEmail" [customerName]="customerName"></app-customer-details>
     <app-order-table></app-order-table>
     <app-coupon></app-coupon>
-    <app-discount></app-discount>
     <app-total-price></app-total-price>
-    
 </div>

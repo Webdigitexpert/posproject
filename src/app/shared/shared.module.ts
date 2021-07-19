@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SearchComponent } from './components/search/search.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -10,6 +10,10 @@ import { EditCustomerComponent } from './components/edit-customer/edit-customer.
 import { InputTypeComponent } from './components/input-type/input-type.component';
 import { SelectComponent } from './components/select/select.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
+import { PriceComponent } from './components/price/price.component';
+import { D3PieComponent } from './components/d3-pie/d3-pie.component';
+
+import { MoneyPipe } from './pipes/currency.pipe';
 
 import { DialogServiceService } from './services/dialog/dialog-service.service';
 
@@ -23,7 +27,10 @@ import { DialogServiceService } from './services/dialog/dialog-service.service';
     DeleteComponent,
     EditCustomerComponent,
     SelectComponent,
-    TextareaComponent
+    TextareaComponent,
+    PriceComponent,
+    D3PieComponent,
+    MoneyPipe,
   ],
   exports: [
     InputTypeComponent,
@@ -34,10 +41,11 @@ import { DialogServiceService } from './services/dialog/dialog-service.service';
     EditCustomerComponent,
     SelectComponent,
     TextareaComponent,
+    PriceComponent,
+    D3PieComponent,
+    MoneyPipe,
   ],
-  imports: [
-    CommonModule,FormsModule, ReactiveFormsModule
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   providers: [DialogServiceService],
 })
-export class SharedModule { }
+export class SharedModule {}

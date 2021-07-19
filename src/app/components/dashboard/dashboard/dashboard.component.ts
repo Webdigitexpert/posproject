@@ -10,7 +10,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private customerService: CustomerService) { }
 
-  public productsData = []
+  public orderDetailsData = []
   public id
   public deleteCustomer
   public deleteCustomers
@@ -41,15 +41,41 @@ export class DashboardComponent implements OnInit {
       field: 'status'
     }
   ];
+  public customerTableHeadings = [
+    {
+      label: 'Customer Id',
+      field: '_id'
+    },
+    {
+      label: 'Customer Name',
+      field: 'customer_name',
+    },
+    {
+      label: 'Customer Mobile',
+      field: 'customer_mobile',
+    },
+    {
+      label: 'Order Email',
+      field: 'customer_email',
+    },
+    {
+      label: 'Status',
+      field: 'status'
+    }
+  ];
 
   ngOnInit(): void {
-    this.customers();
+    this.customers()
+
+    this.customerService._customers$.subscribe(res =>{
+      console.log(res)
+      this.orderDetailsData = res
+    })
   }
   customers() {
     this.customerService.getCustomers()
     .subscribe((customers) => {
-      this.productsData = customers
-      console.log(customers)
+      this.orderDetailsData = customers
     })
   }
   

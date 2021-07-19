@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
 
 @Component({
@@ -7,6 +7,9 @@ import { CustomerService } from 'src/app/shared/services/customers/customer.serv
   styleUrls: ['./customer-details.component.scss']
 })
 export class CustomerDetailsComponent implements OnInit {
+  @Input() customerName
+  @Input() customerMobile
+  @Input() customerEmail
  
 
   constructor() { }

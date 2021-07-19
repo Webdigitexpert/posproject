@@ -1,5 +1,5 @@
-import { Component, OnInit, forwardRef, HostBinding, Input } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {  FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input-type',
@@ -11,16 +11,16 @@ export class InputTypeComponent implements OnInit {
   @Input() public data;
   @Input() public input_class: string;
   @Input() public isDataList: boolean = false;
+  @Input() public dataListOptions
+  @Output() public details = new EventEmitter()
   public dataListID: string = '';
 
 
   ngOnInit(): void {
-    // this.control.valueChanges.subscribe(res => {
-    //   console.log(res)
-    // })
-  debugger
-    console.log(this.control)
     this.dataListID = this.isDataList ? `datalistid${Math.random()}` : '';
+  }
+  getDetails(data) {
+    this.details.emit(data)
   }
 
 }

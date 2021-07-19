@@ -1,2 +1,14 @@
 <app-header></app-header>
-<app-sidebar></app-sidebar>
+<div class="row">
+  <div class="sidebar col-md-2">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="dashboard col-md-10">
+    <app-d3-pie
+      [enablePolylines]="true"
+      [isPercentage]="true"
+      [pieData]="data"
+    ></app-d3-pie>
+  </div>
+</div>

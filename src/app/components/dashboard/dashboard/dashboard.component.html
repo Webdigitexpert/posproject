@@ -1,6 +1,12 @@
 <app-header></app-header>
+
 <div class="container">
     <app-search-by-date></app-search-by-date>
-    <app-order-details-table [data]="productsData" [tableHeadings]="columns" [actions]="actions">
+    <br>
+      <h3>
+        All Customers :
+    </h3>
+    <!-- <app-customer-orders [customerData]="orderDetailsData" [customerTableHeadings]="customerTableHeadings"></app-customer-orders> -->
+    <app-order-details-table [data]="orderDetailsData" [tableHeadings]="columns" [actions]="actions">
     </app-order-details-table>
 </div>

@@ -1,13 +1,35 @@
-<div *ngIf="enterCoupon" class="couponDetails">
-    <p>Enter Coupon :</p>
-    <form [formGroup]="applyCoupon">
-        <app-input-type [data]="couponDetails" [control]="applyCoupon.get('coupon')"  [input_class]="'couponInput'"></app-input-type>
-    <app-button [class]="'applyCouponBtn'" (click)=addCoupon()>Apply</app-button>
-    </form>
+<div class="coupons">
+    <div *ngIf="!isCouponActivated()" class="couponDetails">
+        <p>Enter Coupon :</p>
+        <form [formGroup]="applyCoupon">
+            <app-input-type (keyup)="getCoupons($event)" [data]="couponDetailsInput"
+                [control]="applyCoupon.get('coupon')" [input_class]="'couponInput'">
+            </app-input-type>
+
+            <app-button class="applyCouponBtn" (click)="addCoupon(coupon)">Apply</app-button>
+        </form>
+
+    </div>
+    <ng-container *ngIf="couponsDropDown">
+        <div class="couponsList" *ngFor="let coupon of coupons">
+            <p (click)="apply(coupon)">{{coupon.coupon_name }}</p>
+        </div>
+    </ng-container>
+
 </div>
-<div class="couponMsg" *ngIf="message">
-    <p>Coupon added successfully</p>
-    <p>
-        <i (click)="cancel()" class="fa fa-times-circle" aria-hidden="true"></i>
-    </p>
-</div>
+<ng-container *ngIf="isCouponActivated()">
+    <div class="couponMsg">
+        <p>Coupon added successfully</p>
+        <p>
+            <i (click)="removeCoupon()" class="fa fa-times-circle" aria-hidden="true"></i>
+        </p>
+    </div>
+    <div class="discount">
+        <h6>
+            Discount Price: {{ couponDetails.coupon_discount }}%
+        </h6>
+        <h6>
+            <price [price]="couponDetails.coupon_discount_price"></price>
+        </h6>
+    </div>
+</ng-container>

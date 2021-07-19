@@ -16,8 +16,10 @@ export class OrderDetailsTableComponent implements OnInit {
   public showActions: boolean = false;
 
   @Input() data: any[];
+  @Input() orderData: any[]
   @Input() tableHeadings: any;
   @Input() actions: any;
+  @Input() ordersTableHeadings:any
   
 
   @Output() onEdit = new EventEmitter();

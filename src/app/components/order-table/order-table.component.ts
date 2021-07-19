@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/shared/services/cart/cart.service';
 
 @Component({
   selector: 'app-order-table',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderTableComponent implements OnInit {
 
-  constructor() { }
+  public items = [];
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.cartService._cart$.subscribe(res => {
+      this.items = res.items;
+    });
+  }
+
+  delete(item) {
+    this.cartService.deleteCartItem(item);
+  }
+
+  updateQty(event, item) {
+    this.cartService.updateQty(event, item);
   }
 
 }
