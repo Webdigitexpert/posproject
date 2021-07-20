@@ -6,17 +6,15 @@ import { Observable, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductsService {
-
-  public basePath = environment.basePath
+  public basePath = environment.basePath;
   public _products;
   public _products$: Subject<any> = new Subject();
 
-  constructor(private http: HttpService) { }
+  constructor(private http: HttpService) {}
 
-  
   set products(products) {
     this._products = products;
     this._products$.next(this._products);
@@ -27,37 +25,53 @@ export class ProductsService {
 
   getProducts() {
     const url = `${this.basePath}products`;
-    return this.http.get(url, this.http.headers).pipe(tap(res => {
-      this.products = res
-    }));
-  }
-
-  postProduct(payload: any): Observable<any> {
-    const url = `${this.basePath}product`;
-    return this.http.post(url, payload, this.http.headers)
-    .pipe(
-      tap(res => {
-        this.products =res.products;
+    return this.http.get(url, this.http.headers).pipe(
+      tap((res) => {
+        this.products = res;
       })
     );
   }
 
-  updateProduct(id:any,payload:any): Observable<any> {
+  postProduct(payload: any, image: File): Observable<any> {
+    console.log(payload);
+    const formData = new FormData();
+    formData.append('product_name', payload.product_name);
+    formData.append('product_price', payload.product_price);
+    formData.append('product_description', payload.product_description);
+    formData.append('category_id', payload.category_id);
+    formData.append('status', payload.status);
+    formData.append('product_image', image);
+    const url = `${this.basePath}product`;
+    debugger;
+    console.log(formData);
+    return this.http.post(url, formData, this.http.headers).pipe(
+      tap((res) => {
+        this.products = res.products;
+      })
+    );
+  }
+
+  updateProduct(id: any, payload: any, image: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('product_name', payload.product_name);
+    formData.append('product_price', payload.product_price);
+    formData.append('product_description', payload.product_description);
+    formData.append('category_id', payload.category_id);
+    formData.append('status', payload.status);
+    formData.append('product_image', image);
     const url = `${this.basePath}product/${id}`;
-    return this.http.put(url, payload, this.http.headers)
-    .pipe(
-      tap(res => {
-        this.products =res.products;
+    return this.http.put(url, formData, this.http.headers).pipe(
+      tap((res) => {
+        this.products = res.products;
       })
     );
   }
 
   deleteProduct(payload: any): Observable<any> {
     const url = `${this.basePath}product/${payload}`;
-    return this.http.delete(url, this.http.headers)
-    .pipe(
-      tap(res => {
-        this.products =res.products;
+    return this.http.delete(url, this.http.headers).pipe(
+      tap((res) => {
+        this.products = res.products;
       })
     );
   }
@@ -67,11 +81,8 @@ export class ProductsService {
     return this.http.delete(url, this.http.headers);
   }
 
-  getProductByCategoryId(id:any){
+  getProductByCategoryId(id: any) {
     const url = `${this.basePath}/product/category/${id}`;
     return this.http.get(url, this.http.headers);
   }
-
 }
-
-

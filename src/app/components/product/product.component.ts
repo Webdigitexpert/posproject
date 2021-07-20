@@ -31,10 +31,8 @@ export class ProductComponent implements OnInit {
         cancel: "Cancel",
       },
       data: data
-    }, ProductDetailsComponent).then((res: any) => {
-
-      console.log(res)
-    })
+    }, ProductDetailsComponent)
+    
     this.productService.getProduct(data)
       .subscribe((product) => {
         console.log(product)

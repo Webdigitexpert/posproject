@@ -6,16 +6,15 @@ import { environment } from 'src/environments/environment';
 import { HttpService } from '../http/http.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrdersService {
-
   public basePath = environment.basePath;
   public _orders;
   public _orders$: Subject<any> = new Subject();
 
-  constructor(private http: HttpService) { }
-  
+  constructor(private http: HttpService) {}
+
   set orders(orders) {
     this._orders = orders;
     this._orders$.next(this._orders);
@@ -34,16 +33,18 @@ export class OrdersService {
     return this.http.post(url, payload, this.http.headers);
   }
 
-  updateOrder(id:any,payload:any): Observable<any> {
+  updateOrder(id: any, payload: any): Observable<any> {
     const url = `${this.basePath}order/${id}`;
     return this.http.put(url, payload, this.http.headers);
   }
 
   deleteOrder(payload: any): Observable<any> {
     const url = `${this.basePath}order/${payload}`;
-    return this.http.delete(url, this.http.headers).pipe(tap(res=>{
-      this.orders = res.orders
-    }));
+    return this.http.delete(url, this.http.headers).pipe(
+      tap((res) => {
+        this.orders = res.orders;
+      })
+    );
   }
 
   getOrder(payload: any): Observable<any> {
@@ -51,4 +52,8 @@ export class OrdersService {
     return this.http.delete(url, this.http.headers);
   }
 
+  OrdersCount(): Observable<any> {
+    const url = `${this.basePath}order/count/all`;
+    return this.http.get(url, this.http.headers);
+  }
 }

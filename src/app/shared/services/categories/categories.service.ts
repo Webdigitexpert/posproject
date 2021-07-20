@@ -64,6 +64,10 @@ export class CategoriesService {
     const url = `${this.basePath}category/${payload}`;
     return this.http.delete(url, this.http.headers);
   }
-
+   
+  searchCategory(categoryName:string) {
+    const url = `${this.basePath}category/name/${categoryName}`;
+    return this.http.get(url,this.http.headers);
+  }
 }
 

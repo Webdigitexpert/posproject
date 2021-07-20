@@ -1,5 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CartService } from 'src/app/shared/services/cart/cart.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-details',
@@ -12,11 +14,12 @@ export class ProductDetailsComponent implements OnInit {
   public buttons
   public addCustomers: boolean = false
   public productData
+  public imageUrl = environment.imageUrl
 
   @Input() props: any
 
   @Output() customerDetails = new EventEmitter
-  constructor(public modal: NgbActiveModal) { }
+  constructor(public modal: NgbActiveModal, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.setDialogProps(this.props)
@@ -49,6 +52,12 @@ export class ProductDetailsComponent implements OnInit {
   }
   addCustomer() {
     this.addCustomers = true
+  }
+
+  addProduct(data) {
+    this.cartService.setCartItem(data)
+    this.dismiss()
+    console.log(data)
   }
 
   dismiss() {

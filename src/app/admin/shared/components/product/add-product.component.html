@@ -9,41 +9,72 @@
     <form [formGroup]="productForm">
       <div class="form-group">
         <label for="exampleInputEmail1">Product Name</label>
-        <app-input-type [control]="productForm.get('product_name')" [data]="prod_name" [input_class]="'form-data'">
+        <app-input-type
+          [control]="productForm.get('product_name')"
+          [data]="prod_name"
+          [input_class]="'form-data'"
+        >
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Product Category</label>
-        <app-select [control]="productForm.get('category_id')" [selectData]="categoryOptions" key="category_name">
+        <app-select
+          [control]="productForm.get('category_id')"
+          [selectData]="categoryOptions"
+          key="category_name"
+          select_value="_id"
+          type="select_category"
+        >
         </app-select>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Product Price</label>
-        <app-input-type [control]="productForm.get('product_price')" [data]="prod_price" [input_class]="'form-data'">
+        <app-input-type
+          [control]="productForm.get('product_price')"
+          [data]="prod_price"
+          [input_class]="'form-data'"
+        >
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Product Image</label>
-        <app-input-type (change)="onFileSelect($event.target.files)" [control]="productForm.get('product_image')"
-          [data]="prod_image" [input_class]="'form-data'">
+        <app-input-type
+          (change)="onFileSelect($event)"
+          [data]="prod_image"
+          [input_class]="'form-data'"
+        >
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Product Description</label>
-        <app-textarea [control]="productForm.get('product_description')"></app-textarea>
+        <app-textarea
+          [control]="productForm.get('product_description')"
+        ></app-textarea>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Product Status</label>
-        <app-select [control]="productForm.get('status')" [selectData]="statusOptions" key="state"></app-select>
+        <app-select
+          [control]="productForm.get('status')"
+          [selectData]="statusOptions"
+          key="state"
+        ></app-select>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.add" (click)="onCreate()">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.add"
+      (click)="onCreate()"
+    >
       Add
     </app-button>
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.cancel" (click)="onCancel()">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.cancel"
+      (click)="onCancel()"
+    >
       Cancel
     </app-button>
   </div>
@@ -60,42 +91,71 @@
     <form [formGroup]="productForm">
       <div class="form-group">
         <label for="exampleInputEmail1">Product Name</label>
-        <app-input-type [control]="productForm.get('product_name')" [data]="prod_name" [input_class]="'form-data'">
+        <app-input-type
+          [control]="productForm.get('product_name')"
+          [data]="prod_name"
+          [input_class]="'form-data'"
+        >
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Product Category</label>
-        <app-select [control]="productForm.get('category_id')" [selectData]="categoryOptions" key="category_name">
+        <app-select
+          [control]="productForm.get('category_id')"
+          [selectData]="categoryOptions"
+          key="category_name"
+          id="_id"
+        >
         </app-select>
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Product Price</label>
-        <app-input-type [control]="productForm.get('product_price')" [data]="prod_price" [input_class]="'form-data'">
+        <app-input-type
+          [control]="productForm.get('product_price')"
+          [data]="prod_price"
+          [input_class]="'form-data'"
+        >
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Product Image</label>
-        <app-input-type [control]="productForm.get('product_image')" [data]="prod_image" [input_class]="'form-data'">
+        <app-input-type
+          (change)="onFileSelect($event)"
+          [data]="prod_image"
+          [input_class]="'form-data'"
+        >
         </app-input-type>
-
-        <!-- <input type="file" (change)="upload($event.target.files)" /> -->
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Product Description</label>
-        <app-textarea [control]="productForm.get('product_description')"></app-textarea>
+        <app-textarea
+          [control]="productForm.get('product_description')"
+        ></app-textarea>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Product Status</label>
-        <app-select [control]="productForm.get('status')" [selectData]="statusOptions" key="state"></app-select>
+        <app-select
+          [control]="productForm.get('status')"
+          [selectData]="statusOptions"
+          key="state"
+        ></app-select>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.edit" (click)="onUpdate()">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.edit"
+      (click)="onUpdate()"
+    >
       Save
     </app-button>
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.cancel" (click)="onCancel()">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.cancel"
+      (click)="onCancel()"
+    >
       Cancel
     </app-button>
   </div>
@@ -131,7 +191,11 @@
   </p>
 
   <div class="modal-footer">
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.cancel" (click)="onCancel()">
+    <app-button
+      [btn_class]="'btn_class'"
+      *ngIf="buttons.cancel"
+      (click)="onCancel()"
+    >
       Cancel
     </app-button>
   </div>

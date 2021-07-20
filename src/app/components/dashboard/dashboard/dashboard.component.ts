@@ -18,6 +18,20 @@ export class DashboardComponent implements OnInit {
     edit: true,
     delete: true,
   };
+  data: SimpleDataModel[] = [
+    {
+      name: 'text1',
+      value: '95',
+    },
+    {
+      name: 'text1',
+      value: '4',
+    },
+    {
+      name: 'text3',
+      value: '1',
+    },
+  ];
 
   public columns = [
     {
@@ -86,3 +100,9 @@ export class DashboardComponent implements OnInit {
   }
 
 }
+export interface SimpleDataModel {
+  name: string;
+  value: string;
+  color?: string;
+}
+

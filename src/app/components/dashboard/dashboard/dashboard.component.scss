@@ -1,0 +1,17 @@
+.dashboard-main {
+    width: 1220px;
+    margin: 0 auto;
+}
+.dashboard {
+    display: flex;
+    padding: 10px;
+    .customer-table {
+        width: 50%;
+    }
+    .graph {
+        width: 50%;
+    }
+}
+.container{
+    padding: 0 !important;
+}

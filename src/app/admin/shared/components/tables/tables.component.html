@@ -9,25 +9,57 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of data; let iseven = even" [class]="iseven ? 'table-info' : 'table-secondary'">
-        <td  *ngFor="let column of columns">
-          <p *ngIf="column.field !='product_image'">
+      <tr
+        *ngFor="let row of data; let iseven = even"
+        [class]="iseven ? 'table-info' : 'table-secondary'"
+      >
+        <td *ngFor="let column of columns">
+          <p
+            *ngIf="
+              column.field == 'product_price' || column.field == 'order_amount'
+            "
+            [price]="'{{row[column.field]}}'"
+          >
+            {{ row[column.field] | moneypipe: 4 }}
+          </p>
+          <p
+            *ngIf="
+              column.field != 'product_image' &&
+              column.field != 'product_price' &&
+              column.field != 'order_amount'
+            "
+          >
             {{ row[column.field] }}
           </p>
-          <p *ngIf="column.field =='product_image'">
-            <img src="{{imageUrl}}{{row[column.field]}}" width="80" alt="">
+          <p *ngIf="column.field == 'product_image'">
+            <img
+              src="http://162.241.201.237:7000/{{ row[column.field] }}"
+              width="80"
+              alt=""
+            />
           </p>
         </td>
 
         <td *ngIf="showActions">
           <div class="btnActions">
-            <app-button [btn_class]="'actionBtns'" *ngIf="actions.delete" (click)="delete(row)"><i
-                class="fa fa-trash"></i>
+            <app-button
+              [btn_class]="'actionBtns'"
+              *ngIf="actions.delete"
+              (click)="delete(row)"
+              ><i class="fa fa-trash"></i>
             </app-button>
-            <app-button [btn_class]="'actionBtns'" *ngIf="actions.edit" (click)="edit(row)">
+            <app-button
+              [btn_class]="'actionBtns'"
+              *ngIf="actions.edit"
+              (click)="edit(row)"
+            >
               <i class="fa fa-edit"></i>
             </app-button>
-            <app-button [btn_class]="'actionBtns'" *ngIf="actions.view" (click)="view(row)">
+            <app-button
+              [btn_class]="'actionBtns'"
+              *ngIf="actions.view"
+              (click)="view(row)"
+            >
               <i class="fa fa-eye"></i>
             </app-button>
           </div>

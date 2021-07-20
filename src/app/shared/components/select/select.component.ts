@@ -9,6 +9,8 @@ import { FormControl } from '@angular/forms';
 export class SelectComponent implements OnInit {
   @Input() selectData: any;
   @Input() key: any; // category_name
+  @Input() type: any;
+  @Input() select_value: any;
 
   @Input() control: FormControl;
   constructor() {}

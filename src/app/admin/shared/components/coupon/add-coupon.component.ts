@@ -47,9 +47,18 @@ export class AddCouponComponent implements OnInit {
 
   ngOnInit(): void {
     this.couponForm = new FormGroup({
-      coupon_name: new FormControl('', [Validators.required, Validators.maxLength(6)]),
-      coupon_description: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      coupon_discount: new FormControl('', [Validators.required, Validators.maxLength(2)]),
+      coupon_name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+      ]),
+      coupon_description: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50),
+      ]),
+      coupon_discount: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(2),
+      ]),
       coupon_status: new FormControl('Active'),
     });
     this.setDialogProps(this.props);
@@ -61,9 +70,9 @@ export class AddCouponComponent implements OnInit {
     this.data = dialogdata.data;
     this.couponId =
       // this.type === 'edit' || this.type === 'view' ? dialogdata.data._id : '';
-    this.title = dialogdata.title;
+      this.title = dialogdata.title;
     this.buttons = dialogdata.buttons;
-    debugger
+    debugger;
     if (['edit', 'view'].includes(this.type)) {
       this.couponId = dialogdata.data._id;
       this.couponForm.patchValue(this.data);
@@ -80,7 +89,6 @@ export class AddCouponComponent implements OnInit {
         console.log(err);
       }
     );
-
   }
 
   onSave() {
@@ -96,7 +104,7 @@ export class AddCouponComponent implements OnInit {
           console.log(err);
         }
       );
-      this.onCancel();
+    this.onCancel();
   }
 
   onCancel() {

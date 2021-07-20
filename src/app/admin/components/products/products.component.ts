@@ -13,7 +13,7 @@ export class ProductsComponent implements OnInit {
   constructor(
     private dialogService: DialogServiceService,
     private productService: ProductsService
-  ) { }
+  ) {}
 
   public inputdata = {
     type: 'button',
@@ -39,6 +39,10 @@ export class ProductsComponent implements OnInit {
       field: 'product_price',
     },
     {
+      label: 'Category',
+      field: 'category_id',
+    },
+    {
       label: 'Description',
       field: 'product_description',
     },
@@ -62,9 +66,9 @@ export class ProductsComponent implements OnInit {
         console.log(err);
       }
     );
-    this.productService._products$.subscribe(res => {
-      this.productsData = res
-    })
+    this.productService._products$.subscribe((res) => {
+      this.productsData = res;
+    });
   }
 
   opendialog(data: any) {

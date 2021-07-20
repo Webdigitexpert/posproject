@@ -1,12 +1,19 @@
 <app-header></app-header>
 
-<div class="container">
+<div class="dashboard-main">
     <app-search-by-date></app-search-by-date>
     <br>
       <h3>
         All Customers :
     </h3>
     <!-- <app-customer-orders [customerData]="orderDetailsData" [customerTableHeadings]="customerTableHeadings"></app-customer-orders> -->
+<div class="dashboard">
+  <div class="customer-table">
     <app-order-details-table [data]="orderDetailsData" [tableHeadings]="columns" [actions]="actions">
     </app-order-details-table>
+  </div>
+  <div class="graph">
+    <app-d3-pie [enablePolylines]="true" [isPercentage]="true" [pieData]="data"></app-d3-pie>
+  </div>
+</div>
 </div>

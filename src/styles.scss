@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *,
 *::after,
 *::before{
@@ -11,18 +11,18 @@ box-sizing: border-box;
 body{
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Mulish', sans-serif;
 }
 ul,li,p,h1,h2,h3,h4,h5,h6,div,span{
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Mulish', sans-serif !important;
 }
 h6{
     font-size: 18px !important;
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'Mulish', sans-serif !important;}
 
 
 /* You can add global styles to this file, and also import other style files */
@@ -93,7 +93,7 @@ ul li {
   font-size: 16px;
 }
 .card {
-  border-radius: 8px !important;
+  // border-radius: 8px !important;
   padding: 40px 28px !important;
 }
 
@@ -631,9 +631,9 @@ input[type="checkbox"] {
   color: #fa1825 !important;
   margin-top: 6px !important;
 }
-.modal-footer {
-  justify-content: center !important;
-}
+// .modal-footer {
+//   justify-content: center !important;
+// }
 .modal-footer .btn.btn-outline-dark {
   border: none !important;
   /* background: #242424 !important; */
@@ -685,9 +685,9 @@ input[type="checkbox"] {
 .title_out {
   overflow: hidden;
 }
-.modal-body .ng-valid {
-  margin-bottom: 10px;
-}
+// .modal-body .ng-valid {
+//   margin-bottom: 10px;
+// }
 /* Dashboard Responsive */
 @media (max-width: 1200px) {
   .ext {

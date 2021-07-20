@@ -34,9 +34,6 @@ export class PosLeftPanelComponent implements OnInit {
     this.searchCustomer = new FormGroup({
       customerData: new FormControl('')
     });
-    this.customerService._customers$.subscribe(res => {
-      this.customers = res
-    })
   }
   getData(data) {
     console.log(this.customers)

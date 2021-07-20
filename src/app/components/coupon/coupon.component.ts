@@ -34,6 +34,9 @@ export class CouponComponent implements OnInit {
   }
 
   getCoupons(event) {
+    if(event.target.value == null) {
+      this.couponsDropDown = false
+    }
     console.log(event)
     this.cuponsService.searchCoupon(event.target.value).subscribe(res =>{
       console.log(res)
@@ -43,7 +46,6 @@ export class CouponComponent implements OnInit {
   }
 
   addCoupon(data) {
-
     if (this.applyCoupon.get('coupon').valid) {
       const couponCode = this.applyCoupon.get('coupon').value;
       this.cuponsService.getCoupon(this.couponId).subscribe(res => {

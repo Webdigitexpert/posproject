@@ -1,33 +1,28 @@
 .ordersList{
     padding: 20px 0 20px 20px;
-    .ordersListDetails{
+    .customerSearch {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        .customerSearch{
-            width: 315px;
-            display: flex;
-            align-items: center;
-            
-            i{
-                cursor: pointer;
-                margin-right: 20px;
-            }
-            i.fa.fa-home:hover{
-                color: red;
-            }
+        .home {
+            width: 10%;
+        }
+        .searchBar {
+            width: 74%;
+        }
+        .add {
+            width: 10%;
         }
     }
+
 }
 ::ng-deep{
     .customers{
-        width: 300px;
+        width: 100%;
         input[type="search"]{
             outline: none;
             width: 100%;
             border-radius: 5px;
             border: 1px solid #eee;
-            box-shadow: 0 4px 6px rgba(32,33,36,.28);
             padding: 5px 25px;
             height: 40px;
         }
@@ -47,5 +42,29 @@
         width: 37px;
         text-align: center;
         cursor: pointer;
+    }
+}
+.customerDetails {
+    padding-top: 15px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .customer_img {
+        .outer {
+            position: absolute;
+            background: transparent;
+            overflow: hidden;
+            border: 2px solid #499bc0;
+            border-radius: 100%;
+            width: 64px;
+            height: 64px;
+        }
+        img {
+            border-radius: 100%;
+            width: 64px;
+        }
+        width: 50px;
+        border-radius: 100%;
+        width: 30%;
     }
 }

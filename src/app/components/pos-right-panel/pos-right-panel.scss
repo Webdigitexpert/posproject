@@ -1,7 +1,25 @@
 .category_body{
     overflow: hidden;
     padding: 20px;
+    form {
+        position: relative;
+        .categoryList {
+            position: absolute;
+            background-color: #fff;
+            width: 100%;
+            padding: 5px 5px 0px 8px;
+            border: 1px solid #eee;
+            p{
+                padding-bottom: 10px;
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+            }
+        }
+      
+    }
     .category_row{
+        display: flex;
+        flex-wrap: wrap;
         padding: 10px 0px 10px 0;
         height: 121px;
         overflow-y: scroll;
@@ -38,20 +56,23 @@
         background: #ea5255 !important;
         color: #fff !important; 
     }
+    .selected button.btn.btn-primary{
+        background-color: black !important;
+    }
     .cat_search{
-            input[type="search"]{
+            input[type="search"] {
             outline: none;
             width: 100%;
             border-radius: 5px;
             border: 1px solid #eee;
-            box-shadow: 0 4px 6px rgba(32,33,36,.28);
             padding: 5px 25px;
             height: 40px;
         }
     }
     button.btn.btn-primary {
-        color: #000;
+        color: #fff;
         background-color: #a5c536;
+        font-weight: 400 !important;
         
         
     }
@@ -61,7 +82,6 @@
     .button.addButton {
         width: 100px;
         height: 100px;
-        float: left;
         margin-right: 10px;  
         i{
             font-size: 36px;
@@ -69,10 +89,9 @@
         }
     }
     .product button.btn.btn-primary {
-        color: #000;
+        color: #fff;
         width: 100px;
         height: 100px;
-        float: left;
         background-color: #499bc0;
         font-size: 16px;
         margin-right: 10px;
@@ -80,50 +99,65 @@
         padding: 0;
     }
     .footer_btn{
+        padding: 5px;
+        border: 1px solid #eee;
+        border-radius: 5px;
+        display: flex;
+        .save{
+            width: 25%;
+        }
+        .cancel {
+            width: 28%;
+        }
+        .payment{
+            width: 44%;
+            margin-left: 12px;
+        }
         margin-top: 10px;
+        overflow: hidden;
         .saveSale button.btn.btn-primary {
-            color: #000;
-            width: 250px;
+            color: #fff;
+            width: 100%;
+            margin-bottom: 0 !important;
             height: 63px;
-            float: left;
             background-color: #f4c343;
             font-size: 16px;
             line-height: 1.5;
             text-transform: uppercase;
-            font-weight: bold;
+            font-weight: 600 !important;
         }
         .saveSale button.btn.btn-primary:hover{
             background-color: #f3b71f;
         }
         .sale button.btn.btn-primary {
-            color: #000;
-            width: 290px;
+            color: #fff;
+           width: 100%;
             height: 63px;
-            float: left;
+            margin-bottom: 0 !important;
             background-color: #ea5255;
             font-size: 16px;
             line-height: 1.5;
             text-transform: uppercase;
             margin-left: 12px;
-            font-weight: bold;
+            font-weight: 600 !important;
         }
         .sale button.btn.btn-primary:hover{
             background-color: #f53336;
         }
         .pay button.btn.btn-primary {
-            color: #000;
-            width: 320px;
+            color: #fff;
+            margin-bottom: 0 !important;
+            width: 100%;
             height: 63px;
             text-transform: uppercase;
-            float: left;
             background-color: #a5c536;
             font-size: 16px;
             margin-left: 12px;
             line-height: 1.5;
-            font-weight: bold;
+            font-weight: 600 !important;
         }
         .pay button.btn.btn-primary:hover{
-            background-color: #c0e92d;
+            background-color: #688502;
         }
     }       
 }

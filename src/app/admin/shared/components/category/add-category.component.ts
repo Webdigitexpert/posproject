@@ -1,8 +1,4 @@
-import {
-  Component,
-  Input,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
@@ -37,17 +33,23 @@ export class AddCategoryComponent implements OnInit {
     {
       state: 'Inactive',
     },
-  ]; 
+  ];
 
   constructor(
     public ngbModal: NgbActiveModal,
     private categoryService: CategoriesService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.categoryForm = new FormGroup({
-      category_name: new FormControl('', [Validators.required, Validators.maxLength(5)]),
-      category_description: new FormControl('', [Validators.required, Validators.maxLength(6)]),
+      category_name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(10),
+      ]),
+      category_description: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(50),
+      ]),
       status: new FormControl('Active'),
     });
     this.setDialogProps(this.props);
@@ -62,7 +64,6 @@ export class AddCategoryComponent implements OnInit {
       this.categoryId = dialogdata.data._id;
       this.categoryForm.patchValue(this.data);
     }
-
   }
   onCreate() {
     this.categoryService.postCategory(this.categoryForm.value).subscribe(
@@ -78,7 +79,7 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onEdit() {
-    debugger
+    debugger;
     this.categoryService
       .updateCategory(this.categoryId, this.categoryForm.value)
       .subscribe(

@@ -1,20 +1,32 @@
 <div class="category_body">
     <form [formGroup]="getCategorySearch">
-        <app-search (keyup)="getCategory($event)" isDataList="true" [dataLists]="categories" [control]="getCategorySearch.get('getCategory')" *ngIf="search" [details]="searchDetails" [class]="'cat_search'">
+        <app-search (keyup)="getCategory($event)" [control]="getCategorySearch.get('getCategory')" *ngIf="search"
+            [details]="searchDetails" [class]="'cat_search'">
         </app-search>
+        <ng-container *ngIf="showCategories">
+            <div class="categoryList">
+                <p (click)="getProductsByCategory(category)" *ngFor="let category of categoryList">{{category.category_name}}</p>
+            </div>
+        </ng-container>
     </form>
     <div class="category_row">
         <app-button [btn_class]="'addButton'" (click)="searchBar();"><i class="fa fa-search" aria-hidden="true"></i>
         </app-button>
-        <app-button *ngFor="let category of categories; " [ngClass]="{'highlight': category._id == id}"
+        <app-button *ngFor="let category of categories; " [class.selected]="selected" [ngClass]="{'highlight': category._id == id}"
             [btn_class]="'product'" (click)="selectCategory(category)">{{category.category_name}}</app-button>
     </div>
     <div class="products_row">
         <app-products [products]="products"></app-products>
     </div>
     <div class="footer_btn">
-        <app-button [btn_class]="'saveSale'">Save</app-button>
-        <app-button [btn_class]="'sale'">Cancel</app-button>
-        <app-button [btn_class]="'pay'">pay</app-button>
+        <div class="save">
+            <app-button [btn_class]="'saveSale'">Save</app-button>
+        </div>
+        <div class="cancel">
+            <app-button [btn_class]="'sale'">Cancel</app-button>
+        </div>
+        <div class="payment">
+            <app-button [btn_class]="'pay'">Proceed to pay</app-button>
+        </div>
     </div>
 </div>

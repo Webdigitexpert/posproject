@@ -10,10 +10,13 @@ import { CategoriesService } from '../../shared/services/categories/categories.s
 export class PosRightPanelComponent implements OnInit {
 
   public categories
+  public showCategories:boolean = false
   public products
   public selectedCategory
   public search: boolean = false
   public id
+  public selected:boolean = false
+  public categoryList
   public getCategorySearch: FormGroup
   public searchDetails = {
     type: "search",
@@ -35,6 +38,15 @@ export class PosRightPanelComponent implements OnInit {
     })
   }
 
+  getCategory(data) {
+    console.log(data.target.value)
+    this.categoriesService.searchCategory(data.target.value).subscribe((res)=>{
+      console.log(res)
+     this.categoryList = res
+     this.showCategories = true
+    })
+  }
+
   searchBar() {
     this.search = !this.search
   }
@@ -46,6 +58,13 @@ export class PosRightPanelComponent implements OnInit {
     // this.productsService.getProducts().subscribe((products) => {
     //   this.products = products
     // });
+  }
+  getProductsByCategory(data) {
+    this.selectedCategory = data
+    console.log(this.selectedCategory)
+    this.showCategories = false
+    this.selected = true
+      
   }
 
   selectCategory(category) {

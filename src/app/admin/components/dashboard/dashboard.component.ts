@@ -8,6 +8,7 @@ import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 })
 export class DashboardComponent implements OnInit {
   constructor(private orderService: OrdersService) {}
+  // public data: SimpleDataModel[];
   data: SimpleDataModel[] = [
     {
       name: 'text1',
@@ -23,8 +24,9 @@ export class DashboardComponent implements OnInit {
     },
   ];
   ngOnInit(): void {
-    this.orderService.getOrders().subscribe(
+    this.orderService.OrdersCount().subscribe(
       (res) => {
+        //  this.data = res;
         console.log(res);
       },
       (err) => {

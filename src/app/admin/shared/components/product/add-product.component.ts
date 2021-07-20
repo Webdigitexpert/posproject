@@ -14,12 +14,13 @@ export class AddProductComponent implements OnInit {
   @Input() props: any;
   public title = null;
   public buttons: any;
-  public imageUrl = environment.imageUrl
+  public imageUrl = environment.imageUrl;
   public type: string;
   public data: any;
   public productForm: FormGroup;
   public productId: string;
   public categoryOptions: any;
+  public image: any;
   public prod_name = {
     type: 'text',
     placeholder: 'Product Name',
@@ -74,14 +75,26 @@ export class AddProductComponent implements OnInit {
       this.categoryOptions = res;
       console.log(res);
     });
-  
 
     this.productForm = new FormGroup({
-      product_name: new FormControl('', [Validators.required,Validators.maxLength(12)]),
+      product_name: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(12),
+      ]),
       category_id: new FormControl('', [Validators.required]),
-      product_price: new FormControl('', [Validators.required,Validators.maxLength(8),Validators.pattern("")]),
-      product_image: new FormControl('', [Validators.required,Validators.maxLength(8),]),
-      product_description: new FormControl('', [Validators.required,Validators.maxLength(100)]),
+      product_price: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(8),
+        Validators.pattern(''),
+      ]),
+      // product_image: new FormControl('', [
+      //   Validators.required,
+      //   Validators.maxLength(8),
+      // ]),
+      product_description: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(100),
+      ]),
       status: new FormControl('', [Validators.required]),
     });
     this.setDialogProps(this.props);
@@ -100,22 +113,35 @@ export class AddProductComponent implements OnInit {
       this.productForm.patchValue(this.data);
     }
   }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.image = file;
+      console.log(this.image);
+    }
+  }
+
   onCreate() {
-    this.productService.postProduct(this.productForm.value).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+    this.productService
+      .postProduct(this.productForm.value, this.image)
+      .subscribe(
+        (res) => {
+          this.onCancel();
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   onUpdate() {
     this.productService
-      .updateProduct(this.productId, this.productForm.value)
+      .updateProduct(this.productId, this.productForm.value, this.image)
       .subscribe(
         (res) => {
+          this.onCancel();
           console.log(res);
         },
         (err) => {
