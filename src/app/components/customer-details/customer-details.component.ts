@@ -7,9 +7,9 @@ import { CustomerService } from 'src/app/shared/services/customers/customer.serv
   styleUrls: ['./customer-details.component.scss']
 })
 export class CustomerDetailsComponent implements OnInit {
-  @Input() customerName
-  @Input() customerMobile
-  @Input() customerEmail
+  @Input() customerDetails
+  // @Input() customerMobile
+  // @Input() customerEmail
  
 
   constructor() { }

@@ -56,4 +56,9 @@ export class OrdersService {
     const url = `${this.basePath}order/count/all`;
     return this.http.get(url, this.http.headers);
   }
+
+  searchOrderByDates(fromDate:any, toDate:any) {
+    const url = `${this.basePath}order/date/${fromDate}&&${toDate}`;
+    return this.http.get(url,this.http.headers)
+  }
 }

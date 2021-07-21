@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DialogServiceService } from '../../../shared/services/dialog/dialog-service.service';
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
+import { environment } from 'src/environments/environment';
 // import { EditOrderComponent } from '../../shared/components/edit-order/edit-order.component';
 
 @Component({
@@ -14,6 +15,9 @@ export class OrdersComponent implements OnInit {
     private dialogService: DialogServiceService,
     private orderService: OrdersService
   ) {}
+  public loaderShow: boolean = false;
+  public loaderTemplate: any = environment.loaderTemplate;
+
   public actions = {
     //edit: true,
     delete: true,
@@ -23,44 +27,52 @@ export class OrdersComponent implements OnInit {
     {
       label: 'Order date',
       field: 'order_date_and_time',
+      isText: true,
     },
     {
       label: 'Order amount',
       field: 'order_amount',
+      isPrice: true,
     },
     {
       label: 'Employee Name',
       field: 'employee_id',
+      isText: true,
     },
     {
       label: 'Coupon Code',
       field: 'coupon_code',
+      isText: true,
     },
     {
       label: 'Coupon Discount',
       field: 'coupon_discount',
+      isText: true,
     },
     {
       label: 'Feedback',
       field: 'customer_feedback',
+      isText: true,
     },
   ];
 
   public orders;
 
   ngOnInit(): void {
+    this.loaderShow = true;
     this.orderService.getOrders().subscribe(
       (res) => {
         this.orders = res;
+        this.loaderShow = false;
         console.log(res);
       },
       (err) => {
         console.log(err);
       }
     );
-    this.orderService._orders$.subscribe(res =>{
-      this.orders =res
-    })
+    this.orderService._orders$.subscribe((res) => {
+      this.orders = res;
+    });
   }
 
   edit(data: any) {

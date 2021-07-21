@@ -8,7 +8,7 @@
             <div class="content mb-3">
               <div class="form-group">
                 <label>Email</label>
-                <app-input-type [data]="username" [control]="loginForm.get('username')" [input_class]="'email'">
+                <app-input-type [data]="username" [control]="loginForm.get('email')" [input_class]="'email'">
                 </app-input-type>
               </div>
               <div class="form-group">
@@ -21,8 +21,8 @@
                   <input checked="" id="checkbox" type="checkbox" />
                   <label for="checkbox"> Remember Me</label>
                 </div>
-                <div>
-                  <a [routerLink]="['/admin/forgot_password']">Forgot password</a>
+                <div class="forgetPassword">
+                  <a [routerLink]="['/admin/forgot_password']">Forgot password ?</a>
                 </div>
               </div>
             </div>
@@ -35,3 +35,6 @@
     </div>
   </div>
 </div>
+<ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
+  Loading...
+</ngx-loader>

@@ -3,6 +3,7 @@ import { DialogServiceService } from '../../../shared/services/dialog/dialog-ser
 import { AddCouponComponent } from '../../shared/components/coupon/add-coupon.component';
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { CouponsService } from 'src/app/shared/services/coupons/coupons.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-coupons',
@@ -14,6 +15,9 @@ export class CouponsComponent implements OnInit {
     private dialogService: DialogServiceService,
     private couponService: CouponsService
   ) {}
+
+  public loaderShow: boolean = false;
+  public loaderTemplate: any = environment.loaderTemplate;
   public inputdata = {
     type: 'button',
     name: 'btn',
@@ -31,36 +35,42 @@ export class CouponsComponent implements OnInit {
     {
       label: 'Coupon Code',
       field: 'coupon_name',
+      isText: true,
     },
     {
       label: 'Coupon Description',
       field: 'coupon_description',
+      isText: true,
     },
     {
       label: 'Coupon Discount(%)',
       field: 'coupon_discount',
+      isText: true,
     },
     {
       label: 'Coupon Status',
       field: 'coupon_status',
+      isText: true,
     },
   ];
 
   public coupons;
 
   ngOnInit(): void {
+    this.loaderShow = true;
     this.couponService.getCoupons().subscribe(
       (res) => {
         this.coupons = res;
+        this.loaderShow = false;
         console.log(res);
       },
       (err) => {
         console.log(err);
       }
     );
-    this.couponService._coupons$.subscribe((res)=>{
-      this.coupons = res
-    })
+    this.couponService._coupons$.subscribe((res) => {
+      this.coupons = res;
+    });
   }
 
   opendialog(data: any) {

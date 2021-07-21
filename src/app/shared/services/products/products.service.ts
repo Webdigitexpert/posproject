@@ -42,7 +42,6 @@ export class ProductsService {
     formData.append('status', payload.status);
     formData.append('product_image', image);
     const url = `${this.basePath}product`;
-    debugger;
     console.log(formData);
     return this.http.post(url, formData, this.http.headers).pipe(
       tap((res) => {

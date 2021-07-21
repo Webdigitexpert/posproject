@@ -3,11 +3,11 @@
         <app-search (keyup)="getCategory($event)" [control]="getCategorySearch.get('getCategory')" *ngIf="search"
             [details]="searchDetails" [class]="'cat_search'">
         </app-search>
-        <ng-container *ngIf="showCategories">
+        <!-- <ng-container *ngIf="showCategories">
             <div class="categoryList">
                 <p (click)="getProductsByCategory(category)" *ngFor="let category of categoryList">{{category.category_name}}</p>
             </div>
-        </ng-container>
+        </ng-container> -->
     </form>
     <div class="category_row">
         <app-button [btn_class]="'addButton'" (click)="searchBar();"><i class="fa fa-search" aria-hidden="true"></i>
@@ -30,3 +30,7 @@
         </div>
     </div>
 </div>
+
+<ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
+    Loading...
+  </ngx-loader>

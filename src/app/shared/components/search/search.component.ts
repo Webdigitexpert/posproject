@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SearchComponent implements OnInit {
   @Input() public details
-  @Input() public class:string
+  @Input() public class
   @Input() public isDataList:boolean = false
   @Input() public control: FormControl
   @Input() public dataLists

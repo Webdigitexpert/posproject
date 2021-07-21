@@ -37,4 +37,4 @@ import { CommonModule } from '@angular/common';
   imports: [SharedModule, RouterModule, CommonModule, ReactiveFormsModule],
   providers: [],
 })
-export class AdminSharedModule { }
+export class AdminSharedModule {}

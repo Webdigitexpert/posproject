@@ -8,7 +8,16 @@
     <app-button (click)="opendialog($event)" [btn_class]="'login_btn'">
       Add New
     </app-button>
-    <app-tables (onDelete)="deleteCoupons($event)" (onEdit)="editCoupons($event)" (onView)="viewCoupons($event)"
-      [data]="coupons" [columns]="columns" [actions]="actions"></app-tables>
+    <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
+      Loading...
+    </ngx-loader>
+    <app-tables
+      (onDelete)="deleteCoupons($event)"
+      (onEdit)="editCoupons($event)"
+      (onView)="viewCoupons($event)"
+      [data]="coupons"
+      [columns]="columns"
+      [actions]="actions"
+    ></app-tables>
   </div>
 </div>

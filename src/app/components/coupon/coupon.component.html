@@ -13,11 +13,11 @@
         </form>
 
     </div>
-    <ng-container *ngIf="couponsDropDown">
+    <!-- <ng-container *ngIf="couponsDropDown">
         <div class="couponsList" >
             <p *ngFor="let coupon of coupons" (click)="apply(coupon)">{{coupon.coupon_name }}</p>
         </div>
-    </ng-container>
+    </ng-container> -->
 
 </div>
 <ng-container *ngIf="isCouponActivated()">

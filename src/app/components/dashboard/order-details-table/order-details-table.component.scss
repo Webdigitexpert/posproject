@@ -4,8 +4,8 @@
         width: 68px;
         height: 32px;
         margin: 0;
-        color: #499bc0;
-        text-align: left;
+        color: #ea5255;
+        text-align: center;
         padding: 0;
     }
 
@@ -20,14 +20,23 @@
     }
 }
 .order-table{
-    padding: 20px 0;
+    padding: 4px 0;
     table{
         border: 1px solid #eee;
-        box-shadow: 0 4px 6px rgba(32,33,36,.28);
         width: 66%;
         background: #fff;
+        thead {
+            color: #fff;
+            background-color: #499bc0;
+        }
         th{
             text-transform: capitalize;
+            padding: 8px;
+            vertical-align: middle;
+        }
+        td {
+            padding: 8px;
+            vertical-align: middle;
         }
     }
 }

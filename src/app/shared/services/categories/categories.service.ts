@@ -44,7 +44,6 @@ export class CategoriesService {
     const url = `${this.basePath}category/${id}`;
     return this.http.put(url, payload, this.http.headers).pipe(
       tap(res => {
-        debugger
         this.categories = res.categories;
       })
     );
@@ -54,7 +53,6 @@ export class CategoriesService {
     const url = `${this.basePath}category/${payload}`;
     return this.http.delete(url, this.http.headers).pipe(
       tap(res => {
-        debugger
         this.categories = res.categories;
       })
     );

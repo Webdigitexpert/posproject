@@ -14,24 +14,13 @@
         [class]="iseven ? 'table-info' : 'table-secondary'"
       >
         <td *ngFor="let column of columns">
-          <p
-            *ngIf="
-              column.field == 'product_price' || column.field == 'order_amount'
-            "
-            [price]="'{{row[column.field]}}'"
-          >
-            {{ row[column.field] | moneypipe: 4 }}
+          <p *ngIf="column.isPrice">
+            <price [price]="row[column.field]"></price>
           </p>
-          <p
-            *ngIf="
-              column.field != 'product_image' &&
-              column.field != 'product_price' &&
-              column.field != 'order_amount'
-            "
-          >
+          <p *ngIf="column.isText">
             {{ row[column.field] }}
           </p>
-          <p *ngIf="column.field == 'product_image'">
+          <p *ngIf="column.isImage">
             <img
               src="http://162.241.201.237:7000/{{ row[column.field] }}"
               width="80"
@@ -39,7 +28,6 @@
             />
           </p>
         </td>
-
         <td *ngIf="showActions">
           <div class="btnActions">
             <app-button

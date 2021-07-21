@@ -8,6 +8,9 @@
     <app-button (click)="opendialog($event)" [btn_class]="'login_btn'">
       Add New
     </app-button>
+    <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
+      Loading...
+    </ngx-loader>
     <app-tables
       (onDelete)="deleteEmployee($event)"
       (onEdit)="editEmployee($event)"

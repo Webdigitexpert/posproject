@@ -3,6 +3,7 @@ import { DialogServiceService } from '../../../shared/services/dialog/dialog-ser
 import { AddEmployeeComponent } from '../../shared/components/employee/add-employee.component';
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { EmployeeService } from 'src/app/shared/services/employee/employee.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-employee',
@@ -14,6 +15,9 @@ export class EmployeeComponent implements OnInit {
     private dialogService: DialogServiceService,
     private employeeService: EmployeeService
   ) {}
+
+  public loaderShow: boolean = false;
+  public loaderTemplate: any = environment.loaderTemplate;
   public inputdata = {
     type: 'button',
     name: 'btn',
@@ -31,40 +35,47 @@ export class EmployeeComponent implements OnInit {
     {
       label: 'Employee Name',
       field: 'employee_name',
+      isText: true,
     },
     {
       label: 'Phone number',
       field: 'phone_number',
+      isText: true,
     },
     {
       label: 'E-mail',
       field: 'email',
+      isText: true,
     },
     {
       label: 'Role',
       field: 'role',
+      isText: true,
     },
     {
       label: 'Employee Code',
       field: 'employee_code',
+      isText: true,
     },
   ];
 
   public employee;
 
   ngOnInit(): void {
+    this.loaderShow = true;
     this.employeeService.getEmployee().subscribe(
       (res) => {
         this.employee = res;
+        this.loaderShow = false;
         console.log(res);
       },
       (err) => {
         console.log(err);
       }
     );
-    this.employeeService._employees$.subscribe((res)=>{
-      this.employee =res
-    })
+    this.employeeService._employees$.subscribe((res) => {
+      this.employee = res;
+    });
   }
   opendialog(data: any) {
     this.dialogService

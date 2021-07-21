@@ -5,6 +5,9 @@
   </div>
 
   <div class="order-table col-md-10">
+    <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
+      Loading...
+    </ngx-loader>
     <app-tables
       [data]="orders"
       [columns]="columns"

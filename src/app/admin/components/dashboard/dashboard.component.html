@@ -1,3 +1,5 @@
+
+
 <app-header></app-header>
 <div class="row">
   <div class="sidebar col-md-2">
@@ -5,10 +7,14 @@
   </div>
 
   <div class="dashboard col-md-10">
-    <app-d3-pie
-      [enablePolylines]="true"
-      [isPercentage]="true"
-      [pieData]="data"
-    ></app-d3-pie>
+    <app-tables [data]="dashboardData" [columns]="columns"></app-tables>
   </div>
 </div>
+
+<ngx-loader
+  [show]="loaderShow"
+  [fullScreen]="fullScreen"
+  [template]="loaderTemplate"
+>
+  Loading...
+</ngx-loader>

@@ -8,8 +8,20 @@
     <app-button (click)="opendialog($event)" [btn_class]="'login_btn'">
       Add New
     </app-button>
+    <ngx-loader
+      [show]="loaderShow"
+      [fullScreen]="fullScreen"
+      [template]="loaderTemplate">
+      Loading...
+    </ngx-loader>
 
-    <app-tables (onDelete)="deleteCategory($event)" (onEdit)="editCategory($event)" (onView)="viewCategory($event)"
-      [data]="categories" [columns]="columns" [actions]="actions"></app-tables>
+    <app-tables
+      (onDelete)="deleteCategory($event)"
+      (onEdit)="editCategory($event)"
+      (onView)="viewCategory($event)"
+      [data]="categories"
+      [columns]="columns"
+      [actions]="actions"
+    ></app-tables>
   </div>
 </div>

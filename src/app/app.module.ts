@@ -5,6 +5,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
 
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,8 @@ import { EmployeeManagementComponent } from './components/employee-management/em
 import { PosComponent } from './components/pos/pos.component';
 import { CustomerFilterPipe } from './customer-filter.pipe';
 import { CustomerOrdersComponent } from './components/dashboard/customer-orders/customer-orders.component';
+
+import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
 
 
 @NgModule({
@@ -63,9 +66,10 @@ import { CustomerOrdersComponent } from './components/dashboard/customer-orders/
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgxLoaderModule
     
   ],
-  providers: [],
+  providers: [AuthServiceGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -20,7 +20,7 @@ export class AddProductComponent implements OnInit {
   public productForm: FormGroup;
   public productId: string;
   public categoryOptions: any;
-  public image: any;
+  public image: File;
   public prod_name = {
     type: 'text',
     placeholder: 'Product Name',

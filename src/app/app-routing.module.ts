@@ -4,6 +4,8 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { LoginComponent } from './components/login/login.component';
 import { PosComponent } from './components/pos/pos.component';
 import { EmployeeManagementComponent } from './components/employee-management/employee-management.component';
+import { AuthService } from './shared/services/auth/auth.service';
+import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: "full" },

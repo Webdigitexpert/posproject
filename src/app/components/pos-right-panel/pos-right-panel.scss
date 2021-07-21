@@ -52,10 +52,12 @@
       }
 }
 ::ng-deep{
-    .highlight button.btn.btn-primary {
-        background: #ea5255 !important;
-        color: #fff !important; 
-    }
+    .highlight {
+        button.btn.btn-primary {
+            background: #ea5255 !important;
+            color: #fff !important; 
+        }
+    } 
     .selected button.btn.btn-primary{
         background-color: black !important;
     }
@@ -69,15 +71,11 @@
             height: 40px;
         }
     }
-    button.btn.btn-primary {
+    .addButton button.btn.btn-primary{
+        padding: 0;
         color: #fff;
         background-color: #a5c536;
         font-weight: 400 !important;
-        
-        
-    }
-    .addButton button.btn.btn-primary{
-        padding: 0;
     }
     .button.addButton {
         width: 100px;
@@ -105,18 +103,22 @@
         display: flex;
         .save{
             width: 25%;
+            cursor: pointer;
         }
         .cancel {
             width: 28%;
+            cursor: pointer;
         }
         .payment{
             width: 44%;
+            cursor: pointer;
             margin-left: 12px;
         }
         margin-top: 10px;
         overflow: hidden;
         .saveSale button.btn.btn-primary {
             color: #fff;
+            cursor: pointer;
             width: 100%;
             margin-bottom: 0 !important;
             height: 63px;
@@ -133,6 +135,7 @@
             color: #fff;
            width: 100%;
             height: 63px;
+            cursor: pointer;
             margin-bottom: 0 !important;
             background-color: #ea5255;
             font-size: 16px;
@@ -148,6 +151,7 @@
             color: #fff;
             margin-bottom: 0 !important;
             width: 100%;
+            cursor: pointer;
             height: 63px;
             text-transform: uppercase;
             background-color: #a5c536;

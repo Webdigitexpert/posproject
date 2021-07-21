@@ -19,6 +19,8 @@ export class PosLeftPanelComponent implements OnInit {
   public customers = []
   public customerId = []
   public allCustomers
+  public selectedCustomer = {
+  }
   public customerDetails = {
     type: "search",
     placeholder: "Search Customer...",
@@ -55,7 +57,7 @@ export class PosLeftPanelComponent implements OnInit {
     this.customerService.getCustomers().subscribe((res) => {
       this.customers = res
       this.customers.forEach((value) => {
-        this.customerNames.push(value.customer_name)
+        this.customerNames.push(`${value.customer_name}  ${value.customer_mobile}  ${value.customer_email}`)
       })
       console.log(this.customerNames)
     })
@@ -63,12 +65,7 @@ export class PosLeftPanelComponent implements OnInit {
 
   getCustomer(event) {
     if (event.target.value) {
-      this.customerService.searchCustomer(event.target.value).subscribe((res) => {
-        console.log(res)
-        this.customerName = res[0].customer_name
-        this.customerMobile = res[0].customer_mobile
-        this.customerEmail = res[0].customer_email
-      })
+     this.selectedCustomer = this.customerNames.find(customer => customer.customer_name === event.target.value);
     }
   }
 

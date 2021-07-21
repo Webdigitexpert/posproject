@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
 
 import { SearchComponent } from './components/search/search.component';
 import { ButtonComponent } from './components/button/button.component';
@@ -45,7 +46,7 @@ import { DialogServiceService } from './services/dialog/dialog-service.service';
     D3PieComponent,
     MoneyPipe,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,NgxLoaderModule],
   providers: [DialogServiceService],
 })
 export class SharedModule {}

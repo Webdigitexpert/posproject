@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,31 @@ import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 })
 export class DashboardComponent implements OnInit {
   constructor(private orderService: OrdersService) {}
-  // public data: SimpleDataModel[];
+  public columns = [
+    {
+      label: 'Employee Name',
+      field: 'employee_id',
+      isText: true,
+    },
+    {
+      label: 'Order Date',
+      field: 'order_date_and_time',
+      isText: true,
+    },
+    {
+      label: 'Order Amount',
+      field: 'order_amount',
+      isPrice: true,
+    },
+  ];
+  // public actions = {
+  //   // edit: true,
+  //   delete: true,
+  //   // add: true,
+  //   // view: true,
+  // };
+
+  public dashboardData: any;
   data: SimpleDataModel[] = [
     {
       name: 'text1',
@@ -23,10 +48,16 @@ export class DashboardComponent implements OnInit {
       value: '1',
     },
   ];
+  public loaderShow: boolean = false;
+  public fullScreen: boolean = true;
+  public loaderTemplate = environment.loaderTemplate;
+
   ngOnInit(): void {
-    this.orderService.OrdersCount().subscribe(
+    this.loaderShow = true;
+    this.orderService.getOrders().subscribe(
       (res) => {
-        //  this.data = res;
+        this.loaderShow = false;
+        this.dashboardData = res;
         console.log(res);
       },
       (err) => {

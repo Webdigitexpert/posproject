@@ -4,6 +4,7 @@ import { AddCategoryComponent } from '../../shared/components/category/add-categ
 
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-categories',
@@ -17,6 +18,10 @@ export class CategoriesComponent implements OnInit {
   ) {}
 
   @Output() toDeletebyId = new EventEmitter();
+
+  public fullScreen: boolean = true;
+  public loaderShow: boolean = false;
+  public loaderTemplate = environment.loaderTemplate;
   public gettype: any;
   public categories: any;
   public addnewbtn = {
@@ -43,28 +48,34 @@ export class CategoriesComponent implements OnInit {
     {
       label: 'Category Name',
       field: 'category_name',
+      isText: true,
     },
     {
       label: 'Category Description',
       field: 'category_description',
+      isText: true,
     },
     {
       label: 'Category Status',
       field: 'status',
+      isText: true,
     },
   ];
 
   ngOnInit(): void {
+    this.loaderShow = true;
+
     this.categoryService.getCategories().subscribe(
       (res) => {
         this.categories = res;
+        this.loaderShow = false;
         console.log(res);
       },
       (err) => {
         console.log(err);
       }
     );
-    this.categoryService._categories$.subscribe(res => {
+    this.categoryService._categories$.subscribe((res) => {
       this.categories = res;
     });
   }
@@ -87,7 +98,7 @@ export class CategoriesComponent implements OnInit {
   }
   deleteCategory(data: any) {
     console.log(data);
-    
+
     this.dialogService
       .openDialog(
         {

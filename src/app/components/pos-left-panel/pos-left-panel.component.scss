@@ -5,6 +5,10 @@
         align-items: center;
         .home {
             width: 10%;
+             i:hover {
+                 color: #499bc0;
+                 cursor: pointer;
+             }
         }
         .searchBar {
             width: 74%;

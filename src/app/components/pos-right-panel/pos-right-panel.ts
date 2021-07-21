@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
+import { environment } from 'src/environments/environment';
 import { CategoriesService } from '../../shared/services/categories/categories.service';
 @Component({
   selector: 'app-pos-right-panel',
@@ -10,23 +11,28 @@ import { CategoriesService } from '../../shared/services/categories/categories.s
 export class PosRightPanelComponent implements OnInit {
 
   public categories
-  public showCategories:boolean = false
+  public showCategories: boolean = false
   public products
   public selectedCategory
   public search: boolean = false
   public id
-  public selected:boolean = false
+  public selected: boolean = false
   public categoryList
   public getCategorySearch: FormGroup
   public searchDetails = {
     type: "search",
     placeholder: "Search Categories...",
   }
+  public fullScreen: boolean = true;
+  public loaderShow: boolean = false;
+  public loaderTemplate = environment.loaderTemplate;
 
   constructor(private categoriesService: CategoriesService, private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this.loaderShow =true;
     this.categoriesService.getCategories().subscribe((categories) => {
+      this.loaderShow = false;
       this.categories = categories
       this.selectedCategory = this.categories[0];
       console.log(categories);
@@ -34,17 +40,18 @@ export class PosRightPanelComponent implements OnInit {
       this.getProductsByCategoryId(this.selectedCategory._id);
     });
     this.getCategorySearch = new FormGroup({
-      getCategory : new FormControl('')
+      getCategory: new FormControl('')
     })
   }
 
   getCategory(data) {
     console.log(data.target.value)
-    this.categoriesService.searchCategory(data.target.value).subscribe((res)=>{
-      console.log(res)
-     this.categoryList = res
-     this.showCategories = true
-    })
+    if (data.target.value != '') {
+      this.categoriesService.searchCategory(data.target.value).subscribe((res) => {
+        console.log(res)
+        this.categories = res
+      })
+    }
   }
 
   searchBar() {
@@ -64,7 +71,7 @@ export class PosRightPanelComponent implements OnInit {
     console.log(this.selectedCategory)
     this.showCategories = false
     this.selected = true
-      
+
   }
 
   selectCategory(category) {

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
+import { OrdersService } from 'src/app/shared/services/orders/orders.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +10,10 @@ import { CustomerService } from 'src/app/shared/services/customers/customer.serv
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private customerService: CustomerService) { }
+  constructor(private customerService: CustomerService, private orderService: OrdersService) { }
 
   public orderDetailsData = []
+  public orderDetails
   public id
   public deleteCustomer
   public deleteCustomers
@@ -18,6 +21,9 @@ export class DashboardComponent implements OnInit {
     edit: true,
     delete: true,
   };
+  public fullScreen: boolean = true;
+  public loaderShow: boolean = false;
+  public loaderTemplate = environment.loaderTemplate;
   data: SimpleDataModel[] = [
     {
       name: 'text1',
@@ -39,15 +45,15 @@ export class DashboardComponent implements OnInit {
       field: '_id'
     },
     {
-      label: 'Customer Name',
+      label: 'Name',
       field: 'customer_name',
     },
     {
-      label: 'Customer Mobile',
+      label: 'Mobile',
       field: 'customer_mobile',
     },
     {
-      label: 'Order Email',
+      label: 'Email',
       field: 'customer_email',
     },
     {
@@ -79,9 +85,11 @@ export class DashboardComponent implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.loaderShow = true;
     this.customers()
 
     this.customerService._customers$.subscribe(res =>{
+      this.loaderShow = false;
       console.log(res)
       this.orderDetailsData = res
     })
@@ -98,7 +106,12 @@ export class DashboardComponent implements OnInit {
       console.log(res)
     })
   }
-
+  getOrders(data) {
+    console.log(data)
+    this.orderService.searchOrderByDates(data.fromDate,data.toDate).subscribe((res)=>{
+      console.log(res)
+    })
+  }
 }
 export interface SimpleDataModel {
   name: string;

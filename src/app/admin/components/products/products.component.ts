@@ -3,6 +3,7 @@ import { DialogServiceService } from '../../../shared/services/dialog/dialog-ser
 import { AddProductComponent } from '../../shared/components/product/add-product.component';
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -15,6 +16,8 @@ export class ProductsComponent implements OnInit {
     private productService: ProductsService
   ) {}
 
+  public loaderShow: boolean = false;
+  public loaderTemplate: any = environment.loaderTemplate;
   public inputdata = {
     type: 'button',
     name: 'btn',
@@ -33,34 +36,42 @@ export class ProductsComponent implements OnInit {
     {
       label: 'Name',
       field: 'product_name',
+      isText: true,
     },
     {
       label: 'Price',
       field: 'product_price',
+      isPrice: true,
     },
     {
       label: 'Category',
       field: 'category_id',
+      isText: true,
     },
     {
       label: 'Description',
       field: 'product_description',
+      isText: true,
     },
     {
       label: 'Product Image',
       field: 'product_image',
+      isImage: true,
     },
     {
       label: 'Status',
       field: 'status',
+      isText: true,
     },
   ];
   public productsData;
   ngOnInit(): void {
+    this.loaderShow = true;
     this.productService.getProducts().subscribe(
       (res) => {
         this.productsData = res;
         console.log(res);
+        this.loaderShow = false;
       },
       (err) => {
         console.log(err);
