@@ -21,6 +21,10 @@ export class AddProductComponent implements OnInit {
   public productId: string;
   public categoryOptions: any;
   public image: File;
+  public loaderShow: boolean = false;
+  public fullScreen: boolean = true;
+  public loaderTemplate = environment.loaderTemplate;
+
   public prod_name = {
     type: 'text',
     placeholder: 'Product Name',
@@ -71,8 +75,10 @@ export class AddProductComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loaderShow = true;
     this.categoryService.getCategories().subscribe((res) => {
       this.categoryOptions = res;
+      this.loaderShow = false;
       console.log(res);
     });
 
@@ -123,10 +129,12 @@ export class AddProductComponent implements OnInit {
   }
 
   onCreate() {
+    this.loaderShow = true;
     this.productService
       .postProduct(this.productForm.value, this.image)
       .subscribe(
         (res) => {
+          this.loaderShow = false;
           this.onCancel();
           console.log(res);
         },
@@ -137,12 +145,14 @@ export class AddProductComponent implements OnInit {
   }
 
   onUpdate() {
+    this.loaderShow = true;
     this.productService
       .updateProduct(this.productId, this.productForm.value, this.image)
       .subscribe(
         (res) => {
+          this.loaderShow = false;
           this.onCancel();
-          console.log(res);
+          
         },
         (err) => {
           console.log(err);

@@ -4,17 +4,16 @@ import { DashboardComponent } from './components/dashboard/dashboard/dashboard.c
 import { LoginComponent } from './components/login/login.component';
 import { PosComponent } from './components/pos/pos.component';
 import { EmployeeManagementComponent } from './components/employee-management/employee-management.component';
-import { AuthService } from './shared/services/auth/auth.service';
 import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
+import { EmployeeForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: "full" },
-  { path: 'home', component: PosComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'home', component: PosComponent, canActivate: [AuthServiceGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthServiceGuard] },
+  { path: 'forget-password', component: EmployeeForgetPasswordComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'view', component: EmployeeManagementComponent },
   { path: "admin", loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-
 ];
 
 @NgModule({

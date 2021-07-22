@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { EmployeeService } from 'src/app/shared/services/employee/employee.service';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 import { environment } from 'src/environments/environment';
+import { Chart } from 'angular-highcharts';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +11,10 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private orderService: OrdersService) {}
+  constructor(
+    private orderService: OrdersService,
+    private employeeService: EmployeeService
+  ) {}
   public columns = [
     {
       label: 'Employee Name',
@@ -26,12 +32,7 @@ export class DashboardComponent implements OnInit {
       isPrice: true,
     },
   ];
-  // public actions = {
-  //   // edit: true,
-  //   delete: true,
-  //   // add: true,
-  //   // view: true,
-  // };
+  public selectEmployee: any;
 
   public dashboardData: any;
   data: SimpleDataModel[] = [
@@ -51,9 +52,60 @@ export class DashboardComponent implements OnInit {
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
   public loaderTemplate = environment.loaderTemplate;
+  public fromdateSearch: any;
+  public todateSearch: any;
+  public searchForm: FormGroup;
+  public chart: any;
+  public ordersCount: any = [];
 
   ngOnInit(): void {
     this.loaderShow = true;
+    this.searchForm = new FormGroup({
+      employee_id: new FormControl('', []),
+    });
+
+    //orders count
+    this.orderService.OrdersCount().subscribe(
+      (res: any) => {
+        console.log(res);
+
+        this.ordersCount = [
+          { _id: 'test', count: 1 },
+          { _id: 'sai', count: 2 },
+        ];
+        this.chart = new Chart({
+          chart: {
+            type: 'column',
+          },
+          title: {
+            text: 'Total Sales',
+          },
+          credits: {
+            enabled: false,
+          },
+          xAxis: {
+            categories: ['Jan', 'Feb', 'March', 'April', 'May'],
+          },
+          yAxis: {
+            min: 0,
+            title: {
+              text: 'Total Orders',
+            },
+          },
+
+          series: [
+            {
+              type: 'column',
+              data: [1, 4, 1, 5, 6],
+            },
+          ],
+        });
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+
     this.orderService.getOrders().subscribe(
       (res) => {
         this.loaderShow = false;
@@ -64,6 +116,58 @@ export class DashboardComponent implements OnInit {
         console.log(err);
       }
     );
+
+    this.employeeService.getEmployee().subscribe(
+      (res) => {
+        console.log(res);
+        this.selectEmployee = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  //highcharts
+
+  getOrders(data) {
+    this.loaderShow = true;
+    this.fromdateSearch = data.fromDate;
+    this.todateSearch = data.toDate;
+    this.orderService
+      .searchOrderByDates(this.fromdateSearch, this.todateSearch)
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.dashboardData = res;
+          this.loaderShow = false;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
+  employeeSelect(event: any) {
+    this.loaderShow = true;
+    console.log(this.searchForm.value);
+    this.orderService
+      .searchOrderByDatesandEmployee(
+        this.searchForm.value.employee_id,
+        this.fromdateSearch,
+        this.todateSearch
+      )
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.loaderShow = false;
+          this.dashboardData = res;
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    console.log(event.target.value);
   }
 }
 export interface SimpleDataModel {

@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,10 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   public adminemail: any = 'your_mail@gmail.com';
   public adminpassword: any = 'password';
-  constructor(public router: Router) {}
+  public loginForm: FormGroup;
+  public adminDetails: any;
+  public errorMessage: string;
+  constructor(public router: Router, private authService: AuthService) {}
 
   login(data: any) {
     console.log(data);
@@ -38,8 +43,21 @@ export class LoginComponent implements OnInit {
     class: 'btn btn-fill btn-wd',
   };
 
-  ngOnInit(): void {}
-  login_success() {
-    this.router.navigate(['/admin/dashboard']);
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+    });
+  }
+  adminLogin() {
+    this.authService.login(this.loginForm.value).subscribe((res: any) => {
+      if (res.success) {
+        this.adminDetails = res;
+        localStorage.setItem('loginDetails', JSON.stringify(this.adminDetails));
+        this.router.navigate(['/admin/dashboard']);
+      } else {
+        this.errorMessage = res.msg;
+      }
+    });
   }
 }

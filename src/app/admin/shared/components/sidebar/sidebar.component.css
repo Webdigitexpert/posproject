@@ -4,4 +4,15 @@
 } */
 ul.sub_nav {
   padding: 5px !important;
+  border: none;
+}
+.slidebar::after {
+  position: relative !important;
+}
+ul#adminmenu {
+  background-color: #499bc0;
+}
+.slidebar::after {
+  background-color: #499bc0 !important; 
+  background: transparent;
 }

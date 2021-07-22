@@ -13,19 +13,19 @@
     <div class="employeeData">
         <div class="employee-details" *ngIf="type == 'view'">
             <h4>
-                <span>Employee Code </span> : 123
+                <span>Employee Code </span> : {{employeeDetails.employee_id}}
             </h4>
             <h4>
-                <span> Employee Name </span> : Jhon
+                <span> Employee Name </span> : {{employeeDetails.employee}}
             </h4>
             <h4>
-                <span>Mobile number </span> : 987654321
+                <span>Mobile number </span> : {{employeeDetails.employee_id}}
             </h4>
             <h4>
-                <span>Role </span> : Employee
+                <span>Role </span> : {{employeeDetails.role}}
             </h4>
             <h4>
-                <span>Email </span> : employee1@gmail.com
+                <span>Email </span> : {{employeeDetails.employee_email}}
             </h4>
             <a (click)="editDetails()">Edit</a>
             <div class="modal-footer">
@@ -39,7 +39,7 @@
         <div class="employee-details2" *ngIf="type == 'edit'">
             <form>
                 <div class="form-group">
-                    <label>Customer Name : </label>
+                    <label>Employee Name : </label>
                     <app-input-type [data]="name" [input_class]="'editEmployee'"></app-input-type>
                 </div>
                 <div class="form-group">

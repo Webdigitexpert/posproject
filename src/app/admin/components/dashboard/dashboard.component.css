@@ -1,3 +1,55 @@
 .dashboard {
+  padding: 70px 36px 0;
+  background-color: #f4f5fa;
+}
+.searchOrders{
+  margin-top:20px;
+  border-bottom: 1px solid #eee;
+}
+.selectEmployee{
+  display: flex;
+  width: 33%;
+  align-items: center;
+
+}
+.selectEmployee P{
+  font-weight: 700;
+}
+.selectBox {
+  width: 60%;
+}
+h3{
+  font-size: 22px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+.searchDetails{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.employeegraph {
+  display: flex;
+}
+.tableInfo {
+  margin-top: 12px;
   width: 50%;
+}
+.dashboardDetails {
+  padding: 20px 20px 0 20px;
+}
+.dashboard-details {
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgb(15 34 58 / 12%);
+}
+::ng-deep .employeeDetailsTable table th{
+  padding: 8px !important;
+}
+::ng-deep .employeeDetailsTable table td{
+  padding: 8px !important;
+}
+::ng-deep .selectDate h6{
+  color: #666;
 }

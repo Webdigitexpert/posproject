@@ -8,39 +8,46 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { CouponsComponent } from './components/coupons/coupons.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { AdminAuthServiceGuard } from '../shared/services/guards/admin-auth-service.guard';
 
 const routes: Routes = [
-    { path: '', component: LoginComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'forgot_password', component: ForgotPasswordComponent },
-    {
-        path: 'dashboard',
-        component: DashboardComponent,
-    },
-    {
-        path: 'categories',
-        component: CategoriesComponent,
-    },
-    {
-        path: 'products',
-        component: ProductsComponent,
-    },
-    {
-        path: 'orders',
-        component: OrdersComponent,
-    },
-    {
-        path: 'coupons',
-        component: CouponsComponent,
-    },
-    {
-        path: 'employee',
-        component: EmployeeComponent,
-    },
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgot_password', component: ForgotPasswordComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
+  {
+    path: 'products',
+    component: ProductsComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
+  {
+    path: 'coupons',
+    component: CouponsComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
+  {
+    path: 'employee',
+    component: EmployeeComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
-export class AdminRoutingModule { }
+export class AdminRoutingModule {}

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ForgotPasswordService } from 'src/app/shared/services/forgotpassword/forgot-password.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -7,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
+  public forgotForm: FormGroup;
   public email = {
     type: 'text',
     placeholder: 'Enter Email',
@@ -28,11 +31,24 @@ export class ForgotPasswordComponent implements OnInit {
     class: 'btn btn-fill btn-wd',
   };
   public resetlink: boolean = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private forgotPassword: ForgotPasswordService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.forgotForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+    });
+  }
   gotoLogin() {
     this.resetlink = true;
-     //this.router.navigate(['/admin/dashboard']);
+    this.forgotPassword.forgotPassword(this.forgotForm.value).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
+    //this.router.navigate(['/admin/dashboard']);
   }
 }

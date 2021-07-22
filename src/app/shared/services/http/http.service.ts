@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
   public headers = new HttpHeaders({
-    Authorization: `Bearer ${environment.token}`
+    
   });
   constructor(private httpClient: HttpClient) { }
 

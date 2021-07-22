@@ -27,10 +27,12 @@
               </div>
             </div>
             <div class="footer text-center">
-              <app-button (click)="loginEmployee()" [routerLink]="['/home']" [btn_class]="'loginBtn'">Login</app-button>
+              <app-button (click)="loginEmployee()" [btn_class]="'loginBtn'">Login</app-button>
             </div>
+            <p>{{errorMessage}}</p>
           </div>
         </form>
+       
       </div>
     </div>
   </div>

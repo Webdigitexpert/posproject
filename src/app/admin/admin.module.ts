@@ -5,6 +5,10 @@ import { AdminSharedModule } from './shared/shared.module';
 import { AdminRoutingModule } from './admin.routing.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
+import { ChartModule } from 'angular-highcharts';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -14,7 +18,9 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { CouponsComponent } from './components/coupons/coupons.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { CommonModule } from '@angular/common';
+
+import { AdminAuthServiceGuard } from '../shared/services/guards/admin-auth-service.guard';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +41,9 @@ import { CommonModule } from '@angular/common';
     AdminSharedModule,
     CommonModule,
     NgxLoaderModule,
+    ReactiveFormsModule,
+    ChartModule
   ],
-  providers: [],
+  providers: [AdminAuthServiceGuard],
 })
 export class AdminModule {}

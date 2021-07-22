@@ -15,8 +15,16 @@ export class AuthService {
     const url = `${this.basePath}login`
     return this.http.post(url, data)
   }
-  getToken() {
-    return localStorage.getItem('token')
+  // getEmployeeDetails() {
+  //   return JSON.parse(localStorage.getItem('employeeDetails'))
+  // }
+
+  getLoginDetails() {
+    return JSON.parse(localStorage.getItem('loginDetails'));
+  }
+
+  logout() {
+    return localStorage.clear()
   }
 
 }

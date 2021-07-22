@@ -12,7 +12,14 @@ export class AuthServiceGuard implements CanActivate {
 
   canActivate():boolean {
 
-    return false
+   const employeeDetails:any = this.authService.getLoginDetails()
+   if(employeeDetails && employeeDetails.token && employeeDetails.role=='employee') {
+      return true
+   } else {
+     this.router.navigate(['/login'])
+     return false
+   }
+    
   }
 
 }

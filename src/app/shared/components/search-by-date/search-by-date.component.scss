@@ -1,0 +1,52 @@
+.dateSearch{
+    display: flex;
+    align-items: center;
+
+    .dateFrom{
+        align-items: center;
+        p,h6{
+            margin-right: 12px;
+            margin-bottom: 0;
+        }
+        h6 {
+            font-weight: 700;
+        }
+        display: flex;
+    }
+    .dateTo{
+        align-items: center;
+        p,h6{
+            margin-right: 12px;
+            margin-bottom: 0;
+        }
+        h6 {
+            font-weight: 700;
+        } 
+        display: flex;
+    }
+}
+::ng-deep{
+    .fromDate, .toDate{
+        input[type="date"]{
+            cursor: pointer;
+            border: 1px solid #ddd;
+            padding: 5px 5px 5px 12px;
+            outline: none;
+            font-weight: 500;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+    }
+    .sortDate button.btn.btn-primary {
+        margin-bottom: 0;
+        height: 35px;
+        width: 85px;
+        background-color: #a5c536;
+        padding: 0;
+
+    }
+    .sortDate button.btn.btn-primary:hover {
+        background-color: #ea5255;
+
+    }
+}

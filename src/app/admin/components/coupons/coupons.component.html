@@ -5,19 +5,20 @@
   </div>
 
   <div class="dashboard col-md-10">
-    <app-button (click)="opendialog($event)" [btn_class]="'login_btn'">
-      Add New
-    </app-button>
-    <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
-      Loading...
-    </ngx-loader>
-    <app-tables
-      (onDelete)="deleteCoupons($event)"
-      (onEdit)="editCoupons($event)"
-      (onView)="viewCoupons($event)"
-      [data]="coupons"
-      [columns]="columns"
-      [actions]="actions"
-    ></app-tables>
+    <div class="dashboard-details">
+      <div class="couponHeading">
+        <h3>All Coupon details :</h3>
+        <app-button (click)="opendialog($event)" [btn_class]="'login_btn'">
+          Add New <i class="fa fa-plus" aria-hidden="true"></i>
+        </app-button>
+      </div>
+      <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
+        Loading...
+      </ngx-loader>
+  <div class="tableInfo">
+    <app-tables (onDelete)="deleteCoupons($event)" (onEdit)="editCoupons($event)" (onView)="viewCoupons($event)"
+    [data]="coupons" [columns]="columns" [actions]="actions"></app-tables>
+  </div>
+    </div>
   </div>
 </div>

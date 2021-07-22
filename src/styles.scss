@@ -141,7 +141,7 @@ ul li {
 .right_lists li a {
   width: 30px;
   height: 30px;
-  background: rgba(251, 64, 75, 1);
+  background: #499bc0;
   color: #fff !important;
   text-decoration: none;
   display: block;
@@ -598,7 +598,7 @@ input[type="checkbox"] {
   z-index: 99999 !important;
 }
 .modal-dialog .modal-header {
-  background: rgb(250, 24, 37);
+  background: #499bc0 !important;
   opacity: 0.9;
 }
 
@@ -623,12 +623,11 @@ input[type="checkbox"] {
 //   opacity: 0.9;
 // }
 .modal-dialog .modal-header .close {
-  background: #fff !important;
   padding: 0px 5px !important;
   margin-right: 10px !important;
-  background: #fff !important;
   opacity: 1;
-  color: #fa1825 !important;
+  color: #fff !important;
+  outline: none;
   margin-top: 6px !important;
 }
 // .modal-footer {
@@ -818,6 +817,7 @@ input[type="password"] {
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
+  outline: none;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }

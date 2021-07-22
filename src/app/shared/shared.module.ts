@@ -13,6 +13,7 @@ import { SelectComponent } from './components/select/select.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { PriceComponent } from './components/price/price.component';
 import { D3PieComponent } from './components/d3-pie/d3-pie.component';
+import { SearchByDateComponent } from './components/search-by-date/search-by-date.component'
 
 import { MoneyPipe } from './pipes/currency.pipe';
 
@@ -32,6 +33,7 @@ import { DialogServiceService } from './services/dialog/dialog-service.service';
     PriceComponent,
     D3PieComponent,
     MoneyPipe,
+    SearchByDateComponent
   ],
   exports: [
     InputTypeComponent,
@@ -45,6 +47,7 @@ import { DialogServiceService } from './services/dialog/dialog-service.service';
     PriceComponent,
     D3PieComponent,
     MoneyPipe,
+    SearchByDateComponent
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule,NgxLoaderModule],
   providers: [DialogServiceService],

@@ -1,0 +1,25 @@
+<div class="dateSearchMain">
+    <form [formGroup]="orderDetailsForm">
+        <div class="dateSearch">
+            <div class="dateFrom">
+                <h6>
+                    From :
+                </h6>
+                <p>
+                    <app-input-type [control]="orderDetailsForm.get('fromDate')" [data]="fromDate"
+                        [input_class]="'fromDate'"></app-input-type>
+                </p>
+            </div>
+            <div class="dateTo">
+                <h6>
+                    To :
+                </h6>
+                <p>
+                    <app-input-type  [control]="orderDetailsForm.get('toDate')" [data]="toDate"
+                        [input_class]="'toDate'"></app-input-type>
+                </p>
+            </div>
+            <app-button (click)="ordersList($event)" [btn_class]="'sortDate'">Search</app-button>
+        </div>
+    </form>
+</div>

@@ -5,15 +5,15 @@
   </div>
 
   <div class="order-table col-md-10">
-    <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
-      Loading...
-    </ngx-loader>
-    <app-tables
-      [data]="orders"
-      [columns]="columns"
-      [actions]="actions"
-      (onEdit)="edit($event)"
-      (onDelete)="delete($event)"
-    ></app-tables>
+    <div class="dashboard-details">
+      <h3>Order Details</h3>
+      <ngx-loader [show]="loaderShow" [template]="loaderTemplate">
+        Loading...
+      </ngx-loader>
+      <div class="tableInfo">
+        <app-tables [data]="orders" [columns]="columns" [actions]="actions" (onEdit)="edit($event)"
+        (onDelete)="delete($event)"></app-tables>
+      </div>
+    </div>
   </div>
 </div>

@@ -8,3 +8,48 @@
     height: 40px !important;
    
   }
+  .modal-header{
+    padding: 5px;
+  }
+  .modal-header h4 {
+    text-align: left;
+    padding-left: 15px;
+  }
+  .modal-body p {
+    color: #495057;
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .modal-body p span {
+    font-weight: 700;
+    color: #495057;
+    font-size: 16px;
+  }
+  ::ng-deep .button.positive button {
+    height: 38px;
+    font-size: 18px;
+    line-height: 0;
+    background: transparent;
+    padding: 7px 22px !important;
+    font-weight: 500;
+    background-color: #f4c343 !important;
+    text-transform: capitalize;
+}
+::ng-deep .button.negative button {
+    height: 38px;
+    font-size: 18px;
+    line-height: 0;
+    background: transparent;
+    background-color: #ea5255;
+    font-weight: 500;
+    padding: 7px 22px !important;
+    text-transform: capitalize;
+}
+::ng-deep .button.positive button:hover {
+    background-color: #f8b712;
+    color: #fff;
+}
+::ng-deep .button.negative button:hover {
+    background-color: #ee2b2f;
+    color: #fff;
+}

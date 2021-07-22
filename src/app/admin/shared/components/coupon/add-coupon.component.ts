@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CouponsService } from 'src/app/shared/services/coupons/coupons.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-add-coupon',
   templateUrl: './add-coupon.component.html',
@@ -39,6 +40,9 @@ export class AddCouponComponent implements OnInit {
     placeholder: 'Coupon Discount(%)',
     class: 'form-control',
   };
+  public loaderShow: boolean = false;
+  public fullScreen: boolean = true;
+  public loaderTemplate = environment.loaderTemplate;
 
   constructor(
     public ngbModal: NgbActiveModal,
@@ -80,9 +84,11 @@ export class AddCouponComponent implements OnInit {
   }
 
   onCreate() {
+    this.loaderShow = true;
     this.couponService.postCoupon(this.couponForm.value).subscribe(
       (res) => {
         console.log(res);
+        this.loaderShow = false;
         this.onCancel();
       },
       (err) => {
@@ -92,12 +98,12 @@ export class AddCouponComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.couponId);
+    this.loaderShow = true;
     this.couponService
       .updateCoupon(this.couponId, this.couponForm.value)
       .subscribe(
         (res) => {
-          console.log(res);
+          this.loaderShow = false;
           this.onCancel();
         },
         (err) => {

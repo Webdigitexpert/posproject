@@ -6,9 +6,17 @@
     outline: none;
    
 }
+.modal-header {
+    padding: 5px !important;
+}
+.modal-footer {
+    padding-bottom: 5px;
+}
 h4{
-    text-align: center;
-    font-weight: 500;
+    text-align: left !important;
+    font-weight: 700;
+    color: #fff;
+    padding-left: 15px;
     font-size: 22px;
     margin: 0;
 }
@@ -31,9 +39,9 @@ h4{
      font-size: 18px;
      line-height: 0;
      background: transparent;
-     border: 1px solid #f4c343;
+     padding: 7px 22px !important;
      font-weight: 500;
-     color: #f4c343;
+     background-color: #f4c343;
      text-transform: capitalize;
  }
  .button.negative button {
@@ -41,17 +49,17 @@ h4{
      font-size: 18px;
      line-height: 0;
      background: transparent;
-     border: 1px solid #ea5255;
-     color: #ea5255;
+     background-color: #ea5255;
      font-weight: 500;
+     padding: 7px 22px !important;
      text-transform: capitalize;
  }
  .button.positive button:hover {
-     background-color: #f4c343;
+     background-color: #f8b712;
      color: #fff;
  }
  .button.negative button:hover {
-     background-color: #ea5255;
+     background-color: #ee2b2f;
      color: #fff;
  }
 }

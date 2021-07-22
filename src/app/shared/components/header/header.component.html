@@ -17,7 +17,8 @@
             </ul>
         </div>
         <div class="logStatus">
-            <i class="fa fa-sign-in" aria-hidden="true"></i> <a [routerLink] ="['/login']">login/logout</a>
+            <!-- <p *ngIf="isLoggedIn"><i class="fa fa-sign-in" aria-hidden="true"></i> <a>Login </a></p> -->
+            <p *ngIf="isLoggedOut"><i class="fa fa-sign-out" aria-hidden="true"></i> <a (click)="logout()">Logout </a></p>
         </div>
     </div>
 </div>

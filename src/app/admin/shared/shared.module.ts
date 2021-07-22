@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TablesComponent } from './components/tables/tables.component';
 import { CommonModule } from '@angular/common';
+import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { CommonModule } from '@angular/common';
     SidebarComponent,
     TablesComponent,
   ],
-  imports: [SharedModule, RouterModule, CommonModule, ReactiveFormsModule],
+  imports: [SharedModule, RouterModule, CommonModule, ReactiveFormsModule,NgxLoaderModule],
   providers: [],
 })
 export class AdminSharedModule {}

@@ -1,10 +1,91 @@
-::ng-deep .login_btn .btn{
-        background-color: #fb404b !important;
-        color: #fff !important;
-        border-radius: 3px !important;
-        padding: 7px 40px !important;
-        font-weight: 500 !important;
-        width: 41% !important;
-        height: 40px !important;
-        margin-top: 20px;
+
+::ng-deep .email input[type="text"],.pwd input[type="password"] {
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        outline: none !important;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+::ng-deep .loginBtn button.btn.btn-primary{
+        display: inline-block;
+            background-color:  #23abeb !important;
+            color: #fff;
+            border-radius: 3px;
+            width: 124px;
+            height: 40px;
+            font-weight: 500;
+}
+::ng-deep .loginBtn button.btn.btn-primary {
+        display: inline-block;
+        background-color: #499bc0 !important;
+        color: #fff;
+        border-radius: 3px;
+        width: 124px;
+        height: 40px;
+        font-weight: 500;
+    }
+.login label {
+        color: #495057 !important;
+}
+.login {
+        background-size: cover;
+        background-position: center center;
+        background: none !important;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+.login .header {
+        font-weight: 600 !important;
+        font-size: 26px;
+        font-weight: 300;
+        padding: 0px 0px 20px;
+}
+.forgetPassword a {
+        color: #495057;
+        text-transform: capitalize;
+}
+.forgetPassword a:hover  {
+        color: #499bc0;
+        text-decoration: none;
+}
+.card {
+        border-radius: 8px !important;
+        padding: 40px 28px !important;
+    }
+    .form-group{
+        margin-bottom: 1rem;
+    }
+    .loginForm{
+        z-index: 1;
+    }
+    .forget{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    label{
+        margin: 0;
+    }
+.login::after {
+        content: "";
+        background: #f4f5fa !important;
+        background-size: auto;
+        width: 100%;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0px;
+    }

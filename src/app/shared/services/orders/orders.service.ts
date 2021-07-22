@@ -61,4 +61,8 @@ export class OrdersService {
     const url = `${this.basePath}order/date/${fromDate}&&${toDate}`;
     return this.http.get(url,this.http.headers)
   }
+  searchOrderByDatesandEmployee(employee:any,fromDate:any,toDate:any) {
+    const url  =`${this.basePath}order/empor/${employee}&&${fromDate}&&${toDate}`;
+    return this.http.get(url,this.http.headers);
+  }
 }

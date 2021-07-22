@@ -1,4 +1,4 @@
-<div class="select" *ngIf="type != 'select_category'">
+<div class="select" *ngIf="type != 'selectById'">
   <select [formControl]="control" class="form-control">
     <option *ngFor="let select of selectData" [value]="select[key]">
       {{ select[key] }}
@@ -6,7 +6,7 @@
   </select>
 </div>
 
-<div class="select" *ngIf="type == 'select_category'">
+<div class="select" *ngIf="type == 'selectById'">
   <select [formControl]="control" class="form-control">
     <option *ngFor="let select of selectData" [value]="select[select_value]">
       {{ select[key] }}

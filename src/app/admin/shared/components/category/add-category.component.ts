@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-category',
@@ -35,6 +36,9 @@ export class AddCategoryComponent implements OnInit {
     },
   ];
 
+  public loaderShow: boolean = false;
+  public fullScreen: boolean = true;
+  public loaderTemplate = environment.loaderTemplate;
   constructor(
     public ngbModal: NgbActiveModal,
     private categoryService: CategoriesService
@@ -66,9 +70,11 @@ export class AddCategoryComponent implements OnInit {
     }
   }
   onCreate() {
+    this.loaderShow = true;
     this.categoryService.postCategory(this.categoryForm.value).subscribe(
       (res) => {
         console.log(res);
+        this.loaderShow = false;
         this.onClose();
       },
       (err) => {
@@ -79,12 +85,13 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onEdit() {
-    debugger;
+    this.loaderShow = true;
     this.categoryService
       .updateCategory(this.categoryId, this.categoryForm.value)
       .subscribe(
         (res) => {
           console.log(res);
+          this.loaderShow = false;
           this.onClose();
         },
         (err) => {

@@ -38,14 +38,14 @@
 
   <div class="modal-footer">
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'positive'"
       *ngIf="buttons.add"
       (click)="onCreate()"
     >
       Add
     </app-button>
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'negative'"
       *ngIf="buttons.cancel"
       (click)="onClose()"
     >
@@ -91,14 +91,14 @@
 
   <div class="modal-footer">
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'positive'"
       *ngIf="buttons.edit"
       (click)="onEdit()"
     >
       Save
     </app-button>
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'negative'"
       *ngIf="buttons.cancel"
       (click)="onClose()"
     >
@@ -115,14 +115,14 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Category Name: {{ data.category_name }}</p>
-    <p>Category Description: {{ data.category_description }}</p>
-    <p>Category Status: {{ data.status }}</p>
+    <p><span>Category Name:</span> {{ data.category_name }}</p>
+    <p><span>Category Description:</span> {{ data.category_description }}</p>
+    <p><span>Category Status:</span> {{ data.status }}</p>
   </div>
 
   <div class="modal-footer">
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'negative'"
       *ngIf="buttons.cancel"
       (click)="onClose()"
     >
@@ -130,3 +130,11 @@
     </app-button>
   </div>
 </div>
+
+
+<ngx-loader
+[show]="loaderShow"
+[fullScreen]="fullScreen"
+[template]="loaderTemplate">
+Loading...
+</ngx-loader>

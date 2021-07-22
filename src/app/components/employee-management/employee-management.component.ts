@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-employee-management',
@@ -13,7 +14,7 @@ export class EmployeeManagementComponent implements OnInit {
   public body: string = null
   public buttons
   public addCustomers: boolean = false
-
+  public employeeId:any
   public type: string // view, edit, create
   @Input() props // employee primary key
   @Output() edit = new EventEmitter()
@@ -32,12 +33,15 @@ export class EmployeeManagementComponent implements OnInit {
     type: 'text',
     placeholder: ''
   }
+  public employeeDetails:any
 
   @Output() delete = new EventEmitter()
-  constructor(public modal: NgbActiveModal, private deleteCustomerService:CustomerService) { }
+  constructor(public modal: NgbActiveModal, private deleteCustomerService:CustomerService, private AuthService:AuthService) { }
 
   ngOnInit(): void {
     this.setDialogProps(this.props)
+    this.employeeDetails = this.AuthService.getLoginDetails()
+    console.log(this.employeeDetails)
   }
 
   deleteCustomer(id) {

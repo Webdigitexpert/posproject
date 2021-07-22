@@ -4,8 +4,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
+import { ChartModule } from 'angular-highcharts';
 
 
 import { AppComponent } from './app.component';
@@ -24,13 +25,17 @@ import { LoginComponent } from './components/login/login.component'
 import { CouponComponent } from './components/coupon/coupon.component';
 import { OrderDetailsTableComponent } from './components/dashboard/order-details-table/order-details-table.component';
 import { DiscountComponent } from './components/discount/discount.component';
-import { SearchByDateComponent } from '../../src/app/components/dashboard/search-by-date/search-by-date.component';
 import { EmployeeManagementComponent } from './components/employee-management/employee-management.component';
 import { PosComponent } from './components/pos/pos.component';
 import { CustomerFilterPipe } from './customer-filter.pipe';
 import { CustomerOrdersComponent } from './components/dashboard/customer-orders/customer-orders.component';
+import { EmployeeSalesTableComponent } from './components/dashboard/employee-sales-table/employee-sales-table.component';
+import { EmployeeForgetPasswordComponent } from './components/forget-password/forget-password.component';
 
 import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
+
+import { TokenInterceptor } from './shared/interceptor/token/token.interceptor';
+
 
 
 @NgModule({
@@ -51,11 +56,12 @@ import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
     CouponComponent,
     OrderDetailsTableComponent,
     DiscountComponent,
-    SearchByDateComponent,
     EmployeeManagementComponent,
     PosComponent,
     CustomerFilterPipe,
     CustomerOrdersComponent,
+    EmployeeSalesTableComponent,
+    EmployeeForgetPasswordComponent
   
   ],
   imports: [
@@ -66,10 +72,13 @@ import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    NgxLoaderModule
+    NgxLoaderModule,
+    ChartModule
     
   ],
-  providers: [AuthServiceGuard],
+  providers: [AuthServiceGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

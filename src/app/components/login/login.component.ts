@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
 // import { Router } from '@angular/router';
@@ -12,10 +13,11 @@ import { environment } from 'src/environments/environment';
 export class LoginComponent implements OnInit {
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
+  public errorMessage: string
   public loaderTemplate = environment.loaderTemplate;
-  public loginForm : FormGroup
-  constructor(private authService: AuthService) {}
-  public token
+  public loginForm: FormGroup
+  constructor(private authService: AuthService, private router: Router) { }
+  public employeeDetails
 
   public username = {
     type: 'text',
@@ -29,17 +31,23 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     // this.loaderShow = true;
     this.loginForm = new FormGroup({
-      email : new FormControl('',[Validators.required]),
-      password : new FormControl('',[Validators.required])
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     })
   }
   loginEmployee() {
     this.loaderShow = true;
     console.log(this.loginForm.value)
-    this.authService.login(this.loginForm.value).subscribe(res =>{
-      this.token = res
-      // this.loaderShow =false
-      localStorage.setItem('token',JSON.stringify(this.token.token))
+    this.authService.login(this.loginForm.value).subscribe((res: any) => {
+      if (res.success) {
+        this.employeeDetails = res
+        localStorage.setItem('loginDetails', JSON.stringify(this.employeeDetails))
+        this.router.navigate(['/home'])
+      }
+      else {
+        this.errorMessage = res.msg
+      }
+
     })
   }
 

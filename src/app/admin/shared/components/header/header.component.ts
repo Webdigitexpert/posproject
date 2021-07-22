@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 //import { MatDialog } from "@angular/material/dialog";
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   public loginuser: any = window.localStorage.getItem('loggedUser');
-  constructor(public router: Router) {}
+  constructor(public router: Router, public authService:AuthService) {}
   public data = {
     type: 'text',
   };
@@ -18,5 +19,9 @@ export class HeaderComponent implements OnInit {
     if (window.localStorage.getItem('loggedUser') == null) {
       this.loginuser = '';
     }
+  }
+  logout() {
+    this.authService.logout()
+    this.router.navigate(['/admin'])
   }
 }
