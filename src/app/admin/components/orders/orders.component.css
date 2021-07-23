@@ -1,11 +1,14 @@
 ::ng-deep .actionBtns .fa.fa-trash {
-  background: red;
+  background: rgb(190, 18, 18);
   color: #fff !important;
   padding: 5px;
   border-radius: 100%;
   height: 30px;
   width: 30px;
   line-height: 20px;
+}
+::ng-deep .actionBtns .fa.fa-trash:hover {
+  background: rgb(255, 0, 0);
 }
 .row {
   margin: 0 !important;

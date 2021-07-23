@@ -3,6 +3,7 @@ import { CustomerService } from 'src/app/shared/services/customers/customer.serv
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 import { environment } from 'src/environments/environment';
 import { Chart } from 'angular-highcharts';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +13,14 @@ import { Chart } from 'angular-highcharts';
 export class DashboardComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
-    private orderService: OrdersService
-  ) {}
+    private orderService: OrdersService,
+    private authService: AuthService,
+
+  ) { }
 
   public orderDetailsData = [];
   public orderDetails;
+  public employeeDetails: any
   public id;
   public deleteCustomer;
   public deleteCustomers;
@@ -28,6 +32,7 @@ export class DashboardComponent implements OnInit {
   public loaderShow: boolean = false;
   public loaderTemplate = environment.loaderTemplate;
   public employeeSales: any;
+  public ordersData=[]
   chart = new Chart({
     chart: {
       type: 'column',
@@ -70,28 +75,28 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  public columns = [
-    {
-      label: 'Customer Id',
-      field: '_id',
-    },
-    {
-      label: 'Name',
-      field: 'customer_name',
-    },
-    {
-      label: 'Mobile',
-      field: 'customer_mobile',
-    },
-    {
-      label: 'Email',
-      field: 'customer_email',
-    },
-    {
-      label: 'Status',
-      field: 'status',
-    },
-  ];
+  // public columns = [
+  //   {
+  //     label: 'Customer Id',
+  //     field: '_id',
+  //   },
+  //   {
+  //     label: 'Name',
+  //     field: 'customer_name',
+  //   },
+  //   {
+  //     label: 'Mobile',
+  //     field: 'customer_mobile',
+  //   },
+  //   {
+  //     label: 'Email',
+  //     field: 'customer_email',
+  //   },
+  //   {
+  //     label: 'Status',
+  //     field: 'status',
+  //   },
+  // ];
   public customerTableHeadings = [
     {
       label: 'Customer Id',
@@ -118,10 +123,12 @@ export class DashboardComponent implements OnInit {
     {
       label: 'Employee Name',
       field: 'employee_id',
+      isText:true
     },
     {
       label: 'Order Date',
       field: 'order_date_and_time',
+      isDate:true
     },
     {
       label: 'Order Amount',
@@ -131,20 +138,31 @@ export class DashboardComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.loaderShow = true;
-    this.customers();
+    
+
 
     this.customerService._customers$.subscribe((res) => {
-      this.loaderShow = false;
       console.log(res);
       this.orderDetailsData = res;
+
     });
+    this.employeeDetails = this.authService.getEmployeeLoginDetails()
+    this.getEmployeeOrders()
   }
-  customers() {
-    this.customerService.getCustomers().subscribe((customers) => {
-      this.orderDetailsData = customers;
-    });
+
+  getEmployeeOrders() {
+    debugger
+    console.log(this.employeeDetails.employee_id)
+    this.orderService.searchOrdersByEmployee(this.employeeDetails.employee_id).subscribe((res: any) => {
+      console.log(res)
+      this.ordersData = res
+    })
   }
+  // customers() {
+  //   this.customerService.getCustomers().subscribe((customers) => {
+  //     this.orderDetailsData = customers;
+  //   });
+  // }
 
   editCustomerData(data: any) {
     this.customerService.updateCustomer(data._id).subscribe((res) => {
@@ -157,6 +175,7 @@ export class DashboardComponent implements OnInit {
       .searchOrderByDates(data.fromDate, data.toDate)
       .subscribe((res) => {
         this.employeeSales = res;
+        this.ordersData =res
         console.log(res);
       });
   }

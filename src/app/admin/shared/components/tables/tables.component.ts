@@ -14,6 +14,7 @@ export class TablesComponent implements OnInit {
   @Input() type: any;
   @Input() id: any;
 
+
   @Output() onEdit = new EventEmitter();
   @Output() onDelete = new EventEmitter();
   @Output() openDialog = new EventEmitter();

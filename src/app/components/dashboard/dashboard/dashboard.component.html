@@ -5,23 +5,23 @@
     <app-search-by-date (orders)="getOrders($event)"></app-search-by-date>
   </div>
   <div class="customerTable">
-    <h3>All Customers :</h3>
     <!-- <app-customer-orders [customerData]="orderDetailsData" [customerTableHeadings]="customerTableHeadings"></app-customer-orders> -->
     <div class="dashboard">
       <div class="customer-table">
-        <app-order-details-table [data]="orderDetailsData" [tableHeadings]="columns" [actions]="actions">
-        </app-order-details-table>
+
+        <app-employee-sales-table [employeetableHeadings]="employeetableHeadings" [employeeSales]="ordersData">
+        </app-employee-sales-table>
       </div>
       <div class="graph">
         <div [chart]="chart"></div>
       </div>
     </div>
   </div>
-  <div *ngIf="employeeSales" class="employeeSales">
+  <!-- <div *ngIf="employeeSales" class="employeeSales">
     <app-employee-sales-table [employeetableHeadings]="employeetableHeadings" [employeeSales]="employeeSales">
     </app-employee-sales-table>
   </div>
-</div>
+</div> -->
 
 <ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
   Loading...

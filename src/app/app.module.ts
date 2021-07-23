@@ -35,6 +35,7 @@ import { EmployeeForgetPasswordComponent } from './components/forget-password/fo
 import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
 
 import { TokenInterceptor } from './shared/interceptor/token/token.interceptor';
+import { AllCustomersComponent } from './components/dashboard/all-customers/all-customers.component';
 
 
 
@@ -61,7 +62,9 @@ import { TokenInterceptor } from './shared/interceptor/token/token.interceptor';
     CustomerFilterPipe,
     CustomerOrdersComponent,
     EmployeeSalesTableComponent,
-    EmployeeForgetPasswordComponent
+    EmployeeForgetPasswordComponent,
+    AllCustomersComponent,
+ 
   
   ],
   imports: [

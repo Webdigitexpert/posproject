@@ -27,7 +27,7 @@ export class OrdersComponent implements OnInit {
     {
       label: 'Order date',
       field: 'order_date_and_time',
-      isText: true,
+      isDate: true,
     },
     {
       label: 'Order amount',

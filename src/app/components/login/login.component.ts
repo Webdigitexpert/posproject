@@ -38,10 +38,10 @@ export class LoginComponent implements OnInit {
   loginEmployee() {
     this.loaderShow = true;
     console.log(this.loginForm.value)
-    this.authService.login(this.loginForm.value).subscribe((res: any) => {
+    this.authService.employeeLogin(this.loginForm.value).subscribe((res: any) => {
       if (res.success) {
         this.employeeDetails = res
-        localStorage.setItem('loginDetails', JSON.stringify(this.employeeDetails))
+        localStorage.setItem('employeeDetails', JSON.stringify(this.employeeDetails))
         this.router.navigate(['/home'])
       }
       else {

@@ -20,6 +20,8 @@ import { CouponsComponent } from './components/coupons/coupons.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 import { AdminAuthServiceGuard } from '../shared/services/guards/admin-auth-service.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminInterceptor } from '../shared/interceptor/admin.interceptor';
 
 
 @NgModule({
@@ -42,8 +44,8 @@ import { AdminAuthServiceGuard } from '../shared/services/guards/admin-auth-serv
     CommonModule,
     NgxLoaderModule,
     ReactiveFormsModule,
-    ChartModule
+    ChartModule,
   ],
-  providers: [AdminAuthServiceGuard],
+  providers: [AdminAuthServiceGuard,{ provide: HTTP_INTERCEPTORS, useClass: AdminInterceptor, multi: true },],
 })
 export class AdminModule {}

@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     {
       label: 'Order Date',
       field: 'order_date_and_time',
-      isText: true,
+      isDate: true,
     },
     {
       label: 'Order Amount',
@@ -61,7 +61,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.loaderShow = true;
     this.searchForm = new FormGroup({
-      employee_id: new FormControl('', []),
+      employee_id: new FormControl('All', []),
     });
 
     //orders count
@@ -150,24 +150,67 @@ export class DashboardComponent implements OnInit {
 
   employeeSelect(event: any) {
     this.loaderShow = true;
-    console.log(this.searchForm.value);
-    this.orderService
-      .searchOrderByDatesandEmployee(
-        this.searchForm.value.employee_id,
-        this.fromdateSearch,
-        this.todateSearch
-      )
-      .subscribe(
-        (res) => {
-          console.log(res);
-          this.loaderShow = false;
-          this.dashboardData = res;
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-    console.log(event.target.value);
+    if (!this.fromdateSearch || !this.todateSearch) {
+      if (this.searchForm.value.employee_id === 'All') {
+        this.orderService.getOrders().subscribe(
+          (res: any) => {
+            console.log(res);
+            this.dashboardData = res;
+            this.loaderShow = false;
+          },
+          (err: any) => {
+            console.log(err);
+          }
+        );
+      } else {
+        this.orderService
+          .searchOrdersByEmployee(this.searchForm.value.employee_id)
+          .subscribe(
+            (res: any) => {
+              this.loaderShow = false;
+              this.dashboardData = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      }
+    } else {
+      if (this.searchForm.value.employee_id === 'All') {
+        this.orderService
+          .searchOrderByDates(this.fromdateSearch, this.todateSearch)
+          .subscribe(
+            (res) => {
+              console.log(res);
+              this.dashboardData = res;
+              this.loaderShow = false;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      } else {
+        this.orderService
+          .searchOrderByDatesandEmployee(
+            this.searchForm.value.employee_id,
+            this.fromdateSearch,
+            this.todateSearch
+          )
+          .subscribe(
+            (res) => {
+              console.log(res);
+              this.loaderShow = false;
+              this.dashboardData = res;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      }
+    }
+  }
+  getAll(event: any) {
+    console.log(event);
   }
 }
 export interface SimpleDataModel {

@@ -11,14 +11,23 @@
                 <li>
                     <i class="fa fa-tachometer" aria-hidden="true"></i><a routerLink="/dashboard">Dashboard</a>
                 </li>
+
                 <li>
-                    <i class="fa fa-user" aria-hidden="true"></i><a (click)="viewDetails()">Profile</a>
+                    <i class="fa fa-users" aria-hidden="true"></i><a routerLink="/all-customers">All Customers</a>
                 </li>
+
             </ul>
         </div>
         <div class="logStatus">
             <!-- <p *ngIf="isLoggedIn"><i class="fa fa-sign-in" aria-hidden="true"></i> <a>Login </a></p> -->
-            <p *ngIf="isLoggedOut"><i class="fa fa-sign-out" aria-hidden="true"></i> <a (click)="logout()">Logout </a></p>
+            <ul>
+                <li>
+                    <i class="fa fa-user" aria-hidden="true"></i><a (click)="viewDetails()">Profile</a>
+                </li>
+                <li>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> <a (click)="logout()">Logout </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

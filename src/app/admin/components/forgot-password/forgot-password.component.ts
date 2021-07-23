@@ -31,7 +31,7 @@ export class ForgotPasswordComponent implements OnInit {
     class: 'btn btn-fill btn-wd',
   };
   public resetlink: boolean = false;
-  constructor(private router: Router, private forgotPassword: ForgotPasswordService) {}
+  constructor(private router: Router, private forgotPassword: ForgotPasswordService) { }
 
   ngOnInit(): void {
     this.forgotForm = new FormGroup({
@@ -48,7 +48,6 @@ export class ForgotPasswordComponent implements OnInit {
         console.log(err);
       }
     );
-
     //this.router.navigate(['/admin/dashboard']);
   }
 }

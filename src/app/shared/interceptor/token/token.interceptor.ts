@@ -20,11 +20,19 @@ export class TokenInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const employeeDetails = this.authService.getLoginDetails();
+    const employeeDetails = this.authService.getEmployeeLoginDetails();
+    const adminDetails = this.authService.getAdminDetails();
+    let token = '';
+    if (employeeDetails && employeeDetails.token) {
+      token = employeeDetails.token;
+    } else if (adminDetails && adminDetails.token) {
+      token = adminDetails.token;
+    }
     let setHeader = {};
-    if (!request.url.includes('login')) {
+    if (!request.url.includes('/login')) {
+      debugger;
       setHeader = {
-        Authorization: `Bearer ${employeeDetails.token}`,
+        Authorization: `Bearer ${token}`,
       };
     }
     const modified = request.clone({

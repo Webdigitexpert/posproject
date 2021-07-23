@@ -47,8 +47,9 @@ export class CouponComponent implements OnInit {
 
   addCoupon(data) {
     if (this.applyCoupon.get('coupon').valid) {
+      debugger
       const couponCode = this.applyCoupon.get('coupon').value;
-      this.cuponsService.getCoupon(this.couponId).subscribe(res => {
+      this.cuponsService.getCoupon(couponCode).subscribe(res => {
         console.log(res)
         this.cartService.addCoupon(res);
       });

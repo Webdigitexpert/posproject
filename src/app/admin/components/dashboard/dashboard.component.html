@@ -18,7 +18,8 @@
                   <p>Employee name:</p>
                   <div class="selectBox">
                     <app-select (change)="employeeSelect($event)" [control]="searchForm.get('employee_id')"
-                      [selectData]="selectEmployee" key="employee_name" select_value="_id" type="selectById">
+                      [selectData]="selectEmployee" key="employee_name" select_value="_id" type="selectById"
+                      all_select="All">
                     </app-select>
                   </div>
                 </div>

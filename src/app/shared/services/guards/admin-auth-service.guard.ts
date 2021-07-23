@@ -16,7 +16,7 @@ export class AdminAuthServiceGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    const adminDetails: any = this.authService.getLoginDetails();
+    const adminDetails: any = this.authService.getAdminDetails();
     if (adminDetails && adminDetails.token && adminDetails.role == 'admin') {
       return true;
     } else {

@@ -65,4 +65,11 @@ export class OrdersService {
     const url  =`${this.basePath}order/empor/${employee}&&${fromDate}&&${toDate}`;
     return this.http.get(url,this.http.headers);
   }
+
+  searchOrdersByEmployee(employee: any) {
+    debugger
+    const url = `${this.basePath}order/name/${employee}`;
+    return this.http.get(url, this.http.headers);
+  }
+
 }

@@ -6,6 +6,7 @@ import { ProductsService } from '../../services/products/products.service';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { CouponsService } from '../../services/coupons/coupons.service';
 import { OrdersService } from '../../services/orders/orders.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
@@ -20,6 +21,9 @@ export class DeleteComponent implements OnInit {
   public deleteType: string;
   public customerId;
   public deleteItem: any
+  public fullScreen: boolean = true;
+  public loaderShow: boolean = false;
+  public loaderTemplate = environment.loaderTemplate;
   public allCustomers =[]
 
 
@@ -63,11 +67,13 @@ export class DeleteComponent implements OnInit {
   // }
 
   delete() {
+    this.loaderShow= true
     switch (this.deleteType) {
       case 'deleteCategory':
         this.categoryService.deleteCategory(this.deleteItem).subscribe(
           (res) => {
             console.log(res);
+            this.loaderShow = false
           },
           (err) => {
             console.log(err);

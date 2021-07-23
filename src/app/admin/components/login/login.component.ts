@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((res: any) => {
       if (res.success) {
         this.adminDetails = res;
-        localStorage.setItem('loginDetails', JSON.stringify(this.adminDetails));
+        localStorage.setItem('adminDetails', JSON.stringify(this.adminDetails));
         this.router.navigate(['/admin/dashboard']);
       } else {
         this.errorMessage = res.msg;

@@ -11,44 +11,27 @@
       {{categoryForm.controls.categoryName.valid}} -->
       <div class="form-group">
         <label for="exampleInputEmail1"> Category Name</label>
-        <app-input-type
-          [control]="categoryForm.get('category_name')"
-          [data]="categoryNameInput"
-          [input_class]="'form-data'"
-        >
+        <app-input-type [control]="categoryForm.get('category_name')" [data]="categoryNameInput"
+          [input_class]="'form-data'">
         </app-input-type>
       </div>
 
       <div class="form-group">
         <label for="exampleInputPassword1">Category Description</label>
-        <app-textarea
-          [control]="categoryForm.get('category_description')"
-        ></app-textarea>
+        <app-textarea [control]="categoryForm.get('category_description')"></app-textarea>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Category Status</label>
-        <app-select
-          [control]="categoryForm.get('status')"
-          [selectData]="statusOptions"
-          key="state"
-        ></app-select>
+        <app-select [control]="categoryForm.get('status')" [selectData]="statusOptions" key="state"></app-select>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'positive'"
-      *ngIf="buttons.add"
-      (click)="onCreate()"
-    >
+    <app-button [btn_class]="'positive'" *ngIf="buttons.add" (click)="onCreate()">
       Add
     </app-button>
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onClose()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onClose()">
       Cancel
     </app-button>
   </div>
@@ -65,43 +48,26 @@
     <form [formGroup]="categoryForm">
       <div class="form-group">
         <label for="exampleInputEmail1">Category Name</label>
-        <app-input-type
-          [control]="categoryForm.get('category_name')"
-          [data]="categoryNameInput"
-          [input_class]="'form-data'"
-        >
+        <app-input-type [control]="categoryForm.get('category_name')" [data]="categoryNameInput"
+          [input_class]="'form-data'">
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Category Description</label>
-        <app-textarea
-          [control]="categoryForm.get('category_description')"
-        ></app-textarea>
+        <app-textarea [control]="categoryForm.get('category_description')"></app-textarea>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Category Status</label>
-        <app-select
-          [control]="categoryForm.get('status')"
-          [selectData]="statusOptions"
-          key="state"
-        ></app-select>
+        <app-select [control]="categoryForm.get('status')" [selectData]="statusOptions" key="state"></app-select>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'positive'"
-      *ngIf="buttons.edit"
-      (click)="onEdit()"
-    >
+    <app-button [btn_class]="'positive'" *ngIf="buttons.edit" (click)="onEdit()">
       Save
     </app-button>
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onClose()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onClose()">
       Cancel
     </app-button>
   </div>
@@ -121,20 +87,13 @@
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onClose()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onClose()">
       Cancel
     </app-button>
   </div>
 </div>
 
 
-<ngx-loader
-[show]="loaderShow"
-[fullScreen]="fullScreen"
-[template]="loaderTemplate">
-Loading...
+<ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
+  Loading...
 </ngx-loader>

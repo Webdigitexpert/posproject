@@ -1,4 +1,4 @@
-<div class="order-table">
+<div class="order-table customerTable">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,15 +11,19 @@
     <tbody>
       <tr *ngFor="let row of employeeSales">
         <td *ngFor="let column of employeetableHeadings">
-          {{ row[column.field] }}
+          <p *ngIf="column.isText">
+            {{ row[column.field] }}
+          </p>
+          <p *ngIf="column.isDate">
+            {{ row[column.field] | date:shortDate }}
+          </p>
+          <p *ngIf="column.isPrice">
+            <price [price]="row[column.field]"></price>
+          </p>
         </td>
         <td *ngIf="showActions">
-          <app-button
-            *ngIf="actions.delete"
-            [btn_class]="'delete'"
-            (click)="deleteCustomer(row)"
-            ><i class="fa fa-trash"></i
-          ></app-button>
+          <app-button *ngIf="actions.delete" [btn_class]="'delete'" (click)="deleteCustomer(row)"><i
+              class="fa fa-trash"></i></app-button>
         </td>
       </tr>
     </tbody>

@@ -1,11 +1,25 @@
 .employee-details{
+    .edit {
+        display: flex;
+        justify-content: space-between;
+        i {
+            color: #fff;
+            background: #499bc0;
+            height: 30px;
+            text-align: center;
+            width: 30px;
+            line-height: 30px;
+            border-radius: 100%;
+        }
+    }
     h4{
-        font-size: 18px;
+        font-size: 16px;
         margin-bottom: 30px;
         color: #499bc0;
-
+        font-weight: 500;
         span{
             color: #000;
+            font-weight: 700;
         }
     }
     a{

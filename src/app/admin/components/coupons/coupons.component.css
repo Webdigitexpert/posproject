@@ -3,13 +3,23 @@
   background: #a5c536 !important;
   color: #fff !important;
   border-radius: 3px !important;
-  padding: 7px 14px !important;
+  padding: 5px;
   font-weight: 500 !important;
-  height: 40px !important;
-  padding: 7px 40px;
+  cursor: pointer;
+  height: 32px !important;
+  font-size: 14px;
+}
+::ng-deep .actionBtns .fa.fa-trash:hover {
+  background: rgb(255, 0, 0);
+}
+::ng-deep  .actionBtns .fa.fa-eye:hover {
+  background: #00aeff;
+}
+::ng-deep .actionBtns .fa-edit:hover {
+  background: #84a706;
 }
 ::ng-deep .actionBtns .fa.fa-trash {
-  background: red;
+  background: rgb(190, 18, 18);
   color: #fff !important;
   padding: 5px;
   border-radius: 100%;
@@ -42,7 +52,7 @@
   margin-left: 5px;
 }
 ::ng-deep .login_btn .btn:hover {
-  background: #ea5255 !important;
+  background: #678010 !important;
 }
 .couponHeading {
   overflow: hidden;

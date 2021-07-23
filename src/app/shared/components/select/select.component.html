@@ -6,8 +6,17 @@
   </select>
 </div>
 
-<div class="select" *ngIf="type == 'selectById'">
+<div class="select" *ngIf="type == 'selectById' && all_select != 'All'">
   <select [formControl]="control" class="form-control">
+    <option *ngFor="let select of selectData" [value]="select[select_value]">
+      {{ select[key] }}
+    </option>
+  </select>
+</div>
+
+<div class="select" *ngIf="type == 'selectById' && all_select == 'All'">
+  <select [formControl]="control" class="form-control">
+    <option selected>All</option>
     <option *ngFor="let select of selectData" [value]="select[select_value]">
       {{ select[key] }}
     </option>

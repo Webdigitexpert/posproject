@@ -9,6 +9,7 @@ export class EmployeeSalesTableComponent implements OnInit {
   constructor() {}
   @Input() employeetableHeadings: any;
   @Input() employeeSales: any;
+  
 
   ngOnInit(): void {}
 }

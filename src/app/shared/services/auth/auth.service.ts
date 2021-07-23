@@ -15,14 +15,20 @@ export class AuthService {
     const url = `${this.basePath}login`
     return this.http.post(url, data)
   }
+  employeeLogin(data:any) {
+    const url = `${this.basePath}employee/login`
+    return this.http.post(url,data)
+  }
   // getEmployeeDetails() {
   //   return JSON.parse(localStorage.getItem('employeeDetails'))
   // }
 
-  getLoginDetails() {
-    return JSON.parse(localStorage.getItem('loginDetails'));
+  getEmployeeLoginDetails() {
+    return JSON.parse(localStorage.getItem('employeeDetails'));
   }
-
+  getAdminDetails() {
+    return JSON.parse(localStorage.getItem('adminDetails'));
+  }
   logout() {
     return localStorage.clear()
   }

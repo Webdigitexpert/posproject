@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ForgotPasswordService } from 'src/app/shared/services/forgotpassword/forgot-password.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeForgetPasswordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private forgetPasswordService:ForgotPasswordService) { }
+  public forgetPasswordForm:FormGroup
+  public message:string
+  public isSent:boolean = false
   public email = {
     type: 'text',
     placeholder: 'Enter Email',
@@ -30,6 +35,18 @@ export class EmployeeForgetPasswordComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.forgetPasswordForm = new FormGroup({
+      email:new FormControl('',Validators.required)
+    })
+  }
+  onSubmit() {
+    this.forgetPasswordService.forgotPassword(this.forgetPasswordForm.value).subscribe((res:any)=>{
+      console.log(res)
+      if(res.success) {
+        this.message = res.message
+        this.isSent = true
+      }
+    })
   }
 
 }

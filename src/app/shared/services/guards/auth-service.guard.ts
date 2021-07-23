@@ -12,7 +12,7 @@ export class AuthServiceGuard implements CanActivate {
 
   canActivate():boolean {
 
-   const employeeDetails:any = this.authService.getLoginDetails()
+   const employeeDetails:any = this.authService.getEmployeeLoginDetails()
    if(employeeDetails && employeeDetails.token && employeeDetails.role=='employee') {
       return true
    } else {

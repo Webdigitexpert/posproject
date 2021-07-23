@@ -62,6 +62,7 @@ export class EmployeeService {
 
   getEmployeebyId(payload: any): Observable<any> {
     const url = `${this.basePath}employee/${payload}`;
-    return this.http.delete(url, this.http.headers);
+    return this.http.get(url, this.http.headers);
   }
+
 }

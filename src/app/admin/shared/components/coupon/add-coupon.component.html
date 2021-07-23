@@ -45,14 +45,14 @@
 
   <div class="modal-footer">
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'positive'"
       *ngIf="buttons.add"
       (click)="onCreate()"
     >
       Add
     </app-button>
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'negative'"
       *ngIf="buttons.cancel"
       (click)="onCancel()"
     >
@@ -108,14 +108,14 @@
 
   <div class="modal-footer">
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'positive'"
       *ngIf="buttons.edit"
       (click)="onSave()"
     >
       Save
     </app-button>
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'negative'"
       *ngIf="buttons.cancel"
       (click)="onCancel()"
     >
@@ -142,7 +142,7 @@
       Save
     </app-button> -->
     <app-button
-      [btn_class]="'btn_class'"
+      [btn_class]="'negative'"
       *ngIf="buttons.cancel"
       (click)="onCancel()"
     >

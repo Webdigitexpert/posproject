@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -11,8 +11,10 @@ export class SelectComponent implements OnInit {
   @Input() key: any; // category_name
   @Input() type: any;
   @Input() select_value: any;
+  @Input() all_select: any;
 
   @Input() control: FormControl;
+
   constructor() {}
 
   ngOnInit(): void {}

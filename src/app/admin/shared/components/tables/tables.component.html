@@ -1,6 +1,6 @@
 <div class="table">
   <table class="table">
-    <thead >
+    <thead>
       <tr>
         <th *ngFor="let column of columns">
           <a class="link">{{ column.label }}</a>
@@ -9,9 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let row of data; let iseven = even"
-      >
+      <tr *ngFor="let row of data; let iseven = even">
         <td *ngFor="let column of columns">
           <p *ngIf="column.isPrice">
             <price [price]="row[column.field]"></price>
@@ -19,34 +17,22 @@
           <p *ngIf="column.isText">
             {{ row[column.field] }}
           </p>
+          <p *ngIf="column.isDate">
+            {{ row[column.field] | date: shortDate }}
+          </p>
           <p *ngIf="column.isImage">
-            <img
-              src="http://162.241.201.237:7000/{{ row[column.field] }}"
-              width="80"
-              alt=""
-            />
+            <img src="{{imageUrl}}{{ row[column.field] }}" width="80" alt="{{ row[column.field] }}" />
           </p>
         </td>
         <td *ngIf="showActions">
           <div class="btnActions">
-            <app-button
-              [btn_class]="'actionBtns'"
-              *ngIf="actions.delete"
-              (click)="delete(row)"
-              ><i class="fa fa-trash"></i>
+            <app-button [btn_class]="'actionBtns'" *ngIf="actions.delete" (click)="delete(row)"><i
+                class="fa fa-trash"></i>
             </app-button>
-            <app-button
-              [btn_class]="'actionBtns'"
-              *ngIf="actions.edit"
-              (click)="edit(row)"
-            >
+            <app-button [btn_class]="'actionBtns'" *ngIf="actions.edit" (click)="edit(row)">
               <i class="fa fa-edit"></i>
             </app-button>
-            <app-button
-              [btn_class]="'actionBtns'"
-              *ngIf="actions.view"
-              (click)="view(row)"
-            >
+            <app-button [btn_class]="'actionBtns'" *ngIf="actions.view" (click)="view(row)">
               <i class="fa fa-eye"></i>
             </app-button>
           </div>

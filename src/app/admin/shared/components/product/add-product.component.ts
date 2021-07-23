@@ -145,6 +145,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onUpdate() {
+    debugger;
     this.loaderShow = true;
     this.productService
       .updateProduct(this.productId, this.productForm.value, this.image)
@@ -152,7 +153,6 @@ export class AddProductComponent implements OnInit {
         (res) => {
           this.loaderShow = false;
           this.onCancel();
-          
         },
         (err) => {
           console.log(err);

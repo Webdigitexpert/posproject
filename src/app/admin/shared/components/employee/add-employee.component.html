@@ -43,10 +43,10 @@
   </div>
 
   <div class="modal-footer">
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.add" (click)="onCreate()">
+    <app-button [btn_class]="'positive'" *ngIf="buttons.add" (click)="onCreate()">
       Add
     </app-button>
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.cancel" (click)="onCancel()">
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
@@ -97,10 +97,10 @@
   </div>
 
   <div class="modal-footer">
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.edit" (click)="onUpdate()">
+    <app-button [btn_class]="'positive'" *ngIf="buttons.edit" (click)="onUpdate()">
       Save
     </app-button>
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.cancel" (click)="onCancel()">
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
@@ -123,7 +123,7 @@
     <!-- <app-button [btn_class]="'btn_class'" *ngIf="positive" (click)="onAction()">
       Save
     </app-button> -->
-    <app-button [btn_class]="'btn_class'" *ngIf="buttons.cancel" (click)="onCancel()">
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
