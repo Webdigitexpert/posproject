@@ -71,6 +71,9 @@
             height: 40px;
         }
     }
+    .addButton button {
+        overflow: hidden;
+    }
     .addButton button.btn.btn-primary{
         padding: 0;
         color: #fff;

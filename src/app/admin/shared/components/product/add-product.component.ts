@@ -107,6 +107,7 @@ export class AddProductComponent implements OnInit {
   }
 
   setDialogProps(dialogdata: any) {
+    debugger;
     console.log(dialogdata);
     this.type = dialogdata.type;
     this.data = dialogdata.data;

@@ -6,29 +6,42 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="couponForm">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Coupon Code</label>
-
-        <app-input-type [control]="couponForm.get('coupon_name')" [data]="coupon_name" [input_class]="'form-data'">
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Coupon Description</label>
-        <app-textarea [control]="couponForm.get('coupon_description')"></app-textarea>
-      </div>
+    <form [formGroup]="customerForm">
       <div class="inputFields">
         <div class="form-group inputWidth">
-          <label for="exampleInputPassword1">Coupon Discount(%)</label>
-          <app-input-type [control]="couponForm.get('coupon_discount')" [data]="coupon_discount"
+          <label for="exampleInputEmail1">Customer Name</label>
+
+          <app-input-type [control]="customerForm.get('customer_name')" [data]="customerName"
             [input_class]="'form-data'">
           </app-input-type>
         </div>
         <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Customer Mobile</label>
+
+          <app-input-type [control]="customerForm.get('customer_mobile')" [data]="customerMobile"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+      </div>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Customer Email</label>
+
+          <app-input-type [control]="customerForm.get('customer_email')" [data]="customerEmail"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+
+        <div class="form-group inputWidth">
           <label for="exampleInputPassword1">Coupon Status</label>
-          <app-select [control]="couponForm.get('coupon_status')" [selectData]="statusOptions"
+          <app-select [control]="customerForm.get('status')" [selectData]="statusOptions"
             [valueKey]="{ value: 'state', key: 'state' }"></app-select>
         </div>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Customer Address</label>
+        <app-textarea [control]="customerForm.get('customer_address')">
+        </app-textarea>
       </div>
     </form>
   </div>
@@ -51,30 +64,44 @@
     </button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="couponForm">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Coupon Code</label>
-
-        <app-input-type [control]="couponForm.get('coupon_name')" [data]="coupon_name" [input_class]="'form-data'">
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Coupon Description</label>
-        <app-textarea [control]="couponForm.get('coupon_description')"></app-textarea>
-      </div>
+    <form [formGroup]="customerForm">
       <div class="inputFields">
         <div class="form-group inputWidth">
-          <label for="exampleInputPassword1">Coupon Discount(%)</label>
-          <app-input-type [control]="couponForm.get('coupon_discount')" [data]="coupon_discount"
+          <label for="exampleInputEmail1">Customer Name</label>
+
+          <app-input-type [control]="customerForm.get('customer_name')" [data]="customerName"
             [input_class]="'form-data'">
           </app-input-type>
         </div>
         <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Customer Mobile</label>
+
+          <app-input-type [control]="customerForm.get('customer_mobile')" [data]="customerMobile"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+      </div>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Customer Email</label>
+
+          <app-input-type [control]="customerForm.get('customer_email')" [data]="customerEmail"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+
+        <div class="form-group inputWidth">
           <label for="exampleInputPassword1">Coupon Status</label>
-          <app-select [control]="couponForm.get('coupon_status')" [selectData]="statusOptions"
+          <app-select [control]="customerForm.get('status')" [selectData]="statusOptions"
             [valueKey]="{ value: 'state', key: 'state' }"></app-select>
         </div>
       </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Customer Address</label>
+        <app-textarea [control]="customerForm.get('customer_address')">
+        </app-textarea>
+      </div>
+
     </form>
   </div>
 
@@ -96,15 +123,18 @@
     </button>
   </div>
   <div class="modal-body">
-    <p><span>Coupon Code:</span> {{ data.coupon_name }}</p>
-    <p><span>Coupon Discount:</span> {{ data.coupon_discount }}</p>
-    <p><span>Coupon Status:</span> {{ data.coupon_status }}</p>
+    <p><span>Customer Name:</span> {{ data.customer_name }}</p>
+    <p><span>Customer Mobile:</span> {{ data.customer_mobile }}</p>
+    <p><span>Customer Status:</span> {{ data.status }}</p>
+    <p><span>Customer Email:</span> {{ data.customer_email }}</p>
+    <p><span>Customer Status:</span> {{ data.status }}</p>
+    <p><span>Customer Address:</span> {{ data.customer_address }}</p>
   </div>
 
   <div class="modal-footer">
     <!-- <app-button [btn_class]="'btn_class'" *ngIf="positive" (click)="onAction()">
-      Save
-    </app-button> -->
+        Save
+      </app-button> -->
     <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>

@@ -1,4 +1,4 @@
-::ng-deep .btn_class .btn{
+::ng-deep .btn_class .btn {
   background-color: #fb404b !important;
   color: #fff !important;
   border-radius: 3px !important;
@@ -6,7 +6,6 @@
   font-weight: 500 !important;
   width: 100% !important;
   height: 40px !important;
- 
 }
 ::ng-deep .button.positive button {
   height: 38px;
@@ -28,28 +27,19 @@
   padding: 7px 22px !important;
   text-transform: capitalize;
 }
-.modal-body p {
-  color: #495057;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-.modal-body p span {
+h3 {
+  font-size: 20px;
   font-weight: 700;
-  color: #495057;
-  font-size: 16px;
 }
-.modal-header h4 {
-  text-align: left;
-  padding-left: 15px;
-}
-.form-group label {
-  font-weight: 700;
-  color: #666;
-}  
-.inputFields{
+.paymentMethod {
+  padding-top: 15px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-}
-.inputWidth {
-  width: 48%;
+  .radio {
+    display: flex;
+    p:first-child {
+      margin-right: 5px;
+    }
+  }
 }

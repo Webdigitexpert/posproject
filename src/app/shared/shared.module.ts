@@ -13,14 +13,14 @@ import { SelectComponent } from './components/select/select.component';
 import { TextareaComponent } from './components/textarea/textarea.component';
 import { PriceComponent } from './components/price/price.component';
 import { D3PieComponent } from './components/d3-pie/d3-pie.component';
-import { SearchByDateComponent } from './components/search-by-date/search-by-date.component'
+import { SearchByDateComponent } from './components/search-by-date/search-by-date.component';
 import { TablesComponent } from '../admin/shared/components/tables/tables.component';
 
 import { MoneyPipe } from './pipes/currency.pipe';
 
 import { DialogServiceService } from './services/dialog/dialog-service.service';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     MoneyPipe,
     SearchByDateComponent,
     ResetPasswordComponent,
+    FilterPipe,
   ],
   exports: [
     InputTypeComponent,
@@ -50,9 +51,10 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     PriceComponent,
     D3PieComponent,
     MoneyPipe,
-    SearchByDateComponent
+    SearchByDateComponent,
+    FilterPipe,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule,NgxLoaderModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxLoaderModule],
   providers: [DialogServiceService],
 })
 export class SharedModule {}

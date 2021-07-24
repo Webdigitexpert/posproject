@@ -9,9 +9,10 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { CouponsComponent } from './components/coupons/coupons.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { AdminAuthServiceGuard } from '../shared/services/guards/admin-auth-service.guard';
+import { CustomerComponent } from './components/customer/customer.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'forgot_password', component: ForgotPasswordComponent },
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path: 'employee',
     component: EmployeeComponent,
+    canActivate: [AdminAuthServiceGuard],
+  },
+  {
+    path: 'customers',
+    component: CustomerComponent,
     canActivate: [AdminAuthServiceGuard],
   },
 ];

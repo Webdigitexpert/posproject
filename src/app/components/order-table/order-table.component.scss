@@ -10,10 +10,14 @@
     }
     input[type="text"] {
         outline: none;
+        border: 1px solid #bebcbc;
         width: 35px;
     }
     i{
         cursor: pointer;
+    }
+    i:hover {
+      color: #ea5255 ;
     }
 }
 ::-webkit-scrollbar {

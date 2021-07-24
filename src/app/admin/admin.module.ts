@@ -18,6 +18,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { CouponsComponent } from './components/coupons/coupons.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { CustomerComponent } from './components/customer/customer.component'
 
 import { AdminAuthServiceGuard } from '../shared/services/guards/admin-auth-service.guard';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -34,6 +35,7 @@ import { AdminInterceptor } from '../shared/interceptor/admin.interceptor';
     EmployeeComponent,
     CouponsComponent,
     ForgotPasswordComponent,
+    CustomerComponent
   ],
   imports: [
     AdminRoutingModule,

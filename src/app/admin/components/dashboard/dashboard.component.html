@@ -7,7 +7,7 @@
     <div class="dashboard col-md-10">
       <div class="dashboard-details">
         <div class="dashboardDetails">
-          <h3>Employee Details :</h3>
+          <h3>Employee Details </h3>
           <div class="searchOrders">
             <form [formGroup]="searchForm">
               <div class="searchDetails">
@@ -15,11 +15,11 @@
                   <app-search-by-date (orders)="getOrders($event)"></app-search-by-date>
                 </div>
                 <div class="selectEmployee">
-                  <p>Employee name:</p>
+                  <p>Select Employee </p>
                   <div class="selectBox">
                     <app-select (change)="employeeSelect($event)" [control]="searchForm.get('employee_id')"
-                      [selectData]="selectEmployee" key="employee_name" select_value="_id" type="selectById"
-                      all_select="All">
+                      [selectData]="selectEmployee" [valueKey]="{ value: 'employee_name', key: '_id' }"
+                      [enableAll]="true">
                     </app-select>
                   </div>
                 </div>
@@ -28,11 +28,11 @@
           </div>
         </div>
         <div class="employeegraph">
-          <div class="employeeDetailsTable tableInfo">
-            <app-tables [data]="dashboardData" [columns]="columns"></app-tables>
-          </div>
           <div>
             <div [chart]="chart"></div>
+          </div>
+          <div class="employeeDetailsTable tableInfo">
+            <app-tables [data]="dashboardData" [columns]="columns"></app-tables>
           </div>
         </div>
       </div>

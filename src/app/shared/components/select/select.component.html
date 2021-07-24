@@ -1,24 +1,8 @@
-<div class="select" *ngIf="type != 'selectById'">
+<div class="select">
   <select [formControl]="control" class="form-control">
-    <option *ngFor="let select of selectData" [value]="select[key]">
-      {{ select[key] }}
-    </option>
-  </select>
-</div>
-
-<div class="select" *ngIf="type == 'selectById' && all_select != 'All'">
-  <select [formControl]="control" class="form-control">
-    <option *ngFor="let select of selectData" [value]="select[select_value]">
-      {{ select[key] }}
-    </option>
-  </select>
-</div>
-
-<div class="select" *ngIf="type == 'selectById' && all_select == 'All'">
-  <select [formControl]="control" class="form-control">
-    <option selected>All</option>
-    <option *ngFor="let select of selectData" [value]="select[select_value]">
-      {{ select[key] }}
+    <option selected *ngIf="enableAll">All</option>
+    <option *ngFor="let select of selectData" [value]="select[valueKey.key]">
+      {{ select[valueKey.value] }}
     </option>
   </select>
 </div>

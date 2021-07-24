@@ -53,6 +53,16 @@ export class CustomerService {
     );;
   }
 
+  editCustomer(id:any,payload: any): Observable<any> {
+    const url = `${this.basePath}customer/${id}`;
+    return this.http.put(url, payload, this.http.headers)
+    .pipe(
+      tap(res => {
+        this.customers= res.customers;
+      })
+    );;
+  }
+
   deleteCustomer(payload: any): Observable<any> {
     const url = `${this.basePath}customer/${payload}`;
     return this.http.delete(url, this.http.headers).pipe(

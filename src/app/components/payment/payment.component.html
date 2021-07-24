@@ -1,0 +1,70 @@
+<div class="add_product">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{ title }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form>
+    <div *ngIf="!isInvoice" class="modal-body">
+      <h3>Select Payment Option</h3>
+      <div class="paymentMethod">
+        <div class="radio">
+          <p>
+            <app-input-type
+              [input_class]="'form-data'"
+              [data]="cash"
+            ></app-input-type>
+          </p>
+          <p>Cash</p>
+        </div>
+        <div class="radio">
+          <p>
+            <app-input-type
+              [input_class]="'form-data'"
+              [data]="debitCard"
+            ></app-input-type>
+          </p>
+          <p>Debit Card</p>
+        </div>
+        <div class="radio">
+          <p>
+            <app-input-type
+              [input_class]="'form-data'"
+              [data]="creditCard"
+            ></app-input-type>
+          </p>
+          <p>Credit Card</p>
+        </div>
+      </div>
+
+      <!-- <app-select [selectData]="paymentOptions"></app-select> -->
+    </div>
+    <div *ngIf="isInvoice" class="modal-body">Order Placed Successfully</div>
+
+    <div class="modal-footer">
+      <app-button
+        [btn_class]="'positive'"
+        *ngIf="buttons.confirm"
+        (click)="Invoice()"
+      >
+        Confirm
+      </app-button>
+      <app-button
+        [btn_class]="'negative'"
+        *ngIf="buttons.cancel"
+        (click)="onCancel()"
+      >
+        Cancel
+      </app-button>
+    </div>
+  </form>
+</div>
+
+<ngx-loader
+  [show]="loaderShow"
+  [fullScreen]="fullScreen"
+  [template]="loaderTemplate"
+>
+  Loading...
+</ngx-loader>

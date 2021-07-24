@@ -9,6 +9,6 @@
   <div class="errMsg" *ngIf="control.errors.required">*Input is required.</div>
   <div class="errMsg" *ngIf="control.errors?.maxlength">*Input length less than or equals to
     {{control.errors?.maxlength.requiredLength}}.</div>
-    <div class="errMsg" *ngIf="control.errors?.minlength">Input should be minimum 8</div>
+    <div class="errMsg" *ngIf="control.errors?.minlength">Input should be minimum {{control.errors?.minlength.requiredLength}}</div>
     <div class="errMsg" *ngIf="control.errors.pattern">Enter valid input</div>
 </ng-container>

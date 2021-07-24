@@ -1,34 +1,44 @@
 <div class="ordersList">
-    <div class="ordersListDetails">
-        <div class="customerSearch">
-          <div class="home">
-            <p [routerLink]="['/dashboard']">
-                <i class="fa fa-tachometer" aria-hidden="true"></i>
-            </p>
-          </div>
-            <div class="searchBar">
-                <form  [formGroup]="searchCustomer">
-                    <app-search (keyup)="getCustomer($event)"  (details)="getData(customers)" [dataLists]="customerNames" [control]="searchCustomer.get('customerData')" [details]="customerDetails" isDataList="true" [class]="'customers'">
-                    </app-search>
-                </form>
-            </div>
-            <div class="add" (click)="addCustomers($event);">
-                <app-button  [btn_class]="'addCustomer'"><i class="fa fa-plus" aria-hidden="true"></i></app-button>
-            </div>
-        </div>
-       
+  <div class="ordersListDetails">
+    <div class="customerSearch">
+      <div class="home">
+        <p [routerLink]="['/dashboard']">
+          <i class="fa fa-tachometer" aria-hidden="true"></i>
+        </p>
+      </div>
+      <div class="searchBar">
+        <form [formGroup]="searchCustomer">
+          <app-search
+            (keyup)="getCustomer($event)"
+            (details)="getData(customers)"
+            [dataLists]="customerNames"
+            [control]="searchCustomer.get('customerData')"
+            [details]="customerDetails"
+            isDataList="true"
+            className="customers"
+          >
+          </app-search>
+        </form>
+      </div>
+      <div class="add" (click)="addCustomers($event)">
+        <app-button [btn_class]="'addCustomer'"
+          ><i class="fa fa-plus" aria-hidden="true"></i
+        ></app-button>
+      </div>
     </div>
-    <div class="customerDetails">
-        <div class="customer_img">
-            <div class="outer">
-            </div>
-            <img src="../../../assets/images/customer.png" alt="customerImage">
-        </div>
-        <div>
-            <app-customer-details [customerDetails]="selectedCustomer"></app-customer-details>
-        </div>
+  </div>
+  <div class="customerDetails">
+    <div class="customer_img">
+      <div class="outer"></div>
+      <img src="../../../assets/images/customer.png" alt="customerImage" />
     </div>
-    <app-order-table></app-order-table>
-    <app-coupon></app-coupon>
-    <app-total-price></app-total-price>
+    <div>
+      <app-customer-details
+        [customerDetails]="selectedCustomer"
+      ></app-customer-details>
+    </div>
+  </div>
+  <app-order-table></app-order-table>
+  <app-coupon></app-coupon>
+  <app-total-price></app-total-price>
 </div>

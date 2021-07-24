@@ -1,4 +1,9 @@
-<div class="searchbar" [ngClass]="class">
-    <app-input-type [formControl]="control" [data]="details" [dataListOptions]="dataLists" [isDataList]="isDataList"></app-input-type>   
-    <ng-content></ng-content>
+<div class="searchbar" [ngClass]="className">
+  <app-input-type
+    [control]="control"
+    [data]="details"
+    [dataListOptions]="dataLists"
+    [isDataList]="isDataList"
+  ></app-input-type>
+  <ng-content></ng-content>
 </div>

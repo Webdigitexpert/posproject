@@ -51,37 +51,38 @@
     background: none !important;
     outline: none;
 }
+.modal-footer {
+    padding:16px 0 0 0 !important;
+}
 ::ng-deep{
-    .button.positive button {
-        height: 38px;
-        font-size: 18px;
-        line-height: 0;
-        background: transparent;
-        border: 1px solid #f4c343;
-        font-weight: 500;
-        color: #f4c343;
-        text-transform: capitalize;
-    }
-    label{
-        font-weight: 500;
-    }
     .button.negative button {
         height: 38px;
         font-size: 18px;
         line-height: 0;
         background: transparent;
-        border: 1px solid #ea5255;
-        color: #ea5255;
+        background-color: #ea5255;
         font-weight: 500;
+        padding: 7px 22px !important;
         text-transform: capitalize;
     }
-    .button.positive button:hover {
+    .button.positive button {
+        height: 38px;
+        font-size: 18px;
+        line-height: 0;
+        background: transparent;
+        padding: 7px 22px !important;
+        font-weight: 500;
         background-color: #f4c343;
-        color: #fff;
+        text-transform: capitalize;
+    }
+    label{
+        font-weight: 500;
+    }
+    .button.positive button:hover {
+        background-color: #f8b712;
     }
     .button.negative button:hover {
-        background-color: #ea5255;
-        color: #fff;
+        background-color: #ee2b2f;
     }
     .editEmployee{
         form{

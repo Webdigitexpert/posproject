@@ -94,6 +94,8 @@ ul li {
 }
 .card {
   // border-radius: 8px !important;
+  width: 420px;
+  margin: 0 auto;
   padding: 40px 28px !important;
 }
 
@@ -220,10 +222,10 @@ app-sidebar::after {
   color: #fff;
   font-weight: 600;
   padding: 10px 15px;
+  text-transform: capitalize !important;
   display: block;
   text-decoration: none;
   letter-spacing: 0.2px;
-  text-transform: uppercase;
   margin: 5px 15px 0;
   border-radius: 4px;
 }
@@ -600,10 +602,10 @@ input[type="checkbox"] {
 .modal-dialog .modal-header {
   background: #499bc0 !important;
   opacity: 0.9;
+  padding: 5px;
 }
 
 .modal-dialog .modal-header h4 {
-  text-align: center;
   color: #fff !important;
   width: 100%;
 }
@@ -622,6 +624,12 @@ input[type="checkbox"] {
 //   margin-top: 10px;
 //   opacity: 0.9;
 // }
+.modal-header h4 {
+  text-align: left;
+  padding-left: 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
 .modal-dialog .modal-header .close {
   padding: 0px 5px !important;
   margin-right: 10px !important;
@@ -1224,4 +1232,22 @@ a {
 .overlay {
   background: rgb(199, 180, 180);
 }
+.modal-body {
+  padding: 30px;
+}
+.modal-dialog .modal-header .close {
+  margin: 0 !important;
+  padding: 0;
+}
+.modal-header {
+  padding: 9px !important;
+}
+/* clears the ‘X’ from Internet Explorer */
+input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
 

@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
     let setHeader = {};
     if (!request.url.includes('/login')) {
-      debugger;
+     
       setHeader = {
         Authorization: `Bearer ${token}`,
       };

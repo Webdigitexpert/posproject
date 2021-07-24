@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
     },
     {
       label: 'Category',
-      field: 'category_id',
+      field: 'category_name',
       isText: true,
     },
     {

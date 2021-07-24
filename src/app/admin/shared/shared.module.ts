@@ -13,6 +13,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { TablesComponent } from './components/tables/tables.component';
 import { CommonModule } from '@angular/common';
 import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
+import { CustomerManagementComponent } from './components/customer-management/customer-management.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
     HeaderComponent,
     SidebarComponent,
     TablesComponent,
+    CustomerManagementComponent,
   ],
   exports: [
     AddCategoryComponent,

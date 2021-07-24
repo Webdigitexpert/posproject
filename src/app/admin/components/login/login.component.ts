@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
     });
   }
   adminLogin() {
-    this.authService.login(this.loginForm.value).subscribe((res: any) => {
+    console.log(this.loginForm.value)
+    this.authService.employeeLogin(this.loginForm.value).subscribe((res: any) => {
       if (res.success) {
         this.adminDetails = res;
         localStorage.setItem('adminDetails', JSON.stringify(this.adminDetails));
