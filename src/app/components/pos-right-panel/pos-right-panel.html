@@ -10,7 +10,7 @@
   </form>
   <div class="category_row">
     <app-button [btn_class]="'addButton'" (click)="searchBar();"
-      ><i class="fa fa-search" aria-hidden="true"></i>
+      ><i  *ngIf="!search" class="fa fa-search" aria-hidden="true"></i><i  *ngIf="search" class="fa fa-times" aria-hidden="true"></i>
     </app-button>
     <app-button
       *ngFor="let category of categories | filter :searchCategoryBy:'category_name'"
@@ -25,14 +25,14 @@
     <app-products [products]="products"></app-products>
   </div>
   <div class="footer_btn">
-    <div class="save">
-      <app-button [btn_class]="'saveSale'">Save</app-button>
-    </div>
+    <!-- <div class="save">
+      <app-button [btn_class]="'saveSale'"  (click)="saveCart()">Save</app-button>
+    </div> -->
     <div class="cancel">
-      <app-button [btn_class]="'sale'">Cancel</app-button>
+      <app-button [btn_class]="'sale'" (click)="clearCart()">Cancel</app-button>
     </div>
     <div class="payment">
-      <app-button [btn_class]="'pay'">Proceed to pay</app-button>
+      <app-button [btn_class]="'pay'"  (click)="proceedtoPay($event)">pay  and continue</app-button>
     </div>
   </div>
 </div>

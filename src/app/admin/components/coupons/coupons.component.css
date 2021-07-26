@@ -3,7 +3,7 @@
   background: #a5c536 !important;
   color: #fff !important;
   border-radius: 3px !important;
-  padding: 5px;
+  padding: 5px 9px;
   font-weight: 500 !important;
   cursor: pointer;
   height: 32px !important;
@@ -62,11 +62,11 @@
     padding: 20px 20px 0 20px;
 }
 .dashboard {
-  padding: 70px 36px 0;
+  padding: 86px 36px 0;
   background-color: #f4f5fa;
 }
 .dashboard h3 {
-  font-size: 22px;
+  font-size: 20px;
   text-transform: capitalize;
   font-weight: 700;
 }

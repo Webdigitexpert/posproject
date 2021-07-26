@@ -19,7 +19,8 @@ export class PosLeftPanelComponent implements OnInit {
   public customerEmail = ''
   public customers = []
   public customerId = []
-  public allCustomers
+  public allCustomers;
+
   public selectedCustomer = {
   }
   public customerDetails = {
@@ -40,9 +41,24 @@ export class PosLeftPanelComponent implements OnInit {
     this.searchCustomer = new FormGroup({
       customerData: new FormControl('')
     });
+
+    this.cartService.getCart();
+    this.searchCustomer.get('customerData').valueChanges.subscribe(res => {
+      const customerDetails = res && res.split(' ');
+      if (customerDetails && customerDetails.length === 3) {
+        const customer = this.customers.find((value) => 
+        value.customer_name == customerDetails[0] && 
+        value.customer_mobile == customerDetails[1] && 
+        value.customer_email == customerDetails[2]);
+        if (customer) {
+          this.setCustomer(customer)
+        }
+      }
+    })
     
     this.searchCustomer.get('customerData').valueChanges.subscribe(res => {
-      console.log(res)
+      console.log(res);
+ 
     })
 
     this.customerService.getCustomers().subscribe((res) => {
@@ -64,7 +80,7 @@ export class PosLeftPanelComponent implements OnInit {
      
     });
     
-    this.cartService.getCart();
+   
 
   }
 

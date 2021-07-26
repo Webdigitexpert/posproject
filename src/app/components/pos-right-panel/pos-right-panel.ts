@@ -3,6 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
 import { environment } from 'src/environments/environment';
 import { CategoriesService } from '../../shared/services/categories/categories.service';
+import { CartService } from 'src/app/shared/services/cart/cart.service';
+import { DialogServiceService } from 'src/app/shared/services/dialog/dialog-service.service';
+import { PaymentComponent } from '../payment/payment.component';
 @Component({
   selector: 'app-pos-right-panel',
   templateUrl: './pos-right-panel.html',
@@ -27,8 +30,10 @@ export class PosRightPanelComponent implements OnInit {
   public loaderTemplate = environment.loaderTemplate;
   public searchCategoryBy = '';
   constructor(
+    private dialogService:DialogServiceService,
     private categoriesService: CategoriesService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -76,4 +81,29 @@ export class PosRightPanelComponent implements OnInit {
     console.log(this.id);
     this.getProductsByCategoryId(category._id);
   }
+  proceedtoPay(data) {
+    this.dialogService.openDialog(
+      {
+        title: 'Confirm Payment',
+
+        buttons: {
+          confirm: 'Confirm',
+          cancel: 'Cancel',
+        },
+        type: 'payment',
+        data: data,
+      },
+      PaymentComponent
+    );
+  }
+  saveCart() {
+    // save logic
+    this.clearCart();
+  }
+
+  clearCart() {
+    this.cartService.removeCartFromStore();
+  }
 }
+
+

@@ -27,14 +27,22 @@
           </p>
           <p>Credit Card</p>
         </div>
+
       </div>
 
-      <!-- <app-select [selectData]="paymentOptions"></app-select> -->
+        <!-- <p>
+      <app-input-type [input_class]="'form-data'" [data]="referenceNumber"></app-input-type>
+    </p> -->
     </div>
-    <div *ngIf="isInvoice" class="modal-body">Order Placed Successfully</div>
 
+    <div *ngIf="isInvoice" class="modal-body">Order Placed Successfully 
+    <p><span>Employee Id :</span>{{employeeId}}</p>
+    <p><span>Date :</span>{{orderDate}}</p>
+    <p><span>Order Id :</span>{{orderId}}</p>
+    <p><span>Order Amount :</span>{{Total}}</p>
+  </div>
     <div *ngIf="!isInvoice" class="modal-footer">
-      <app-button [btn_class]="'positive'" *ngIf="buttons.confirm" (click)="Invoice()">
+      <app-button [btn_class]="'positive'" *ngIf="buttons.confirm" (click)=" Invoice()">
         Confirm
       </app-button>
       <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
@@ -43,7 +51,7 @@
     </div>
     <div *ngIf="isInvoice" class="modal-footer">
       <app-button [btn_class]="'negative'" *ngIf="buttons.confirm" (click)="onCancel()">
-        Back
+        Close
       </app-button>
     </div>
   </form>

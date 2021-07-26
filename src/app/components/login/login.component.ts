@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     })
   }
   loginEmployee() {
+    this.loginForm.markAllAsTouched()
     this.loaderShow = true;
     console.log(this.loginForm.value)
     this.authService.employeeLogin(this.loginForm.value).subscribe((res: any) => {
@@ -44,11 +45,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('employeeDetails', JSON.stringify(this.employeeDetails))
         this.router.navigate(['/home'])
       }
-      else {
-        this.errorMessage = res.msg
-      }
+      this.errorMessage = res.msg
 
     })
   }
-
 }

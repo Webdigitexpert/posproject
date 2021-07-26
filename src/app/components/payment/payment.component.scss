@@ -27,6 +27,16 @@
   padding: 7px 22px !important;
   text-transform: capitalize;
 }
+.modal-body{
+  p{
+    margin-bottom: 12px;
+    color: #666;
+    span{
+      font-weight: 700;
+    }
+  }
+  
+}
 h3 {
   font-size: 20px;
   font-weight: 700;
@@ -42,4 +52,5 @@ h3 {
       margin-right: 5px;
     }
   }
+
 }

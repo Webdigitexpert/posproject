@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     class: 'form-control',
   };
   public password = {
-    type: 'password',
+    type: 'Password',
     placeholder: 'Enter Password',
     class: 'form-control',
   };
@@ -50,15 +50,19 @@ export class LoginComponent implements OnInit {
     });
   }
   adminLogin() {
+    this.loginForm.markAllAsTouched();
     console.log(this.loginForm.value)
     this.authService.employeeLogin(this.loginForm.value).subscribe((res: any) => {
+      debugger
       if (res.success) {
         this.adminDetails = res;
         localStorage.setItem('adminDetails', JSON.stringify(this.adminDetails));
         this.router.navigate(['/admin/dashboard']);
-      } else {
-        this.errorMessage = res.msg;
-      }
+      } 
+        console.log(res.message)
+        this.errorMessage = res.message;
+    },(err:any)=>{
+      console.log(err)
     });
   }
 }

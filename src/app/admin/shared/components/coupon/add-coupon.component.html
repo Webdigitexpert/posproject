@@ -10,52 +10,34 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Coupon Code</label>
 
-        <app-input-type
-          [control]="couponForm.get('coupon_name')"
-          [data]="coupon_name"
-          [input_class]="'form-data'"
-        >
+        <app-input-type [control]="couponForm.get('coupon_name')" [data]="coupon_name" [input_class]="'form-data'">
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Coupon Description</label>
-        <app-textarea
-          [control]="couponForm.get('coupon_description')"
-        ></app-textarea>
+        <app-textarea [control]="couponForm.get('coupon_description')"></app-textarea>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Coupon Discount(%)</label>
-        <app-input-type
-          [control]="couponForm.get('coupon_discount')"
-          [data]="coupon_discount"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Coupon Status</label>
-        <app-select
-          [control]="couponForm.get('coupon_status')"
-          [selectData]="statusOptions"
-          [valueKey]="{ value: 'state', key: 'state' }"
-        ></app-select>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputPassword1">Coupon Discount(%)</label>
+          <app-input-type [control]="couponForm.get('coupon_discount')" [data]="coupon_discount"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputPassword1">Coupon Status</label>
+          <app-select [control]="couponForm.get('coupon_status')" [selectData]="statusOptions"
+            [valueKey]="{ value: 'state', key: 'state' }"></app-select>
+        </div>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'positive'"
-      *ngIf="buttons.add"
-      (click)="onCreate()"
-    >
+    <app-button [btn_class]="'positive'" *ngIf="buttons.add" (click)="onCreate()">
       Add
     </app-button>
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onCancel()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
@@ -73,52 +55,34 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Coupon Code</label>
 
-        <app-input-type
-          [control]="couponForm.get('coupon_name')"
-          [data]="coupon_name"
-          [input_class]="'form-data'"
-        >
+        <app-input-type [control]="couponForm.get('coupon_name')" [data]="coupon_name" [input_class]="'form-data'">
         </app-input-type>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Coupon Description</label>
-        <app-textarea
-          [control]="couponForm.get('coupon_description')"
-        ></app-textarea>
+        <app-textarea [control]="couponForm.get('coupon_description')"></app-textarea>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Coupon Discount(%)</label>
-        <app-input-type
-          [control]="couponForm.get('coupon_discount')"
-          [data]="coupon_discount"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Coupon Status</label>
-        <app-select
-          [control]="couponForm.get('coupon_status')"
-          [selectData]="statusOptions"
-          [valueKey]="{ value: 'state', key: 'state' }"
-        ></app-select>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputPassword1">Coupon Discount(%)</label>
+          <app-input-type [control]="couponForm.get('coupon_discount')" [data]="coupon_discount"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputPassword1">Coupon Status</label>
+          <app-select [control]="couponForm.get('coupon_status')" [selectData]="statusOptions"
+            [valueKey]="{ value: 'state', key: 'state' }"></app-select>
+        </div>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'positive'"
-      *ngIf="buttons.edit"
-      (click)="onSave()"
-    >
+    <app-button [btn_class]="'positive'" *ngIf="buttons.edit" (click)="onSave()">
       Save
     </app-button>
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onCancel()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
@@ -132,29 +96,21 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Coupon Code:{{ data.coupon_name }}</p>
-    <p>Coupon Discount:{{ data.coupon_discount }}</p>
-    <p>Coupon Status:{{ data.coupon_status }}</p>
+    <p><span>Coupon Code:</span> {{ data.coupon_name }}</p>
+    <p><span>Coupon Discount:</span> {{ data.coupon_discount }}</p>
+    <p><span>Coupon Status:</span> {{ data.coupon_status }}</p>
   </div>
 
   <div class="modal-footer">
     <!-- <app-button [btn_class]="'btn_class'" *ngIf="positive" (click)="onAction()">
       Save
     </app-button> -->
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onCancel()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
 </div>
 
-<ngx-loader
-  [show]="loaderShow"
-  [fullScreen]="fullScreen"
-  [template]="loaderTemplate"
->
+<ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
   Loading...
 </ngx-loader>

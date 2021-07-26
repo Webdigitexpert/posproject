@@ -169,7 +169,6 @@ input::-webkit-input-placeholder {
   color: #fff;
 }
 app-sidebar .slidebar {
-  margin-top: 50px;
   padding: 0px;
   /* position: fixed;*/
   /*height: 100vh;*/
@@ -833,7 +832,7 @@ input[type="password"] {
   padding-left: 0;
 }
 .errMsg {
-  color: red;
+  color: #e30805;
 }
 .modal-content{
   border: none !important;

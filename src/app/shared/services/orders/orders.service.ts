@@ -72,4 +72,10 @@ export class OrdersService {
     return this.http.get(url, this.http.headers);
   }
 
+  invoice(employeeId:any) {
+    console.log(employeeId)
+    const url = `${this.basePath}order/last/date/${employeeId}`;
+    return this.http.get(url, this.http.headers);
+  }
+
 }

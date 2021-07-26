@@ -18,6 +18,7 @@ const routes: Routes = [
   {path:'reset-password', component:ResetPasswordComponent},
   { path:'all-customers', component:AllCustomersComponent, canActivate: [AuthServiceGuard]},
   { path: "admin", loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  {path: '**',redirectTo:'login', pathMatch:"full"}
 ];
 
 @NgModule({

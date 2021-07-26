@@ -89,3 +89,6 @@
         position: absolute;
         top: 0px;
     }
+.footer p {
+        text-align: center;
+}

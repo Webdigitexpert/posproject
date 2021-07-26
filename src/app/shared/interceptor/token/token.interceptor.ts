@@ -11,7 +11,6 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
@@ -24,9 +23,7 @@ export class TokenInterceptor implements HttpInterceptor {
     const employeeDetails = this.authService.getEmployeeLoginDetails();
     const adminDetails = this.authService.getAdminDetails();
     let token = '';
-    if (environment.noAuthentication) {
-      token = environment.token;
-    }else if (employeeDetails && employeeDetails.token) {
+    if (employeeDetails && employeeDetails.token) {
       token = employeeDetails.token;
     } else if (adminDetails && adminDetails.token) {
       token = adminDetails.token;

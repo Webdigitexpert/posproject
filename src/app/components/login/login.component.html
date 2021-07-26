@@ -22,17 +22,16 @@
                   <label for="checkbox"> Remember Me</label>
                 </div>
                 <div class="forgetPassword">
-                  <a [routerLink]="['/forget-password']">Forgot password ?</a>
+                  <a [routerLink]="['/forget-password']">Forgot password?</a>
                 </div>
               </div>
             </div>
             <div class="footer text-center">
               <app-button (click)="loginEmployee()" [btn_class]="'loginBtn'">Login</app-button>
             </div>
-            <p>{{errorMessage}}</p>
+            <p class="errMsg">{{errorMessage}}</p>
           </div>
         </form>
-       
       </div>
     </div>
   </div>

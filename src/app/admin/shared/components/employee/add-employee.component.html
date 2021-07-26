@@ -7,78 +7,53 @@
   </div>
   <div class="modal-body">
     <form [formGroup]="employeeForm">
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Code</label>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Code</label>
 
-        <app-input-type
-          [control]="employeeForm.get('employee_code')"
-          [data]="emp_code"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Password</label>
+          <app-input-type [control]="employeeForm.get('employee_code')" [data]="emp_code" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Password</label>
 
-        <app-input-type
-          [control]="employeeForm.get('password')"
-          [data]="emp_password"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
+          <app-input-type [control]="employeeForm.get('password')" [data]="emp_password" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Name</label>
-        <app-input-type
-          [control]="employeeForm.get('employee_name')"
-          [data]="employeeName"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Name</label>
+          <app-input-type [control]="employeeForm.get('employee_name')" [data]="employeeName"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputPassword1">Employee Phone Number</label>
+          <app-input-type [control]="employeeForm.get('phone_number')" [data]="emp_phn" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Employee Phone Number</label>
-        <app-input-type
-          [control]="employeeForm.get('phone_number')"
-          [data]="emp_phn"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Email</label>
-
-        <app-input-type
-          [control]="employeeForm.get('email')"
-          [data]="emp_email"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Role</label>
-        <app-select
-          [control]="employeeForm.get('role')"
-          [valueKey]="{ value: 'state', key: 'state' }"
-          [selectData]="statusOptions"
-        ></app-select>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Email</label>
+          <app-input-type [control]="employeeForm.get('email')" [data]="emp_email" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Role</label>
+          <app-select [control]="employeeForm.get('role')" [valueKey]="{ value: 'state', key: 'state' }"
+            [selectData]="statusOptions"></app-select>
+        </div>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'positive'"
-      *ngIf="buttons.add"
-      (click)="onCreate()"
-    >
+    <app-button [btn_class]="'positive'" *ngIf="buttons.add" (click)="onCreate()">
       Add
     </app-button>
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onCancel()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
@@ -93,78 +68,54 @@
   </div>
   <div class="modal-body">
     <form>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Code</label>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Code</label>
 
-        <app-input-type
-          [control]="employeeForm.get('employee_code')"
-          [data]="emp_code"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Password</label>
+          <app-input-type [control]="employeeForm.get('employee_code')" [data]="emp_code" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Password</label>
 
-        <app-input-type
-          [control]="employeeForm.get('password')"
-          [data]="emp_password"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
+          <app-input-type [control]="employeeForm.get('password')" [data]="emp_password" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Name</label>
-        <app-input-type
-          [control]="employeeForm.get('employee_name')"
-          [data]="employeeName"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Name</label>
+          <app-input-type [control]="employeeForm.get('employee_name')" [data]="employeeName"
+            [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputPassword1">Employee Phone Number</label>
+          <app-input-type [control]="employeeForm.get('phone_number')" [data]="emp_phn" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Employee Phone Number</label>
-        <app-input-type
-          [control]="employeeForm.get('phone_number')"
-          [data]="emp_phn"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Email</label>
+      <div class="inputFields">
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Email</label>
 
-        <app-input-type
-          [control]="employeeForm.get('email')"
-          [data]="emp_email"
-          [input_class]="'form-data'"
-        >
-        </app-input-type>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Employee Role</label>
-        <app-select
-          [control]="employeeForm.get('role')"
-          [selectData]="statusOptions"
-          [valueKey]="{ value: 'state', key: 'state' }"
-        ></app-select>
+          <app-input-type [control]="employeeForm.get('email')" [data]="emp_email" [input_class]="'form-data'">
+          </app-input-type>
+        </div>
+        <div class="form-group inputWidth">
+          <label for="exampleInputEmail1">Employee Role</label>
+          <app-select [control]="employeeForm.get('role')" [selectData]="statusOptions"
+            [valueKey]="{ value: 'state', key: 'state' }"></app-select>
+        </div>
       </div>
     </form>
   </div>
 
   <div class="modal-footer">
-    <app-button
-      [btn_class]="'positive'"
-      *ngIf="buttons.edit"
-      (click)="onUpdate()"
-    >
+    <app-button [btn_class]="'positive'" *ngIf="buttons.edit" (click)="onUpdate()">
       Save
     </app-button>
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onCancel()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
@@ -178,29 +129,21 @@
     </button>
   </div>
   <div class="modal-body">
-    <p>Employee name:{{ data.employee_name }}</p>
-    <p>Employee Email:{{ data.email }}</p>
-    <p>Employee Code:{{ data.employee_code }}</p>
+    <p><span>Employee name:</span> {{ data.employee_name }}</p>
+    <p><span>Employee Email:</span> {{ data.email }}</p>
+    <p><span>Employee Code:</span> {{ data.employee_code }}</p>
   </div>
 
   <div class="modal-footer">
     <!-- <app-button [btn_class]="'btn_class'" *ngIf="positive" (click)="onAction()">
       Save
     </app-button> -->
-    <app-button
-      [btn_class]="'negative'"
-      *ngIf="buttons.cancel"
-      (click)="onCancel()"
-    >
+    <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
       Cancel
     </app-button>
   </div>
 </div>
 
-<ngx-loader
-  [show]="loaderShow"
-  [fullScreen]="fullScreen"
-  [template]="loaderTemplate"
->
+<ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
   Loading...
 </ngx-loader>

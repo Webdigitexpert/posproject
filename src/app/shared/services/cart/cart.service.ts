@@ -19,6 +19,7 @@ export class CartService {
 
   getCart() {
     this._cart$.next(this.cart);
+    console.log(this.cart)
   }
 
   set cart(cart) {
@@ -35,8 +36,9 @@ export class CartService {
     sessionStorage.setItem('cartData', JSON.stringify(cart));
   }
   
-  removeCartFromStore() {
+  public removeCartFromStore() {
     sessionStorage.removeItem('cartData');
+    this.getCart();
   }
 
   updateCartTotal(cart) {
@@ -111,4 +113,5 @@ export class CartService {
     cart.customer = customer;
     this.cart = cart;
   }
+
 }

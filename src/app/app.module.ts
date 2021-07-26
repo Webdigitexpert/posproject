@@ -30,6 +30,7 @@ import { CustomerFilterPipe } from './customer-filter.pipe';
 import { CustomerOrdersComponent } from './components/dashboard/customer-orders/customer-orders.component';
 import { EmployeeSalesTableComponent } from './components/dashboard/employee-sales-table/employee-sales-table.component';
 import { EmployeeForgetPasswordComponent } from './components/forget-password/forget-password.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
 
@@ -61,6 +62,7 @@ import { AllCustomersComponent } from './components/dashboard/all-customers/all-
     EmployeeSalesTableComponent,
     EmployeeForgetPasswordComponent,
     AllCustomersComponent,
+    PaymentComponent
   ],
   imports: [
     AppRoutingModule,
