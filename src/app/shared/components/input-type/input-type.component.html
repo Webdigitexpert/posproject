@@ -1,9 +1,8 @@
 <div class="inputData" [ngClass]="input_class">
-  <!-- <label>{{data.label}}</label> -->
   <input [attr.list]="dataListID" autocomplete="off" [formControl]="control" [type]="data.type"
     [placeholder]="data.placeholder" [name]="data.name">
   <datalist class="list" *ngIf="isDataList" [id]="dataListID">
-    <option (click)="getDetails($event)" *ngFor="let data of dataListOptions" [value]="data">
+    <option *ngFor="let data of dataListOptions" [value]="data">
   </datalist>
 </div>
 <ng-container *ngIf="control && control.touched && control.errors">

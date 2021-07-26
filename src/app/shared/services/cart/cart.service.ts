@@ -17,18 +17,30 @@ export class CartService {
 
   constructor() { }
 
+  getCart() {
+    this._cart$.next(this.cart);
+  }
+
   set cart(cart) {
-    this._cart = cart;
-    this.updateCartTotal();
-    this._cart$.next(this._cart);
+    this.updateCartTotal(cart);
+    this.storeCart = cart;
+    this.getCart();
   }
 
   get cart() {
-    return this._cart;
+    return JSON.parse(sessionStorage.getItem('cartData')) || this._cart;
   }
 
-  updateCartTotal() {
-    const cart = this.cart;
+  set storeCart(cart) {
+    sessionStorage.setItem('cartData', JSON.stringify(cart));
+  }
+  
+  removeCartFromStore() {
+    sessionStorage.removeItem('cartData');
+  }
+
+  updateCartTotal(cart) {
+    debugger
     let cartTotal = 0;
     cart.items.forEach(item => {
       cartTotal += item.qty * item.product_price;
@@ -71,7 +83,7 @@ export class CartService {
     const itemFound = cart.items.find(_item => _item._id === item._id);
     if (itemFound) {
       cart.items = cart.items.map(_item => {
-        _item.qty = _item._id === item._id ? event.target.value : _item.qty;
+        _item.qty = _item._id === item._id ? parseInt(event.target.value) : parseInt(_item.qty);
         return _item;
       });
     }
@@ -91,7 +103,12 @@ export class CartService {
   }
 
   isCouponActivated() {
-    return this.cart.coupon && this.cart.coupon['coupon_name'];
+    return this.cart && this.cart.coupon && this.cart.coupon['coupon_name'];
   }
 
+  setCustomer(customer) {
+    const cart = this.cart;
+    cart.customer = customer;
+    this.cart = cart;
+  }
 }

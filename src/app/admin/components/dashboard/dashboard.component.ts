@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private orderService: OrdersService,
     private employeeService: EmployeeService
-  ) { }
+  ) {}
   public columns = [
     {
       label: 'Employee Name',
@@ -56,22 +56,23 @@ export class DashboardComponent implements OnInit {
   public todateSearch: any;
   public searchForm: FormGroup;
   public chart: any;
-  public employeeNames =[]
-  public allEmployeesNames: any
   public ordersCount: any = [];
-  public employeeSales =[]
 
   ngOnInit(): void {
-    this.graphDetails()
     this.loaderShow = true;
     this.searchForm = new FormGroup({
       employee_id: new FormControl('All', []),
     });
-    this.getAllEmployees()
+
     //orders count
     this.orderService.OrdersCount().subscribe(
       (res: any) => {
         console.log(res);
+
+        this.ordersCount = [
+          { _id: 'test', count: 1 },
+          { _id: 'sai', count: 2 },
+        ];
         this.chart = new Chart({
           chart: {
             type: 'column',
@@ -83,10 +84,7 @@ export class DashboardComponent implements OnInit {
             enabled: false,
           },
           xAxis: {
-            categories: this.employeeNames,
-            title: {
-              text: 'Employee Names',
-            },
+            categories: ['Jan', 'Feb', 'March', 'April', 'May'],
           },
           yAxis: {
             min: 0,
@@ -97,8 +95,8 @@ export class DashboardComponent implements OnInit {
 
           series: [
             {
-              type: 'line',
-              data: this.employeeSales,
+              type: 'column',
+              data: [1, 4, 1, 5, 6],
             },
           ],
         });
@@ -119,19 +117,19 @@ export class DashboardComponent implements OnInit {
       }
     );
 
+    this.employeeService.getEmployee().subscribe(
+      (res) => {
+        console.log(res);
+        this.selectEmployee = res;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   //highcharts
-  graphDetails() {
-    this.orderService.OrdersCount().subscribe((res:any)=>{
-      console.log(res)
-      this.allEmployeesNames = res 
-      this.allEmployeesNames.forEach(element => {
-        this.employeeNames.push(element._id)
-        this.employeeSales.push(element.count)
-      });
-    })
-  }
+
   getOrders(data) {
     this.loaderShow = true;
     this.fromdateSearch = data.fromDate;
@@ -149,20 +147,7 @@ export class DashboardComponent implements OnInit {
         }
       );
   }
-  getAllEmployees() {
-    this.employeeService.getEmployee().subscribe(
-      (res) => {
-        console.log(res);
-        this.selectEmployee = res;
-        this.selectEmployee.forEach(element => {
-          // this.employeeNames.push(element.employee_name)
-        });
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
+
   employeeSelect(event: any) {
     this.loaderShow = true;
     if (!this.fromdateSearch || !this.todateSearch) {
@@ -170,7 +155,6 @@ export class DashboardComponent implements OnInit {
         this.orderService.getOrders().subscribe(
           (res: any) => {
             console.log(res);
-            
             this.dashboardData = res;
             this.loaderShow = false;
           },

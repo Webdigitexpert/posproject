@@ -5,15 +5,3 @@
 /* .pcoded-header.header-blue {
   position: fixed !important;
 } */
-i.fa.fa-power-off{
-  color: #ea5255 !important;
-  margin-left: 10px;
-  cursor: pointer;
-}
-.right_lists li a{
-  font-weight: 600;
-}
-.headerList {
-  display: flex;
-  justify-content: flex-end;
-}

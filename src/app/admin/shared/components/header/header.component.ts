@@ -8,7 +8,6 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  public adminDetails
   public loginuser: any = window.localStorage.getItem('loggedUser');
   constructor(public router: Router, public authService:AuthService) {}
   public data = {
@@ -17,14 +16,12 @@ export class HeaderComponent implements OnInit {
   openDialog() {}
 
   ngOnInit(): void {
-    this.getAdminDetails()
+    if (window.localStorage.getItem('loggedUser') == null) {
+      this.loginuser = '';
+    }
   }
   logout() {
     this.authService.logout()
     this.router.navigate(['/admin'])
-  }
-  getAdminDetails() {
-    this.adminDetails=this.authService.getAdminDetails()
-    console.log(this.adminDetails)
   }
 }

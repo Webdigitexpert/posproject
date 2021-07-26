@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 
 @Component({
@@ -8,14 +8,10 @@ import { CartService } from 'src/app/shared/services/cart/cart.service';
 })
 export class OrderTableComponent implements OnInit {
 
-  public items = [];
+  @Input() public items = [];
   constructor(private cartService: CartService) { }
 
-  ngOnInit(): void {
-    this.cartService._cart$.subscribe(res => {
-      this.items = res.items;
-    });
-  }
+  ngOnInit(): void {}
 
   delete(item) {
     this.cartService.deleteCartItem(item);

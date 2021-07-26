@@ -12,7 +12,9 @@ export class SearchComponent implements OnInit {
   @Input() public isDataList: boolean = false;
   @Input() public control: FormControl;
   @Input() public dataLists;
+
   constructor() {}
 
   ngOnInit(): void {}
+
 }

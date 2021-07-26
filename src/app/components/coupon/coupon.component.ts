@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 import { CouponsService } from './../../shared/services/coupons/coupons.service';
@@ -9,10 +9,10 @@ import { CouponsService } from './../../shared/services/coupons/coupons.service'
 })
 export class CouponComponent implements OnInit {
 
+  @Input() public couponDetails = {};
   public applyCoupon: FormGroup
   public message: boolean = false;
   public enterCoupon: boolean = true;
-  public couponDetails = {};
   public coupons:any
   public couponId
   public couponsDropDown: boolean =false
@@ -24,10 +24,6 @@ export class CouponComponent implements OnInit {
   constructor(private cuponsService: CouponsService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.cartService._cart$.subscribe(cart => {
-      this.couponDetails = cart.coupon;
-      this.couponDetails = cart.coupon;
-    });
     this.applyCoupon = new FormGroup({
       coupon: new FormControl('')
     })
@@ -45,13 +41,14 @@ export class CouponComponent implements OnInit {
     this.couponsDropDown = true
   }
 
-  addCoupon(data) {
+  addCoupon() {
+    debugger
     if (this.applyCoupon.get('coupon').valid) {
       debugger
       const couponCode = this.applyCoupon.get('coupon').value;
-      this.cuponsService.getCoupon(couponCode).subscribe(res => {
+      this.cuponsService.searchCoupon(couponCode).subscribe(res => {
         console.log(res)
-        this.cartService.addCoupon(res);
+        this.cartService.addCoupon(res[0]);
       });
     }
     this.couponsDropDown = false

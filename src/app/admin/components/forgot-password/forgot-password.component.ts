@@ -6,13 +6,10 @@ import { ForgotPasswordService } from 'src/app/shared/services/forgotpassword/fo
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  styleUrls: ['./forgot-password.component.scss'],
+  styleUrls: ['./forgot-password.component.css'],
 })
 export class ForgotPasswordComponent implements OnInit {
-  constructor(private forgetPasswordService:ForgotPasswordService) { }
-  public forgetPasswordForm:FormGroup
-  public message:string
-  public isSent:boolean = false
+  public forgotForm: FormGroup;
   public email = {
     type: 'text',
     placeholder: 'Enter Email',
@@ -33,21 +30,24 @@ export class ForgotPasswordComponent implements OnInit {
     value: 'Submit',
     class: 'btn btn-fill btn-wd',
   };
+  public resetlink: boolean = false;
+  constructor(private router: Router, private forgotPassword: ForgotPasswordService) { }
 
   ngOnInit(): void {
-    this.forgetPasswordForm = new FormGroup({
-      email:new FormControl('',Validators.required)
-    })
+    this.forgotForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+    });
   }
-  onSubmit() {
-    this.forgetPasswordService.forgotPassword(this.forgetPasswordForm.value).subscribe((res:any)=>{
-      console.log(res)
-      if(res.success) {
-        this.message = res.message
-        this.isSent = true
+  gotoLogin() {
+    this.resetlink = true;
+    this.forgotPassword.forgotPassword(this.forgotForm.value).subscribe(
+      (res: any) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
       }
-    })
+    );
+    //this.router.navigate(['/admin/dashboard']);
   }
-
-
 }
