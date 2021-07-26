@@ -3,12 +3,12 @@
         <p>Enter Coupon :</p>
         <form [formGroup]="applyCoupon">
           <div class="applyCouponInput">
-            <app-input-type (keyup)="getCoupons($event)" [data]="couponDetailsInput"
+            <app-input-type [data]="couponDetailsInput"
             [control]="applyCoupon.get('coupon')" [input_class]="'couponInput'">
         </app-input-type>
           </div>
             <div class="applyCouponButton">
-                <app-button class="applyCouponBtn" (click)="addCoupon(coupon)">Apply</app-button>
+                <app-button class="applyCouponBtn" (click)="addCoupon()">Apply</app-button>
             </div>
         </form>
 

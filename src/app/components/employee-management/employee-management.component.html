@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{employeeData.employee_name}}</h4>
+    <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
     <button type="button" (click)="dismiss()">
         <span class="close" aria-hidden="true">x</span>
     </button>
@@ -18,6 +18,9 @@
             </h4>
             <i (click)="editEmployeeDetails()" class="fa fa-edit"></i>
         </div>
+            <h4>
+                <span> Employee Name </span> : {{employeeData.employee_name}}
+            </h4>
             <h4>
                 <span>Mobile number </span> : {{employeeData.phone_number}}
             </h4>

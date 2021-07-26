@@ -12,7 +12,7 @@ export class InputTypeComponent implements OnInit {
   @Input() public input_class: string;
   @Input() public isDataList: boolean = false;
   @Input() public dataListOptions
-  @Output() public details = new EventEmitter()
+  @Output() public details = new EventEmitter();
   public dataListID: string = '';
 
 

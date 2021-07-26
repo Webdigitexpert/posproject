@@ -9,8 +9,6 @@
       <div class="searchBar">
         <form [formGroup]="searchCustomer">
           <app-search
-            (keyup)="getCustomer($event)"
-            (details)="getData(customers)"
             [dataLists]="customerNames"
             [control]="searchCustomer.get('customerData')"
             [details]="customerDetails"
@@ -38,7 +36,7 @@
       ></app-customer-details>
     </div>
   </div>
-  <app-order-table></app-order-table>
-  <app-coupon></app-coupon>
-  <app-total-price></app-total-price>
+  <app-order-table [items]="items"></app-order-table>
+  <app-coupon [couponDetails]="couponDetails"></app-coupon>
+  <app-total-price [cartTotal]="cartTotal"></app-total-price>
 </div>

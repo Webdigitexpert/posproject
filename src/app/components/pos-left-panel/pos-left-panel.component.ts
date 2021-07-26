@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { CartService } from 'src/app/shared/services/cart/cart.service';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog/dialog-service.service';
 import { AddCustomerComponent } from '../../shared/components/add-customer/add-customer.component';
@@ -22,23 +23,49 @@ export class PosLeftPanelComponent implements OnInit {
   public selectedCustomer = {
   }
   public customerDetails = {
-    type: "search",
-    placeholder: "Search Customer...",
+    type: 'search',
+    placeholder: 'Search Customer...',
   };
+  public customersData = '';
+  public items = [];
+  public couponDetails = {};
+  public cartTotal = 0;
 
   constructor(public dialogService: DialogServiceService,
-    private customerService: CustomerService) { }
+    private customerService: CustomerService,
+    private cartService: CartService) { }
 
-  public customersData = ""
 
   ngOnInit(): void {
-    this.getAllCustomers()
     this.searchCustomer = new FormGroup({
       customerData: new FormControl('')
     });
-  }
-  getData(data) {
-    console.log(this.customers)
+    
+    this.searchCustomer.get('customerData').valueChanges.subscribe(res => {
+      console.log(res)
+    })
+
+    this.customerService.getCustomers().subscribe((res) => {
+      this.customers = res;
+      this.getAllCustomers();
+    })
+    this.customerService._customers$.subscribe(res => {
+      this.customers = res;
+      this.getAllCustomers();
+    });
+    this.cartService._cart$.subscribe(cart => {
+      debugger
+      if (cart) {
+        this.setCustomer(cart.customer);
+        this.items = cart.items;
+        this.couponDetails = cart.coupon;
+        this.cartTotal = cart.total;
+      }
+     
+    });
+    
+    this.cartService.getCart();
+
   }
 
   addCustomers(data: any) {
@@ -49,23 +76,20 @@ export class PosLeftPanelComponent implements OnInit {
         cancel: "Cancel",
       }
     }, AddCustomerComponent).then((res: any) => {
-      console.log(res)
     })
   }
 
   getAllCustomers() {
-    this.customerService.getCustomers().subscribe((res) => {
-      this.customers = res
-      this.customers.forEach((value) => {
-        this.customerNames.push(`${value.customer_name}  ${value.customer_mobile}  ${value.customer_email}`)
-      })
-      console.log(this.customerNames)
-    })
+    this.customers.forEach((value) => {
+      this.customerNames.push(`${value.customer_name}  ${value.customer_mobile}  ${value.customer_email}`)
+    });
   }
 
-  getCustomer(event) {
-    if (event.target.value) {
-     this.selectedCustomer = this.customerNames.find(customer => customer.customer_name === event.target.value);
+  setCustomer(customer) {
+    if (customer) {
+      this.selectedCustomer = customer;
+    } else {
+      this.selectedCustomer = {};
     }
   }
 
