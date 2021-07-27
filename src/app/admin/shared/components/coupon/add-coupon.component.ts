@@ -21,6 +21,7 @@ export class AddCouponComponent implements OnInit {
     type: 'text',
     placeholder: 'Coupon Code',
     class: 'form-control',
+    field: 'Coupon Name'
   };
   public statusOptions = [
     {
@@ -34,12 +35,17 @@ export class AddCouponComponent implements OnInit {
     type: 'text',
     placeholder: 'Coupon Description',
     class: 'form-control',
+    field: 'Coupon Description'
   };
   public coupon_discount = {
     type: 'text',
     placeholder: 'Coupon Discount(%)',
     class: 'form-control',
+    field: 'Coupon Discount'
   };
+  public couponDescription = {
+    field: 'Coupon description'
+  }
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
   public loaderTemplate = environment.loaderTemplate;
@@ -84,6 +90,11 @@ export class AddCouponComponent implements OnInit {
   }
 
   onCreate() {
+    if(!this.couponForm.value.coupon_name||!this.couponForm.value.coupon_description||!this.couponForm.value.coupon_discount){
+      this.couponForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
     this.loaderShow = true;
     this.couponService.postCoupon(this.couponForm.value).subscribe(
       (res) => {
@@ -95,9 +106,15 @@ export class AddCouponComponent implements OnInit {
         console.log(err);
       }
     );
+    }
   }
 
   onSave() {
+    if(!this.couponForm.value.coupon_name||!this.couponForm.value.coupon_description||!this.couponForm.value.coupon_discount){
+      this.couponForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
     this.loaderShow = true;
     this.couponService
       .updateCoupon(this.couponId, this.couponForm.value)
@@ -111,6 +128,7 @@ export class AddCouponComponent implements OnInit {
         }
       );
     this.onCancel();
+      }
   }
 
   onCancel() {

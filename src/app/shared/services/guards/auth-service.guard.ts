@@ -12,7 +12,6 @@ export class AuthServiceGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) { }
 
   canActivate(): boolean {
-
     if (environment.noAuthentication) {
       return true;
     } else {

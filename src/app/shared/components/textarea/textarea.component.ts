@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class TextareaComponent implements OnInit {
   @Input() control: FormControl
+  @Input() data:any
 
   constructor() { }
 

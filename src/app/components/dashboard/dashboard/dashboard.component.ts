@@ -11,16 +11,9 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(
-    private customerService: CustomerService,
-    private orderService: OrdersService,
-    private authService: AuthService,
-
-  ) { }
-
   public orderDetailsData = [];
   public orderDetails;
-  public employeeDetails: any
+  public employeeDetails: any;
   public id;
   public deleteCustomer;
   public deleteCustomers;
@@ -32,71 +25,16 @@ export class DashboardComponent implements OnInit {
   public loaderShow: boolean = false;
   public loaderTemplate = environment.loaderTemplate;
   public employeeSales: any;
-  public ordersData=[]
-  chart = new Chart({
-    chart: {
-      type: 'column',
-    },
-    title: {
-      text: 'Total Sales',
-    },
-    credits: {
-      enabled: false,
-    },
-    xAxis: {
-      categories: ['Jan', 'Feb', 'March', 'April', 'May'],
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: 'Total Orders',
-      },
-    },
+  public ordersData = [];
+  public orderDates = [];
+  public orderamount = [];
+  public date = []
+  public chart: any;
+  public employeeOrders = [];
+  public toShortDate: any;
+  public shortDate = [];
+  public res = {};
 
-    series: [
-      {
-        type: 'column',
-        data: [1, 4, 1, 5, 6],
-      },
-    ],
-  });
-  data: SimpleDataModel[] = [
-    {
-      name: 'text1',
-      value: '95',
-    },
-    {
-      name: 'text1',
-      value: '4',
-    },
-    {
-      name: 'text3',
-      value: '1',
-    },
-  ];
-
-  // public columns = [
-  //   {
-  //     label: 'Customer Id',
-  //     field: '_id',
-  //   },
-  //   {
-  //     label: 'Name',
-  //     field: 'customer_name',
-  //   },
-  //   {
-  //     label: 'Mobile',
-  //     field: 'customer_mobile',
-  //   },
-  //   {
-  //     label: 'Email',
-  //     field: 'customer_email',
-  //   },
-  //   {
-  //     label: 'Status',
-  //     field: 'status',
-  //   },
-  // ];
   public customerTableHeadings = [
     {
       label: 'Customer Id',
@@ -123,12 +61,12 @@ export class DashboardComponent implements OnInit {
     {
       label: 'Employee Name',
       field: 'employee_id',
-      isText:true
+      isText: true,
     },
     {
       label: 'Order Date',
       field: 'order_date_and_time',
-      isDate:true
+      isDate: true,
     },
     {
       label: 'Order Amount',
@@ -137,49 +75,150 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
+  constructor(
+    private customerService: CustomerService,
+    private orderService: OrdersService,
+    private authService: AuthService
+  ) { }
+
+  
+
   ngOnInit(): void {
-    
-
-
     this.customerService._customers$.subscribe((res) => {
       console.log(res);
       this.orderDetailsData = res;
-
     });
-    this.employeeDetails = this.authService.getEmployeeLoginDetails()
-    this.getEmployeeOrders()
+    this.employeeDetails = this.authService.getEmployeeLoginDetails();
+    this.getEmployeeOrders();
   }
 
   getEmployeeOrders() {
-    debugger
-    console.log(this.employeeDetails.employee_id)
-    this.orderService.searchOrdersByEmployee(this.employeeDetails.employee_id).subscribe((res: any) => {
-      console.log(res)
-      this.ordersData = res
-    })
+    debugger;
+    this.loaderShow = true;
+    console.log(this.employeeDetails.employee_id);
+    this.orderService
+      .searchOrdersByEmployee(this.employeeDetails.employee_id)
+      .subscribe((res: any) => {
+        console.log(res);
+        this.employeeOrders = res;
+        this.loaderShow = false;
+        const dataSet = { }
+        res.forEach((element, index) => {
+          const date = element.order_date_and_time.split('T')[0];
+          dataSet[date] = dataSet[date] ? dataSet[date] + element.order_amount : element.order_amount;
+        });
+        const categories = [];
+        const data = [];
+        Object.keys(dataSet).forEach(element => {
+          categories.push(element);
+          data.push(dataSet[element]);
+        });
+
+        this.ordersData = res;
+        this.chart = new Chart({
+          chart: {
+            type: 'column',
+          },
+          title: {
+            text: 'Total Sales',
+          },
+          credits: {
+            enabled: false,
+          },
+          xAxis: {
+            categories,
+            title: {
+              text: 'Order Dates',
+            },
+          },
+          yAxis: {
+            min: 0,
+            title: {
+              text: 'Order Amount',
+            },
+          },
+
+          series: [
+            {
+              type: 'column',
+              data
+            },
+          ],
+        });
+      });
   }
-  // customers() {
-  //   this.customerService.getCustomers().subscribe((customers) => {
-  //     this.orderDetailsData = customers;
-  //   });
-  // }
 
   editCustomerData(data: any) {
     this.customerService.updateCustomer(data._id).subscribe((res) => {
       console.log(res);
     });
   }
+
+
   getOrders(data) {
+    this.orderDates = [];
+    this.orderamount = [];
+    if (!data.fromDate || !data.toDate) {
+      this.getEmployeeOrders();
+    }
+
     console.log(data);
     this.orderService
-      .searchOrderByDates(data.fromDate, data.toDate)
+      .searchOrderByDatesandEmployee(
+        this.employeeDetails.employee_id,
+        data.fromDate,
+        data.toDate
+      )
       .subscribe((res) => {
         this.employeeSales = res;
-        this.ordersData =res
-        console.log(res);
+        this.ordersData = res;
+        res.forEach((element) => {
+          this.orderDates.push(element.order_date_and_time);
+          this.orderamount.push(element.order_amount);
+          this.orderDates.forEach((date) => {
+            this.toShortDate = date.split('T');
+            console.log(this.toShortDate);
+            this.shortDate.push(this.toShortDate[0]);
+          });
+          console.log(this.orderDates);
+          console.log(this.orderamount);
+          this.chart = new Chart({
+            chart: {
+              type: 'column',
+            },
+            title: {
+              text: 'Total Sales',
+            },
+            credits: {
+              enabled: false,
+            },
+            xAxis: {
+              categories: this.shortDate,
+              title: {
+                text: 'Order Dates',
+              },
+            },
+            yAxis: {
+              min: 0,
+              title: {
+                text: 'Total Orders',
+              },
+            },
+
+            series: [
+              {
+                type: 'column',
+                data: this.orderamount,
+              },
+            ],
+          });
+        });
       });
   }
+
 }
+
+
 export interface SimpleDataModel {
   name: string;
   value: string;

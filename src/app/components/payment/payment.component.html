@@ -1,4 +1,4 @@
-<div class="add_product">
+<div  class="add_product printable">
   <div class="modal-header">
     <h4 *ngIf="!isInvoice" class="modal-title" id="modal-basic-title">Select Payment Method</h4>
     <h4 *ngIf="isInvoice" class="modal-title" id="modal-basic-title">Invoice</h4>
@@ -6,41 +6,54 @@
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <form>
+  <form [formGroup]="paymentMethod">
     <div *ngIf="!isInvoice" class="modal-body">
       <div class="paymentMethod">
         <div class="radio">
           <p>
-            <app-input-type [input_class]="'form-data'" [data]="cash"></app-input-type>
+            <app-input-type [control]="paymentMethod.get('cash')" [input_class]="'form-data'" [data]="cash">
+            </app-input-type>
           </p>
           <p>Cash</p>
         </div>
         <div class="radio">
           <p>
-            <app-input-type [input_class]="'form-data'" [data]="debitCard"></app-input-type>
+            <app-input-type [control]="paymentMethod.get('debitCard')" [input_class]="'form-data'" [data]="debitCard">
+            </app-input-type>
           </p>
           <p>Debit Card</p>
         </div>
         <div class="radio">
           <p>
-            <app-input-type [input_class]="'form-data'" [data]="creditCard"></app-input-type>
+            <app-input-type [control]="paymentMethod.get('creditCard')" [input_class]="'form-data'" [data]="creditCard">
+            </app-input-type>
           </p>
           <p>Credit Card</p>
         </div>
 
       </div>
 
-        <!-- <p>
+      <!-- <p>
       <app-input-type [input_class]="'form-data'" [data]="referenceNumber"></app-input-type>
     </p> -->
     </div>
 
-    <div *ngIf="isInvoice" class="modal-body">Order Placed Successfully 
-    <p><span>Employee Id :</span>{{employeeId}}</p>
-    <p><span>Date :</span>{{orderDate}}</p>
-    <p><span>Order Id :</span>{{orderId}}</p>
-    <p><span>Order Amount :</span>{{Total}}</p>
-  </div>
+    <div *ngIf="isInvoice" class="modal-body">
+      <p class="image"><img width="100" src="../../../assets/images/order-sucessful.gif" alt="order-sucessful"></p>
+      <h3>Order Successful </h3>
+      <div class="details">
+        <p><span>Date :</span>{{orderDate}}</p>
+        <p><span>Order Id :</span>{{orderId}}</p>
+      </div>
+      <app-order-details-table [data]="items" [tableHeadings]="columns">
+      </app-order-details-table>
+      <p  class="total"><span>Coupon :</span> {{couponName}}</p>
+      <p class="total"><span>Order Amount :</span>
+        <price [price]="Total"></price>
+      </p>
+      <!-- <a class="print" (click)="printPage()"><i class="fa fa-print" aria-hidden="true"></i></a> -->
+      <!-- <app-tables [columns]="orders"></app-tables> -->
+    </div>
     <div *ngIf="!isInvoice" class="modal-footer">
       <app-button [btn_class]="'positive'" *ngIf="buttons.confirm" (click)=" Invoice()">
         Confirm

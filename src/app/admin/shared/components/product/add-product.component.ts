@@ -29,6 +29,7 @@ export class AddProductComponent implements OnInit {
     type: 'text',
     placeholder: 'Product Name',
     class: 'form-control',
+    field:'Product Name'
   };
   public statusOptions = [
     {
@@ -42,25 +43,28 @@ export class AddProductComponent implements OnInit {
     type: 'text',
     placeholder: 'Product ID',
     class: 'form-control',
+    field:'Product ID'
   };
   public prod_price = {
     type: 'text',
     placeholder: 'Product Price',
     class: 'form-control',
+    field:'Product Price'
   };
   public prod_image = {
     type: 'file',
     placeholder: 'Product Image',
   };
   public prod_description = {
-    type: 'text',
-    placeholder: 'Product Description',
+    placeholder: 'c',
     class: 'form-control',
+    field:'Product Description'
   };
   public prod_status = {
     type: 'text',
     placeholder: 'Product Status',
     class: 'form-control',
+    field:'Product Status'
   };
 
   public action_btns = {
@@ -130,7 +134,12 @@ export class AddProductComponent implements OnInit {
   }
 
   onCreate() {
-    this.loaderShow = true;
+    if(!this.productForm.value.product_name||!this.productForm.value.category_id||!this.productForm.value.product_price||!this.productForm.value.product_description){
+      this.productForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
+      this.loaderShow = true;
     this.productService
       .postProduct(this.productForm.value, this.image)
       .subscribe(
@@ -143,11 +152,16 @@ export class AddProductComponent implements OnInit {
           console.log(err);
         }
       );
+    }
   }
 
   onUpdate() {
-    debugger;
-    this.loaderShow = true;
+    if(!this.productForm.value.product_name||!this.productForm.value.category_id||!this.productForm.value.product_price||!this.productForm.value.product_description){
+      this.productForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
+      this.loaderShow = true;
     this.productService
       .updateProduct(this.productId, this.productForm.value, this.image)
       .subscribe(
@@ -160,6 +174,7 @@ export class AddProductComponent implements OnInit {
         }
       );
     console.log(this.productForm.value);
+      }
   }
 
   onCancel() {

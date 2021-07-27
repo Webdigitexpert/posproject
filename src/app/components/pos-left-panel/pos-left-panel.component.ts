@@ -13,13 +13,11 @@ import { AddCustomerComponent } from '../../shared/components/add-customer/add-c
 export class PosLeftPanelComponent implements OnInit {
 
   public searchCustomer: FormGroup;
-  public customerNames = []
-  public customerName = ''
-  public customerMobile = ''
-  public customerEmail = ''
-  public customers = []
-  public customerId = []
-  public allCustomers;
+  public customerNames = [];
+  public customers = [];
+  public items = [];
+  public couponDetails = {};
+  public cartTotal = 0;
 
   public selectedCustomer = {
   }
@@ -27,10 +25,7 @@ export class PosLeftPanelComponent implements OnInit {
     type: 'search',
     placeholder: 'Search Customer...',
   };
-  public customersData = '';
-  public items = [];
-  public couponDetails = {};
-  public cartTotal = 0;
+ 
 
   constructor(public dialogService: DialogServiceService,
     private customerService: CustomerService,
@@ -38,49 +33,45 @@ export class PosLeftPanelComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     this.searchCustomer = new FormGroup({
       customerData: new FormControl('')
     });
 
-    this.cartService.getCart();
     this.searchCustomer.get('customerData').valueChanges.subscribe(res => {
       const customerDetails = res && res.split(' ');
       if (customerDetails && customerDetails.length === 3) {
-        const customer = this.customers.find((value) => 
-        value.customer_name == customerDetails[0] && 
-        value.customer_mobile == customerDetails[1] && 
-        value.customer_email == customerDetails[2]);
+        const customer = this.customers.find((value) =>
+          value.customer_name == customerDetails[0] &&
+          value.customer_mobile == customerDetails[1] &&
+          value.customer_email == customerDetails[2]);
         if (customer) {
-          this.setCustomer(customer)
+          this.setCustomer(customer);
+          this.cartService.setCustomer(customer)
         }
       }
-    })
-    
-    this.searchCustomer.get('customerData').valueChanges.subscribe(res => {
-      console.log(res);
- 
     })
 
     this.customerService.getCustomers().subscribe((res) => {
       this.customers = res;
       this.getAllCustomers();
     })
+
     this.customerService._customers$.subscribe(res => {
       this.customers = res;
       this.getAllCustomers();
     });
+
     this.cartService._cart$.subscribe(cart => {
-      debugger
       if (cart) {
+        debugger
         this.setCustomer(cart.customer);
         this.items = cart.items;
         this.couponDetails = cart.coupon;
         this.cartTotal = cart.total;
       }
-     
     });
-    
-   
+    this.cartService.getCart();
 
   }
 
@@ -97,7 +88,7 @@ export class PosLeftPanelComponent implements OnInit {
 
   getAllCustomers() {
     this.customers.forEach((value) => {
-      this.customerNames.push(`${value.customer_name}  ${value.customer_mobile}  ${value.customer_email}`)
+      this.customerNames.push(`${value.customer_name} ${value.customer_mobile} ${value.customer_email}`)
     });
   }
 

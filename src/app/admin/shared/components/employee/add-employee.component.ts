@@ -35,31 +35,37 @@ export class AddEmployeeComponent implements OnInit {
     type: 'text',
     placeholder: 'Employee Name',
     class: 'form-control',
+    field:'Employee Name'
   };
   public emp_phn = {
     type: 'text',
     placeholder: 'Phone Number',
     class: 'form-control',
+    field:'Phone Number'
   };
   public emp_email = {
     type: 'text',
     placeholder: 'Email',
     class: 'form-control',
+    field:'Email'
   };
   public emp_role = {
     type: 'text',
     placeholder: 'Role',
     class: 'form-control',
+    field:'Role'
   };
   public emp_password = {
     type: 'password',
     placeholder: 'Password',
     class: 'form-control',
+    field:'Password'
   };
   public emp_code = {
     type: 'text',
     placeholder: 'Employee Code',
     class: 'form-control',
+    field:'Employee Code'
   };
   
 
@@ -95,7 +101,12 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onCreate() {
-    this.loaderShow = true;
+    if(!this.employeeForm.value.employee_name||!this.employeeForm.value.phone_number||!this.employeeForm.value.email||!this.employeeForm.value.password||!this.employeeForm.value.employee_code){
+      this.employeeForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
+      this.loaderShow = true;
     this.employeeService.createEmployee(this.employeeForm.value).subscribe(
       (res) => {
         this.loaderShow = false;
@@ -106,10 +117,16 @@ export class AddEmployeeComponent implements OnInit {
         console.log(err);
       }
     );
+    }
   }
 
   onUpdate() {
-    this.loaderShow = true;
+    if(!this.employeeForm.value.employee_name||!this.employeeForm.value.phone_number||!this.employeeForm.value.email||!this.employeeForm.value.password||!this.employeeForm.value.employee_code){
+      this.employeeForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
+      this.loaderShow = true;
     this.employeeService
       .updateEmployee(this.employeeId, this.employeeForm.value)
       .subscribe(
@@ -122,6 +139,8 @@ export class AddEmployeeComponent implements OnInit {
           console.log(err);
         }
       );
+    }
+
   }
 
   onCancel() {

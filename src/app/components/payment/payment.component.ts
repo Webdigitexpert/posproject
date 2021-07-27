@@ -1,5 +1,5 @@
-import { collectExternalReferences } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { CartService } from 'src/app/shared/services/cart/cart.service';
@@ -17,8 +17,31 @@ export class PaymentComponent implements OnInit {
   public buttons: any;
   public type: string;
   public data;
+  public paymentMethod:FormGroup
   public isInvoice: boolean;
-  constructor(private ngbModal: NgbActiveModal, private authService: AuthService, private orderService: OrdersService, private cartService: CartService) { }
+  public columns = [
+    {
+      label: 'product Name',
+      field: 'product_name',
+    },
+    {
+      label: 'Category Name',
+      field: 'category_name',
+    },
+    {
+      label: 'Price ',
+      field: 'product_price',
+    },
+    {
+      label: 'Quantity',
+      field: 'qty',
+    },
+  ];
+  constructor(private ngbModal: NgbActiveModal, 
+    private authService: AuthService, 
+    private orderService: OrdersService, 
+    private cartService: CartService
+    ) { }
 
   public loaderShow: boolean = false;
   public loaderTemplate = environment.loaderTemplate;
@@ -29,8 +52,11 @@ export class PaymentComponent implements OnInit {
   public employeeId
   public orderId
   public Total
-  public orders=[]
-  public invoiceDetails:any
+  public items
+  public couponName
+  public orders
+  public invoiceDetails: any
+  public print: ElementRef
   public paymentOptions = [
     {
       state: 'Credit Card',
@@ -63,7 +89,11 @@ export class PaymentComponent implements OnInit {
     console.log(this.employeeDetails)
     this.employeeId = this.employeeDetails.employee_id
     this.data = sessionStorage.getItem('cartData')
-    this.Invoice()
+    this.paymentMethod = new FormGroup({
+      cash:new FormControl('',[]),
+      debitCard: new FormControl('',[],),
+      creditCard:new FormControl('',[])
+    })
   }
 
   setDialogProps(dialogdata: any) {
@@ -82,31 +112,37 @@ export class PaymentComponent implements OnInit {
     this.isInvoice = true
     this.data = JSON.parse(sessionStorage.getItem('cartData'))
     console.log(this.data)
-     console.log(this.data.total)
-     this.orderService.postOrder({ orderItems: this.data,
+    console.log(this.data.total)
+    this.orderService.postOrder({
+      orderItems: this.data,
       order_amount: this.data.total,
       employee_id: this.employeeDetails.employee_id,
       coupon_code: this.data.coupon.coupon_name,
       coupon_discount: this.data.coupon.coupon_discount,
-      }).subscribe((res:any)=>{
-       console.log(res)
-       this.orderService.invoice(this.employeeDetails.employee_id).subscribe((res:any)=>{
-        console.log(res)
-        this.invoiceDetails = res[0]
+    }).subscribe((res: any) => {
+      console.log(res)
+      this.orderService.invoice(this.employeeDetails.employee_id).subscribe((res: any) => {
+        this.invoiceDetails = res
+        console.log(this.invoiceDetails)
         this.orderDate = this.invoiceDetails.order_date_and_time
         this.orderId = this.invoiceDetails._id
         this.Total = this.invoiceDetails.order_amount
-        console.log(this.invoiceDetails)
-      console.log(this.invoiceDetails.orderItems)
-      this.orders = this.invoiceDetails.orderItems
-        console.log(this.orders)
-        this.orders.forEach(ele=>{
-          console.log(ele.product_name)
+        this.orders = this.invoiceDetails.orderItems
+        console.log(this.couponName)
+        this.invoiceDetails && this.invoiceDetails.map(invoiceDetail => {
+          console.log(invoiceDetail)
+          debugger
+          this.couponName = invoiceDetail.coupon_code
+          this.orderDate = invoiceDetail.order_date_and_time
+          this.orderId = invoiceDetail._id
+          this.Total = invoiceDetail.order_amount
+          this.items = invoiceDetail.orderItems && invoiceDetail.orderItems.items
+          console.log(this.items)
         })
-        });
-      })
-    
-  // }
+      });
+    })
   }
-
+  printPage() {
+    window.print();
+  }
 }

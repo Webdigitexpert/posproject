@@ -31,7 +31,7 @@ export class EmployeeService {
   }
 
   createEmployee(payload: any): Observable<any> {
-    const url = `${this.basePath}employee`;
+    const url = `${this.basePath}employee/signup`;
     return this.http.post(url, payload, this.http.headers)
     .pipe(
       tap(res => {

@@ -54,3 +54,33 @@ h3 {
   }
 
 }
+::ng-deep {
+  .add_product .modal-dialog {
+    max-width: 643px;
+    margin: 1.75rem auto;
+}
+}
+.modal-body {
+  .image {
+    text-align: center;
+    height: 56px;
+  }
+  h3{
+    text-align: center;
+    color: #a5c536;
+    margin-bottom: 12px;
+  }
+  .details{
+    margin: 12px auto;
+    p{
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+  .total{
+    text-align: right;
+  }
+  .print {
+    cursor: pointer;
+  }
+}

@@ -2,7 +2,7 @@
   <textarea class="form-control" [formControl]="control"></textarea>
 </div>
 <ng-container *ngIf="control.touched">
-  <div class="errMsg" *ngIf="control.errors && control.errors.required">*Input is required.</div>
+  <div class="errMsg" *ngIf="control.errors && control.errors.required">*{{data.field}} is required.</div>
   <div class="errMsg" *ngIf="control.errors && control.errors?.maxlength">*Input length less than or equals to {{control.errors?.maxlength.requiredLength}}.</div>
 </ng-container>
 

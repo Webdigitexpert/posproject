@@ -22,11 +22,14 @@ export class CustomerManagementComponent implements OnInit {
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
   public loaderTemplate = environment.loaderTemplate;
+  public address = {
+    field:"Address"
+  }
 
   public statusOptions = [{ state: 'Active' }, { state: 'Inactive' }];
-  public customerName = { type: 'text' ,placeholder:'Customer Name',class:'form-control'};
-  public customerMobile = { type: 'text' ,placeholder:'Customer Mobile',class:'form-control'};
-  public customerEmail = { type: 'text' ,placeholder:'Customer Email',class:'form-control'};
+  public customerName = { type: 'text' ,placeholder:'Customer Name',class:'form-control', field: 'Customer Name'};
+  public customerMobile = { type: 'text' ,placeholder:'Customer Mobile',class:'form-control', field: 'Customer Mobile'};
+  public customerEmail = { type: 'text' ,placeholder:'Customer Email',class:'form-control', field: 'Customer Email'};
   
   ngOnInit(): void {
     this.customerForm = new FormGroup({
@@ -67,6 +70,11 @@ export class CustomerManagementComponent implements OnInit {
 
 
   onCreate(){
+    if(!this.customerForm.value.customer_name||!this.customerForm.value.customer_email||!this.customerForm.value.customer_mobile||!this.customerForm.value.customer_address){
+      this.customerForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
     this.loaderShow = true;
     this.customerService.postCustomer(this.customerForm.value).subscribe((res:any)=>{
       console.log(res)
@@ -76,8 +84,14 @@ export class CustomerManagementComponent implements OnInit {
       console.log(err)
     })
   }
+  }
 
   onSave(){
+    if(!this.customerForm.value.customer_name||!this.customerForm.value.customer_email||!this.customerForm.value.customer_mobile||!this.customerForm.value.customer_address){
+      this.customerForm.markAllAsTouched()
+      this.loaderShow = false;
+    }
+    else{
     this.loaderShow = true;
     this.customerService.editCustomer(this.customerId, this.customerForm.value).subscribe((res:any)=>{
       console.log(res);
@@ -86,6 +100,7 @@ export class CustomerManagementComponent implements OnInit {
     },(err:any)=>{
       console.log(err)
     })
+  }
   }
 
 

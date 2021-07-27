@@ -1256,3 +1256,10 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 .button.negative button {
   margin: 0 !important;
 }
+
+
+//print 
+button.btn.btn-primary:active{
+  border: none !important;
+  box-shadow: none !important;
+}

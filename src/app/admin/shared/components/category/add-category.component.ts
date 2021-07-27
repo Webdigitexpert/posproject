@@ -25,7 +25,11 @@ export class AddCategoryComponent implements OnInit {
     type: 'text',
     placeholder: 'Category',
     class: 'form-control',
+    field: 'Category Name'
   };
+  public categoryDescription = {
+    field:'Category Description'
+  }
 
   public statusOptions = [
     {
@@ -70,7 +74,14 @@ export class AddCategoryComponent implements OnInit {
     }
   }
   onCreate() {
+    
+    if(!this.categoryForm.value.category_name||!this.categoryForm.value.category_description){
+     this.categoryForm.markAllAsTouched()
+     this.loaderShow = false;
+    }
+    else{
     this.loaderShow = true;
+    console.log(this.categoryForm.value)
     this.categoryService.postCategory(this.categoryForm.value).subscribe(
       (res) => {
         console.log(res);
@@ -82,10 +93,16 @@ export class AddCategoryComponent implements OnInit {
       }
     );
     console.log(this.categoryForm.value);
+    }
   }
 
   onEdit() {
-    this.loaderShow = true;
+    if(!this.categoryForm.value.category_name||!this.categoryForm.value.category_description){
+      this.categoryForm.markAllAsTouched()
+      this.loaderShow = false;
+     }
+     else{
+       this.loaderShow = true;
     this.categoryService
       .updateCategory(this.categoryId, this.categoryForm.value)
       .subscribe(
@@ -98,6 +115,7 @@ export class AddCategoryComponent implements OnInit {
           console.log(err);
         }
       );
+     }
   }
 
   onClose() {

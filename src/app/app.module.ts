@@ -5,6 +5,7 @@ import { SharedModule } from './shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
 import { ChartModule } from 'angular-highcharts';
 
@@ -77,6 +78,7 @@ import { AllCustomersComponent } from './components/dashboard/all-customers/all-
   ],
   providers: [
     AuthServiceGuard,
+    DatePipe,
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

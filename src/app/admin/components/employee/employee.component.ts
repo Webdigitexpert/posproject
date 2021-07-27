@@ -92,9 +92,7 @@ export class EmployeeComponent implements OnInit {
         },
         AddEmployeeComponent
       )
-      .then((res: any) => {
-        console.log(res);
-      });
+
   }
   deleteEmployee(data: any) {
     console.log(data, 'hello');

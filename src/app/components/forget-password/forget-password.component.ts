@@ -17,16 +17,7 @@ export class EmployeeForgetPasswordComponent implements OnInit {
     type: 'text',
     placeholder: 'Enter Email',
     class: 'form-control',
-  };
-  public password = {
-    type: 'password',
-    placeholder: 'Enter Password',
-    class: 'form-control',
-  };
-  public confirm_pwd = {
-    type: 'password',
-    placeholder: 'Confirm Password',
-    class: 'form-control',
+    field:'Email'
   };
   public submit_btn = {
     type: 'button',

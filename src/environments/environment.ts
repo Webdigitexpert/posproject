@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  noAuthentication: true,
+  noAuthentication: false,
   currencyFormat: {
     symbol: '!',
     name: 'dollar'

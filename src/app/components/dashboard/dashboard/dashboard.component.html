@@ -7,14 +7,15 @@
   <div class="customerTable">
     <!-- <app-customer-orders [customerData]="orderDetailsData" [customerTableHeadings]="customerTableHeadings"></app-customer-orders> -->
     <div class="dashboard">
+      <div class="graph">
+        <div [chart]="chart"></div>
+      </div>
       <div class="customer-table">
 
         <app-employee-sales-table [employeetableHeadings]="employeetableHeadings" [employeeSales]="ordersData">
         </app-employee-sales-table>
       </div>
-      <div class="graph">
-        <div [chart]="chart"></div>
-      </div>
+
     </div>
   </div>
   <!-- <div *ngIf="employeeSales" class="employeeSales">

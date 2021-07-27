@@ -17,6 +17,7 @@ export class ForgotPasswordComponent implements OnInit {
     type: 'text',
     placeholder: 'Enter Email',
     class: 'form-control',
+    field:'Email'
   };
   public password = {
     type: 'password',

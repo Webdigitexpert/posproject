@@ -32,11 +32,6 @@ export class ProductComponent implements OnInit {
       },
       data: data
     }, ProductDetailsComponent)
-    
-    this.productService.getProduct(data)
-      .subscribe((product) => {
-        console.log(product)
-      })
   }
 
   addItem(product) {

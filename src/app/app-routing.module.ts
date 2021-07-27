@@ -10,7 +10,7 @@ import { AllCustomersComponent } from './components/dashboard/all-customers/all-
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: "full" },
+  { path: '', redirectTo: 'login', pathMatch: "full" },
   { path: 'home', component: PosComponent, canActivate: [AuthServiceGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthServiceGuard] },
   { path: 'forget-password', component: EmployeeForgetPasswordComponent },
