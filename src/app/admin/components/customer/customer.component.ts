@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeleteComponent } from 'src/app/shared/components/delete/delete.component';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog/dialog-service.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 import { CustomerManagementComponent } from '../../shared/components/customer-management/customer-management.component';
 
@@ -15,7 +16,7 @@ export class CustomerComponent implements OnInit {
 
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public customers:any;
 
   public actions = 

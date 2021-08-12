@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,7 +12,7 @@ import { environment } from 'src/environments/environment';
 export class AllCustomersComponent implements OnInit {
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
 
   constructor(private customerService: CustomerService,
     private orderService: OrdersService) { }

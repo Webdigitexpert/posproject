@@ -4,6 +4,7 @@ import { EmployeeService } from 'src/app/shared/services/employee/employee.servi
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 import { environment } from 'src/environments/environment';
 import { Chart } from 'angular-highcharts';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -51,7 +52,7 @@ export class DashboardComponent implements OnInit {
   ];
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public fromdateSearch: any;
   public todateSearch: any;
   public searchForm: FormGroup;

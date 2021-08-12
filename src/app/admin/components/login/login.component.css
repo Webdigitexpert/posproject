@@ -36,8 +36,10 @@
         font-weight: 500;
     }
 .login label {
+        font-weight: 600;
+        margin-bottom:6px;
         color: #495057 !important;
-}
+    }
 .login {
         background-size: cover;
         background-position: center center;

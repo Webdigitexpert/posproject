@@ -13,3 +13,9 @@
         width: 70%;
     }
 }
+@media print {
+    .non-printable 
+    {
+      display: none;
+    }
+  }

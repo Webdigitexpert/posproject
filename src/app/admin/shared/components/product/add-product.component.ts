@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -23,7 +24,7 @@ export class AddProductComponent implements OnInit {
   public image: File;
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
 
   public prod_name = {
     type: 'text',
@@ -89,12 +90,10 @@ export class AddProductComponent implements OnInit {
     this.productForm = new FormGroup({
       product_name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(12),
       ]),
       category_id: new FormControl('', [Validators.required]),
       product_price: new FormControl('', [
         Validators.required,
-        Validators.maxLength(8),
         Validators.pattern(''),
       ]),
       // product_image: new FormControl('', [
@@ -103,7 +102,6 @@ export class AddProductComponent implements OnInit {
       // ]),
       product_description: new FormControl('', [
         Validators.required,
-        Validators.maxLength(100),
       ]),
       status: new FormControl('', [Validators.required]),
     });
@@ -119,6 +117,7 @@ export class AddProductComponent implements OnInit {
       this.type === 'edit' || this.type === 'view' ? dialogdata.data._id : '';
     this.title = dialogdata.title;
     this.buttons = dialogdata.buttons;
+    debugger
     if (['edit', 'view'].includes(this.type)) {
       this.productId = dialogdata.data._id;
       this.productForm.patchValue(this.data);

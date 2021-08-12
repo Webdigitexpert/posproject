@@ -8,21 +8,34 @@ import { AuthServiceGuard } from './shared/services/guards/auth-service.guard';
 import { EmployeeForgetPasswordComponent } from './components/forget-password/forget-password.component';
 import { AllCustomersComponent } from './components/dashboard/all-customers/all-customers.component';
 import { ResetPasswordComponent } from './shared/components/reset-password/reset-password.component';
+import { LoginAuthGuard } from './shared/services/guards/login-auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: "full" },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: PosComponent, canActivate: [AuthServiceGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthServiceGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthServiceGuard],
+  },
   { path: 'forget-password', component: EmployeeForgetPasswordComponent },
   { path: 'login', component: LoginComponent },
-  {path:'reset-password', component:ResetPasswordComponent},
-  { path:'all-customers', component:AllCustomersComponent, canActivate: [AuthServiceGuard]},
-  { path: "admin", loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-  {path: '**',redirectTo:'login', pathMatch:"full"}
+  { path: 'reset-password', component: ResetPasswordComponent },
+  {
+    path: 'all-customers',
+    component: AllCustomersComponent,
+    canActivate: [AuthServiceGuard],
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./admin/admin.module').then((m) => m.AdminModule),
+  },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

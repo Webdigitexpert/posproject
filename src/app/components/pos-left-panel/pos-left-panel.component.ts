@@ -63,8 +63,9 @@ export class PosLeftPanelComponent implements OnInit {
     });
 
     this.cartService._cart$.subscribe(cart => {
+      debugger
+
       if (cart) {
-        debugger
         this.setCustomer(cart.customer);
         this.items = cart.items;
         this.couponDetails = cart.coupon;

@@ -7,7 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { NgxLoaderModule } from '@tusharghoshbd/ngx-loader';
+import { NgxPayPalModule } from 'ngx-paypal';
 import { ChartModule } from 'angular-highcharts';
+import { NgxStripeModule } from 'ngx-stripe';
 
 import { AppComponent } from './app.component';
 import { PosRightPanelComponent } from './components/pos-right-panel/pos-right-panel';
@@ -75,6 +77,9 @@ import { AllCustomersComponent } from './components/dashboard/all-customers/all-
     ReactiveFormsModule,
     NgxLoaderModule,
     ChartModule,
+    NgxPayPalModule,
+    NgxStripeModule.forRoot('pk_test_51JA4s8SCYTsqYR4eO9kJ7CYuUdinVUnMhtQLDtRYNnxkRaQsdq6GtrA7KgccSIY0K48oZkVV0m8urJDb5G5NGOgu00K7U7MEdj')
+
   ],
   providers: [
     AuthServiceGuard,

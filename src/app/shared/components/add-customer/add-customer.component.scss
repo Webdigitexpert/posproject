@@ -51,9 +51,28 @@ h4{
         justify-content: end !important; 
     }
 }
+::ng-deep .button.positive button {
+    height: 38px;
+    font-size: 18px;
+    line-height: 0;
+    background: transparent;
+    padding: 7px 22px !important;
+    font-weight: 500;
+    background-color: #f4c343 !important;
+    text-transform: capitalize;
+  }
+  ::ng-deep.button.negative button {
+    height: 38px;
+    font-size: 18px;
+    line-height: 0;
+    background: transparent;
+    background-color: #ea5255;
+    font-weight: 500;
+    padding: 7px 22px !important;
+    text-transform: capitalize;
+  }
 ::ng-deep{
    .CustomerData{
-     
        input[type="text"]{
         outline: none;
         width: 100%;
@@ -72,7 +91,7 @@ h4{
     background: transparent;
     font-weight: 500;
     color: #fff;
-    width: 137px;
+    width: 156x;
     padding: 0;
     background-color: #f4c343;
     text-transform: capitalize;

@@ -9,6 +9,7 @@ export class DialogServiceService {
   constructor(public ngbModel: NgbModal) { }
 
   openDialog(props: any, component?): Promise<any> {
+    debugger
     console.log(props)
     var modelRef = this.ngbModel.open(component, { size: 'md  ', backdrop: 'static' });
     modelRef.componentInstance.props = props;

@@ -28,17 +28,15 @@
   text-transform: capitalize;
 }
 .left {
-  width: 50%;
+  width: 30%;
   float: left;
 }
 .right {
-  width: 50%;
+  width: 70%;
   float: left;
+  padding-left: 20px;
 }
 
-.img {
-  width: 100px;
-}
 .modal-body {
   overflow: hidden;
 }
@@ -46,6 +44,23 @@
   padding-left: 16px;
   font-size: 18px;
   font-weight: 500;
+}
+
+
+.modal-dialog .modal-header .close {
+    margin: 0 !important;
+    padding: 0;
+}
+.modal-dialog .modal-header .close {
+    padding: 0px 5px !important;
+    margin-right: 10px !important;
+    opacity: 1;
+    color: #fff !important;
+    outline: none;
+    margin-top: 6px !important;
+}
+.des {
+  font-size: 14px;
 }
 ::ng-deep .btn_class .btn{
   background-color: #fb404b !important;
@@ -101,5 +116,20 @@
 }
 .inputWidth {
   width: 48%;
+}
+h3 {
+  font-weight: 700;
+  color: #495057;
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.price span {
+  font-weight: 700;
+  color: #495057;
+  font-size: 16px;
+}
+::ng-deep .img img {
+  width:100% !important;
+  height: auto;
 }
 

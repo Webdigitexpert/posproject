@@ -20,7 +20,7 @@
     .category_row{
         display: flex;
         flex-wrap: wrap;
-        padding: 10px 0px 10px 0;
+        padding: 9px 0 0 0;
         height: 121px;
         overflow-y: scroll;
         margin-bottom: 12px;
@@ -96,6 +96,9 @@
         margin-right: 10px;
         line-height: 1.5;
         padding: 0;
+    }
+    .product button.btn.btn-primary:hover {
+        background-color: #ea5255
     }
     .footer_btn{
         padding: 5px;

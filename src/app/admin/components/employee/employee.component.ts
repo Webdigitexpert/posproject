@@ -4,6 +4,7 @@ import { AddEmployeeComponent } from '../../shared/components/employee/add-emplo
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { EmployeeService } from 'src/app/shared/services/employee/employee.service';
 import { environment } from 'src/environments/environment';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-employee',
@@ -17,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   public loaderShow: boolean = false;
-  public loaderTemplate: any = environment.loaderTemplate;
+  public loaderTemplate: any = constants.loaderTemplate;
   public inputdata = {
     type: 'button',
     name: 'btn',
@@ -130,9 +131,6 @@ export class EmployeeComponent implements OnInit {
         },
         AddEmployeeComponent
       )
-      .then((res: any) => {
-        console.log(res);
-      });
   }
 
   viewEmployee(data: any) {

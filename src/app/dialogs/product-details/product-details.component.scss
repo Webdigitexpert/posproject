@@ -22,11 +22,20 @@
     background: none !important;
     outline: none;
 }
+.description {
+    width: 100%;
+    p{
+        font-size: 14px;
+    }
+}
 .productDetails{
+ 
     h5{
         font-weight: 600;
+        margin-bottom: 6px;
     }
     .productImage {
+        padding: 20px 0 0;
         width: 40%;
         p {
             img {

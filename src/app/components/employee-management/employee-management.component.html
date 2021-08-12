@@ -1,69 +1,97 @@
 <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{title}}</h4>
-    <button type="button" (click)="dismiss()">
-        <span class="close" aria-hidden="true">x</span>
-    </button>
+  <h4 class="modal-title" id="modal-basic-title">
+    {{ employeeName}}
+  </h4>
+  <button type="button" (click)="dismiss()">
+    <span class="close" aria-hidden="true">x</span>
+  </button>
 </div>
 <div class="modal-body">
-    <div class="employeeImage">
-        <!-- <p>
+  <div class="employeeImage">
+    <!-- <p>
             <img src="../../../assets/images/employee.png" alt="employee image">
         </p> -->
-    </div>
-    <div class="employeeData">
-        <div class="employee-details" *ngIf="type == 'view'">
-        <div class="edit">
-            <h4>
-                <span>Employee Code </span> : {{employeeData.employee_code}}
-            </h4>
-            <i (click)="editEmployeeDetails()" class="fa fa-edit"></i>
-        </div>
-            <h4>
+  </div>
+  <div class="employeeData">
+    <div class="employee-details" *ngIf="type == 'view'">
+      <div class="edit">
+        <h4><span>Employee Code </span> : {{ code }}</h4>
+        <i (click)="editEmployeeDetails()" class="fa fa-edit"></i>
+      </div>
+      <!-- <h4>
                 <span> Employee Name </span> : {{employeeData.employee_name}}
-            </h4>
-            <h4>
-                <span>Mobile number </span> : {{employeeData.phone_number}}
-            </h4>
-            <h4>
-                <span>Role </span> : {{employeeData.role}}
-            </h4>
-            <h4>
-                <span>Email </span> : {{employeeData.email}}
-            </h4>
-            <div class="modal-footer">
-                <app-button  (click)="cancelCustomer($event)" [btn_class]="'negative'">
-                    cancel
-                </app-button>
-            </div>
-        </div>
-        <div class="employee-details2" *ngIf="type == 'edit'">
-            <form [formGroup]="editEmployeeForm">
-                <div class="form-group">
-                    <label>Employee Name : </label>
-                    <app-input-type [data]="name" [control]="editEmployeeForm.get('employee_name')"
-                        [input_class]="'editEmployee'"></app-input-type>
-                </div>
-                <div class="form-group">
-                    <label>Mobile Number : </label>
-                    <app-input-type [data]="mobileNumber" [control]="editEmployeeForm.get('phone_number')"
-                        [input_class]="'editEmployee'"></app-input-type>
-                </div>
-                <div class="form-group">
-                    <label>Email : </label>
-                    <app-input-type [data]="email" [control]="editEmployeeForm.get('email')"
-                        [input_class]="'editEmployee'"></app-input-type>
-                </div>
-            </form>
-            <div class="modal-footer">
-                <app-button  (click)="onEdit()" [btn_class]="'positive'">Edit
-                </app-button>
-                <app-button  (click)="cancelCustomer($event)" [btn_class]="'negative'">
-                   Cancel
-                </app-button>
-            </div>
-        </div>
+            </h4> -->
+      <h4><span>Mobile number </span> : {{ phoneNumber }}</h4>
+      <h4><span>Role </span> : {{ role }}</h4>
+      <h4><span>Email </span> : {{ emailAdderss }}</h4>
+      <div class="modal-footer">
+        <app-button (click)="cancelCustomer($event)" [btn_class]="'negative'">
+          cancel
+        </app-button>
+      </div>
     </div>
+    <div class="employee-details2" *ngIf="type == 'edit'">
+      <form [formGroup]="editEmployeeForm">
+        <div class="inputFields">
+          <div class="form-group inputWidth">
+            <label>Employee Name : </label>
+            <app-input-type
+              [data]="name"
+              [control]="editEmployeeForm.get('employee_name')"
+              [input_class]="'editEmployee'"
+            ></app-input-type>
+          </div>
+          <div class="form-group inputWidth">
+            <label>Mobile Number : </label>
+            <app-input-type
+              [data]="mobile"
+              [control]="editEmployeeForm.get('phone_number')"
+              [input_class]="'editEmployee'"
+            ></app-input-type>
+          </div>
+        </div>
+        <div class="inputFields">
+          <div class="form-group inputWidth">
+            <label>Email : </label>
+            <app-input-type
+              [data]="email"
+              [control]="editEmployeeForm.get('email')"
+              [input_class]="'editEmployee'"
+            ></app-input-type>
+          </div>
+          <div class="form-group inputWidth">
+            <label>Password : </label>
+            <app-input-type
+              [data]="password"
+              [control]="editEmployeeForm.get('password')"
+              [input_class]="'editEmployee'"
+            ></app-input-type>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Employee Code : </label>
+          <app-input-type
+            [data]="employeeCode"
+            [control]="editEmployeeForm.get('employee_code')"
+            [input_class]="'editEmployee'"
+          ></app-input-type>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <app-button (click)="onEdit()" [btn_class]="'positive'"
+          >Edit
+        </app-button>
+        <app-button (click)="cancelCustomer($event)" [btn_class]="'negative'">
+          Cancel
+        </app-button>
+      </div>
+    </div>
+  </div>
 </div>
-<ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
-    Loading...
+<ngx-loader
+  [show]="loaderShow"
+  [fullScreen]="fullScreen"
+  [template]="loaderTemplate"
+>
+  Loading...
 </ngx-loader>

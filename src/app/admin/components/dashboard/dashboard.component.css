@@ -6,11 +6,15 @@
   margin-top:20px;
   border-bottom: 1px solid #eee;
 }
+.chart {
+  border-bottom: 1px solid #eee;
+}
 .selectEmployee{
   display: flex;
-  width: 33%;
+  width:350px;
+  margin-top: 20px;
   align-items: center;
-
+  margin-left: 20px;
 }
 .selectEmployee P{
   font-weight: 700;
@@ -23,21 +27,20 @@ h3{
   font-size: 20px;
     text-transform: capitalize;
     font-weight: 700;
+    padding: 20px 20px 0 20px;
 }
 .searchDetails{
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
-}
-.employeegraph {
-  /* display: flex; */
+  padding: 20px 20px 0 20px;
 }
 .tableInfo {
   margin-top: 12px;
 }
 .dashboardDetails {
-  padding: 20px 20px 0 20px;
+  
 }
 .dashboard-details {
   background: #fff;

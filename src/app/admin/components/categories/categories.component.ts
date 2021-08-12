@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,OnDestroy } from '@angular/core';
 import { DialogServiceService } from '../../../shared/services/dialog/dialog-service.service';
 import { AddCategoryComponent } from '../../shared/components/category/add-category.component';
 
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
-import { environment } from 'src/environments/environment';
+import { constants } from "../../../../constants/constants"
 
 @Component({
   selector: 'app-categories',
@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
 
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public gettype: any;
   public categories: any;
   public addnewbtn = {
@@ -155,4 +155,5 @@ export class CategoriesComponent implements OnInit {
         console.log(res);
       });
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EmployeeService } from 'src/app/shared/services/employee/employee.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-add-employee',
@@ -20,13 +21,10 @@ export class AddEmployeeComponent implements OnInit {
   public employeeForm: FormGroup;
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
 
 
   public statusOptions = [
-    {
-      state: 'user',
-    },
     { state: 'admin' },
     { state: 'employee' },
   ];
@@ -88,6 +86,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   setDialogProps(dialogdata: any) {
+    console.log(dialogdata)
     this.type = dialogdata.type;
     this.data = dialogdata.data;
     this.employeeId =
@@ -131,6 +130,7 @@ export class AddEmployeeComponent implements OnInit {
       .updateEmployee(this.employeeId, this.employeeForm.value)
       .subscribe(
         (res) => {
+          console.log(res)
           this.loaderShow = false;
           this.onCancel();
          

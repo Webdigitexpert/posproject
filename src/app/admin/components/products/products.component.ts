@@ -4,6 +4,7 @@ import { AddProductComponent } from '../../shared/components/product/add-product
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { ProductsService } from 'src/app/shared/services/products/products.service';
 import { environment } from 'src/environments/environment';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-products',
@@ -17,7 +18,7 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   public loaderShow: boolean = false;
-  public loaderTemplate: any = environment.loaderTemplate;
+  public loaderTemplate: any = constants.loaderTemplate;
   public inputdata = {
     type: 'button',
     name: 'btn',
@@ -51,7 +52,7 @@ export class ProductsComponent implements OnInit {
     {
       label: 'Description',
       field: 'product_description',
-      isText: true,
+      description:true
     },
     {
       label: 'Product Image',

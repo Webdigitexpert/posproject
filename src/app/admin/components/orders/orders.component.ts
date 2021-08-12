@@ -3,6 +3,7 @@ import { DialogServiceService } from '../../../shared/services/dialog/dialog-ser
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 import { environment } from 'src/environments/environment';
+import { constants } from 'src/constants/constants';
 // import { EditOrderComponent } from '../../shared/components/edit-order/edit-order.component';
 
 @Component({
@@ -16,7 +17,7 @@ export class OrdersComponent implements OnInit {
     private orderService: OrdersService
   ) {}
   public loaderShow: boolean = false;
-  public loaderTemplate: any = environment.loaderTemplate;
+  public loaderTemplate: any = constants.loaderTemplate;
 
   public actions = {
     //edit: true,
@@ -43,17 +44,19 @@ export class OrdersComponent implements OnInit {
       label: 'Coupon Code',
       field: 'coupon_code',
       isText: true,
+      isCoupon:true
     },
     {
       label: 'Coupon Discount',
       field: 'coupon_discount',
       isText: true,
+      isCoupon:true
     },
-    {
-      label: 'Feedback',
-      field: 'customer_feedback',
-      isText: true,
-    },
+    // {
+    //   label: 'Feedback',
+    //   field: 'customer_feedback',
+    //   isText: true,
+    // },
   ];
 
   public orders;

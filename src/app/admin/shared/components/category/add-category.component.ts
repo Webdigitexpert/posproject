@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoriesService } from 'src/app/shared/services/categories/categories.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -42,7 +43,7 @@ export class AddCategoryComponent implements OnInit {
 
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   constructor(
     public ngbModal: NgbActiveModal,
     private categoryService: CategoriesService
@@ -52,11 +53,9 @@ export class AddCategoryComponent implements OnInit {
     this.categoryForm = new FormGroup({
       category_name: new FormControl('', [
         Validators.required,
-        Validators.maxLength(10),
       ]),
       category_description: new FormControl('', [
         Validators.required,
-        Validators.maxLength(50),
       ]),
       status: new FormControl('Active'),
     });

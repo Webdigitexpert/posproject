@@ -4,6 +4,7 @@ import { AddCouponComponent } from '../../shared/components/coupon/add-coupon.co
 import { DeleteComponent } from '../../../shared/components/delete/delete.component';
 import { CouponsService } from 'src/app/shared/services/coupons/coupons.service';
 import { environment } from 'src/environments/environment';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-coupons',
@@ -17,7 +18,7 @@ export class CouponsComponent implements OnInit {
   ) {}
 
   public loaderShow: boolean = false;
-  public loaderTemplate: any = environment.loaderTemplate;
+  public loaderTemplate: any = constants.loaderTemplate;
   public inputdata = {
     type: 'button',
     name: 'btn',

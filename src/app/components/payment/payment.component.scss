@@ -17,6 +17,13 @@
   background-color: #f4c343 !important;
   text-transform: capitalize;
 }
+::ng-deep {
+  .radio {
+      display: flex;.listData{
+          margin-right: 60px;
+      }
+  }
+}
 ::ng-deep.button.negative button {
   height: 38px;
   font-size: 18px;
@@ -29,7 +36,7 @@
 }
 .modal-body{
   p{
-    margin-bottom: 12px;
+    // margin-bottom: 12px;
     color: #666;
     span{
       font-weight: 700;
@@ -83,4 +90,30 @@ h3 {
   .print {
     cursor: pointer;
   }
+}
+.unsucess{
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    h3 {
+      text-align: center;
+      color: #ea5255;
+      margin-bottom: 12px;
+    }
+    h4 {
+      font-weight: 400;
+      color: #000;
+      opacity: 0.5;
+    }
+}
+  ::ng-deep .paypal-button-row.paypal-button-number-1.paypal-button-layout-vertical.paypal-button-shape-rect.paypal-button-number-multiple.paypal-button-env-sandbox.paypal-button-color-black.paypal-button-text-color-white.paypal-logo-color-white {
+  display: none;
+}
+.errMsg {
+  color: rgb(255, 0, 0) !important;
+}
+.stripeForm {
+  margin-top: 20px;
 }

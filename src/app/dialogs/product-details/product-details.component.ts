@@ -38,18 +38,18 @@ export class ProductDetailsComponent implements OnInit {
     this.modal.close(JSON.stringify(action));
   }
 
-  public name = {
-    type: "text",
-    placeholder: "Enter Name",
-  }
-  public mobileNumber = {
-    type: "tel",
-    placeholder: "Enter mobile number",
-  }
-  public email = {
-    type: "email",
-    placeholder: "Email Address",
-  }
+  // public name = {
+  //   type: "text",
+  //   placeholder: "Enter Name",
+  // }
+  // public mobileNumber = {
+  //   type: "tel",
+  //   placeholder: "Enter mobile number",
+  // }
+  // public email = {
+  //   type: "email",
+  //   placeholder: "Email Address",
+  // }
   addCustomer() {
     this.addCustomers = true
   }

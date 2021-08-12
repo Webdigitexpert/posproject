@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CustomerService } from 'src/app/shared/services/customers/customer.service';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-customer-management',
@@ -21,7 +22,7 @@ export class CustomerManagementComponent implements OnInit {
   public customerForm: FormGroup;
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public address = {
     field:"Address"
   }
@@ -40,14 +41,14 @@ export class CustomerManagementComponent implements OnInit {
       ]),
       customer_email: new FormControl('', [
         Validators.required,
-        Validators.maxLength(50),
+        Validators.minLength(50),
         Validators.minLength(5)
       ]),
       customer_mobile: new FormControl('', [
         Validators.required,
         Validators.maxLength(12),
       ]),
-      customer_address: new FormControl('',[Validators.required,Validators.maxLength(100),]),
+      customer_address: new FormControl('',[Validators.required,Validators.minLength(10),]),
       status: new FormControl('Active',[Validators.required])
     });
     this.setDialogProps(this.props);

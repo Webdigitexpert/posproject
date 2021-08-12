@@ -13,6 +13,7 @@ export class InputTypeComponent implements OnInit {
   @Input() public isDataList: boolean = false;
   @Input() public dataListOptions
   @Output() public details = new EventEmitter();
+  @Output() public formValue = new EventEmitter();
   public dataListID: string = '';
 
 
@@ -21,6 +22,16 @@ export class InputTypeComponent implements OnInit {
   }
   getDetails(data) {
     this.details.emit(data)
+  }
+
+  change($event) {
+    
+  }
+
+  setValue(value) {
+    console.log(value)
+    this.formValue.emit(value)
+    // this.control.setValue(value);
   }
 
 }

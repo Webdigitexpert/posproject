@@ -21,6 +21,7 @@ import { MoneyPipe } from './pipes/currency.pipe';
 import { DialogServiceService } from './services/dialog/dialog-service.service';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { RangePipe } from './pipes/range.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     SearchByDateComponent,
     ResetPasswordComponent,
     FilterPipe,
+    RangePipe,
   ],
   exports: [
     InputTypeComponent,
@@ -53,6 +55,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     MoneyPipe,
     SearchByDateComponent,
     FilterPipe,
+    RangePipe
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule, NgxLoaderModule],
   providers: [DialogServiceService],

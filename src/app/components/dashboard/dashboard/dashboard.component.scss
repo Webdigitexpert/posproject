@@ -1,7 +1,7 @@
 
 ::ng-deep {
     .order-table{
-        width: 96% ;
+        width: 100%;
         table{
             border: 1px solid #eee;
             width: 100%;
@@ -45,6 +45,13 @@
 .dashboard {
     .customer-table {
         width: 100%;
+        margin-top: 20px;
+        h3{
+            font-size: 20px;
+            text-transform: capitalize;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
     }
     .graph {
         width: 100%;

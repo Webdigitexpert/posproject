@@ -6,6 +6,8 @@ import { CategoriesService } from '../../shared/services/categories/categories.s
 import { CartService } from 'src/app/shared/services/cart/cart.service';
 import { DialogServiceService } from 'src/app/shared/services/dialog/dialog-service.service';
 import { PaymentComponent } from '../payment/payment.component';
+import { constants } from 'src/constants/constants';
+
 @Component({
   selector: 'app-pos-right-panel',
   templateUrl: './pos-right-panel.html',
@@ -27,7 +29,7 @@ export class PosRightPanelComponent implements OnInit {
   };
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public searchCategoryBy = '';
   constructor(
     private dialogService:DialogServiceService,
@@ -103,6 +105,7 @@ export class PosRightPanelComponent implements OnInit {
 
   clearCart() {
     this.cartService.removeCartFromStore();
+    
   }
 }
 

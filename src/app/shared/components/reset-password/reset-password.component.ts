@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { constants } from "../../../../constants/constants"
 
 @Component({
   selector: 'app-reset-password',
@@ -12,7 +13,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor() { }
   public loaderShow: boolean = false;
   public errorMessage: string
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public resetForm:FormGroup
   public username = {
     type: 'Password',

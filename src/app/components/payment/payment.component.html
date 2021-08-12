@@ -1,4 +1,4 @@
-<div  class="add_product printable">
+<div class="add_product printable">
   <div class="modal-header">
     <h4 *ngIf="!isInvoice" class="modal-title" id="modal-basic-title">Select Payment Method</h4>
     <h4 *ngIf="isInvoice" class="modal-title" id="modal-basic-title">Invoice</h4>
@@ -10,53 +10,68 @@
     <div *ngIf="!isInvoice" class="modal-body">
       <div class="paymentMethod">
         <div class="radio">
-          <p>
-            <app-input-type [control]="paymentMethod.get('cash')" [input_class]="'form-data'" [data]="cash">
+            <app-input-type (formValue)="paymentOption($event)" [control]="paymentMethod.get('payment')"  [input_class]="'radio'"
+              [data]="cash">
             </app-input-type>
-          </p>
-          <p>Cash</p>
         </div>
-        <div class="radio">
-          <p>
-            <app-input-type [control]="paymentMethod.get('debitCard')" [input_class]="'form-data'" [data]="debitCard">
-            </app-input-type>
-          </p>
-          <p>Debit Card</p>
-        </div>
-        <div class="radio">
-          <p>
-            <app-input-type [control]="paymentMethod.get('creditCard')" [input_class]="'form-data'" [data]="creditCard">
-            </app-input-type>
-          </p>
-          <p>Credit Card</p>
-        </div>
-
+        
       </div>
-
-      <!-- <p>
-      <app-input-type [input_class]="'form-data'" [data]="referenceNumber"></app-input-type>
-    </p> -->
-    </div>
-
-    <div *ngIf="isInvoice" class="modal-body">
-      <p class="image"><img width="100" src="../../../assets/images/order-sucessful.gif" alt="order-sucessful"></p>
-      <h3>Order Successful </h3>
-      <div class="details">
-        <p><span>Date :</span>{{orderDate}}</p>
-        <p><span>Order Id :</span>{{orderId}}</p>
+      <div class="stripeForm" *ngIf="payments!='Cash' && (!isInvoice) && (payments!='Paypal')" >
+        <form  [formGroup]="paymentForm">
+          <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" type="text" formControlName="name">
+          </div>
+          <div class="form-group" >
+            <ngx-stripe-card
+              [options]="cardOptions"
+              (on)="onChange($event)"
+              [elementsOptions]="elementsOptions"
+            ></ngx-stripe-card>
+          </div>
+          <!-- <button 
+            class="btn btn-success"
+            (click)="buy()" 
+            [disabled]=false
+          >PAY</button> -->
+        </form>
+        <p class="errMsg">{{stripeErrorMessage}}</p>
+        <!-- <p *ngIf="emptyCart" class="errMsg">*Cart is empty</p> -->
       </div>
-      <app-order-details-table [data]="items" [tableHeadings]="columns">
-      </app-order-details-table>
-      <p  class="total"><span>Coupon :</span> {{couponName}}</p>
-      <p class="total"><span>Order Amount :</span>
-        <price [price]="Total"></price>
-      </p>
-      <!-- <a class="print" (click)="printPage()"><i class="fa fa-print" aria-hidden="true"></i></a> -->
-      <!-- <app-tables [columns]="orders"></app-tables> -->
+      
     </div>
+    <div *ngIf="orderStatus">
+      <div *ngIf="isInvoice" class="modal-body">
+        <p class="image"><img width="100" src="../../../assets/images/order-sucessful.gif" alt="order-sucessful"></p>
+        <h3>Order Successful </h3>
+        <div class="details">
+          <p><span>Date :</span>{{orderDate}}</p>
+          <p><span>Order Id :</span>{{orderId}}</p>
+        </div>
+        <app-order-details-table [data]="items" [tableHeadings]="columns">
+        </app-order-details-table>
+        <p class="total" *ngIf="couponName"><span>Coupon :</span> {{couponName}}</p>
+        <p class="total"><span>Order Amount :</span>
+          <price [price]="Total"></price>
+        </p>
+        <a class="print" (click)="printPage()"><i class="fa fa-print" aria-hidden="true"></i></a>
+        <!-- <app-tables [columns]="orders"></app-tables> -->
+      </div>
+    </div>
+    <div *ngIf="!orderStatus && isInvoice">
+      <div class="unsucess">
+        <h3> Order unsuccessful</h3>
+        <img width="100" src="../../../assets/images/order-failed.png">
+        <h4>Add atleast one product</h4>
+      </div>
+    </div>
+    <ngx-paypal *ngIf="payments!='Cash' && (!isInvoice) && (payments!='Card')" [config]="payPalConfig"></ngx-paypal>
     <div *ngIf="!isInvoice" class="modal-footer">
-      <app-button [btn_class]="'positive'" *ngIf="buttons.confirm" (click)=" Invoice()">
+      <app-button [btn_class]="'positive'" [btnDisabled]="btnDisabled" *ngIf="buttons.confirm && payments =='Cash'" (click)="Invoice()">
         Confirm
+      </app-button>
+      <app-button *ngIf="payments =='Card'" [btn_class]="'positive'" (click)="buy()">
+        Pay
       </app-button>
       <app-button [btn_class]="'negative'" *ngIf="buttons.cancel" (click)="onCancel()">
         Cancel
@@ -67,8 +82,10 @@
         Close
       </app-button>
     </div>
+
   </form>
-</div>
+
+
 <ngx-loader [show]="loaderShow" [fullScreen]="fullScreen" [template]="loaderTemplate">
   Loading...
 </ngx-loader>

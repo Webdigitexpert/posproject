@@ -29,7 +29,7 @@ export class OrderDetailsTableComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.showActions = !!Object.keys(this.actions).length;
+    this.showActions == !!Object.keys(this.actions).length;
   }
 
   deleteCustomer(data: any) {

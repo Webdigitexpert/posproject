@@ -24,17 +24,20 @@ export class AddCustomerComponent implements OnInit {
   ]
   public name = {
     type: 'text',
-    placeholder: ''
+    placeholder: '',
+    field: 'Customer Name'
   }
 
   public mobileNumber = {
     type: 'text',
-    placeholder: ''
+    placeholder: '',
+    field: 'Mobile number'
   }
 
   public email = {
     type: 'text',
-    placeholder: ''
+    placeholder: '',
+    field: 'Email '
   }
 
   public title: string = null
@@ -63,6 +66,9 @@ export class AddCustomerComponent implements OnInit {
   }
 
   addCustomer() {
+    if(!this.addCustomerForm.value.customer_name || !this.addCustomerForm.value.customer_mobile || !this.addCustomerForm.value.customer_email) {
+      this.addCustomerForm.markAllAsTouched()
+    }
     this.customerService.postCustomer(this.addCustomerForm.value).subscribe((res) => {
       this.cartService.setCustomer(res.customer)
       this.modal.dismiss();

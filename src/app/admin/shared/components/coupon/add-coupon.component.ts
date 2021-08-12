@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CouponsService } from 'src/app/shared/services/coupons/coupons.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-add-coupon',
@@ -48,7 +49,7 @@ export class AddCouponComponent implements OnInit {
   }
   public loaderShow: boolean = false;
   public fullScreen: boolean = true;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
 
   constructor(
     public ngbModal: NgbActiveModal,
@@ -63,7 +64,7 @@ export class AddCouponComponent implements OnInit {
       ]),
       coupon_description: new FormControl('', [
         Validators.required,
-        Validators.maxLength(50),
+        Validators.minLength(10),
       ]),
       coupon_discount: new FormControl('', [
         Validators.required,

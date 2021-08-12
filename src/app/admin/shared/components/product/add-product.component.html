@@ -122,21 +122,21 @@
   <div class="modal-body">
     <!-- <p>Product Name:{{ viewData.product_name }}</p> -->
     <div class="left">
-      <p>Product Image:</p>
+      <h3>Product Image:</h3>
       <p class="img">
-        <img src="http://162.241.201.237:7000/{{ data.product_image }}" width="60px" />
+        <img src="http://162.241.201.237:7000/{{ data.product_image }}"  />
       </p>
     </div>
 
     <div class="right">
-      <p>Product Description:</p>
+      <h3>Product Description:</h3>
       <p class="des">
         {{ data.product_description }}
       </p>
     </div>
   </div>
   <p class="price">
-    Product Price:<span> {{ data.product_price }}</span>
+    <span>Product Price:</span> {{ data.product_price }}
   </p>
 
   <div class="modal-footer">

@@ -23,6 +23,13 @@
           <p *ngIf="column.isImage">
             <img src="{{imageUrl}}{{ row[column.field] }}" width="80" alt="{{ row[column.field] }}" />
           </p>
+          <p>
+            <div *ngIf="column.isCoupon">
+              <p *ngIf="!row[column.field]">--</p>
+            </div>
+            <p *ngIf="column.description" title="{{row[column.field]}}">
+              {{ row[column.field] | range:20}}
+            </p>
         </td>
         <td *ngIf="showActions">
           <div class="btnActions">

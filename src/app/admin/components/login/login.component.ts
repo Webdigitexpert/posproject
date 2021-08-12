@@ -25,15 +25,17 @@ export class LoginComponent implements OnInit {
     type: 'text',
     placeholder: 'Enter Email',
     class: 'form-control',
+    field:'Email'
   };
   public password = {
     type: 'Password',
     placeholder: 'Enter Password',
     class: 'form-control',
+    field:'Password'
   };
   public data = {
     type: 'text',
-    label: 'Username',
+    label: 'Email',
     tagname: 'username',
   };
 

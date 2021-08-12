@@ -6,6 +6,7 @@ import { EmployeeService } from 'src/app/shared/services/employee/employee.servi
 import { environment } from 'src/environments/environment';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrdersService } from 'src/app/shared/services/orders/orders.service';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-employee-management',
@@ -18,11 +19,16 @@ export class EmployeeManagementComponent implements OnInit {
   public body: string = null
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public buttons
+  public employeeName :string
+  public phoneNumber:any
+  public role:string
+  public emailAdderss:any
   public employeeData: any
   public addCustomers: boolean = false
   public employeeId: any
+  public code:any
   public type: string // view, edit, create
   public editEmployeeForm: FormGroup
   @Input() props // employee primary key
@@ -30,17 +36,31 @@ export class EmployeeManagementComponent implements OnInit {
 
   public name = {
     type: 'text',
-    placeholder: ''
+    placeholder: '',
+    field: 'Employee name'
   }
 
-  public mobileNumber = {
+  public mobile = {
     type: 'text',
-    placeholder: ''
+    placeholder: '',
+    field: 'Mobile number'
   }
 
   public email = {
     type: 'text',
-    placeholder: ''
+    placeholder: '',
+    field: 'Email'
+  }
+
+  public employeeCode = {
+    type: 'text',
+    placeholder: '',
+    field: 'Employee Code'
+  }
+  public password = {
+    type: 'text',
+    placeholder: '',
+    field: 'Password'
   }
   public employeeDetails: any
 
@@ -58,11 +78,13 @@ export class EmployeeManagementComponent implements OnInit {
     this.editEmployeeForm = new FormGroup({
       employee_name: new FormControl('', [Validators.required]),
       phone_number: new FormControl('', [Validators.required]),
-      email: new FormControl('', Validators.required)
-
+      email: new FormControl('', Validators.required),
+      password:new FormControl('',Validators.required),
+      employee_code: new FormControl('', Validators.required)
     })
     this.setDialogProps(this.props)
     this.employeeDetails = this.AuthService.getEmployeeLoginDetails()
+    debugger
     console.log(this.employeeDetails)
     this.getEmployeeDetails()
   }
@@ -72,6 +94,12 @@ export class EmployeeManagementComponent implements OnInit {
     debugger
     this.employeeService.getEmployeebyId(this.employeeDetails.employee_id).subscribe((res: any) => {
       this.employeeData = res
+      console.log(this.employeeData)
+        this.employeeName = this.employeeData.employee_name;
+        this.code = this.employeeData.employee_code;
+        this.phoneNumber = this.employeeData.phone_number;
+        this.emailAdderss = this.employeeData.email;
+        this.role = this.employeeData.role
       this.loaderShow = false
       console.log(res)
     })
@@ -98,15 +126,32 @@ export class EmployeeManagementComponent implements OnInit {
   }
 
   editEmployeeDetails() {
-    this.editEmployeeForm.patchValue(this.employeeData)
+    if(!this.editEmployeeForm.valid) {
+      this.editEmployeeForm.markAllAsTouched()
+    }
+    console.log(this.employeeData)
+    this.editEmployeeForm.patchValue({
+      email: this.employeeData.email,
+      employee_code: this.employeeData.employee_code,
+      employee_name : this.employeeData.employee_name ,
+      phone_number:  this.employeeData.phone_number,
+      role: this.employeeData.role,
+    })
     this.type = 'edit'
   }
 
   onEdit() {
-    this.employeeService.updateEmployee(this.employeeDetails.employee_id,this.editEmployeeForm.value).subscribe((res:any)=>{
-      console.log(res)
-      this.modal.close()
-    })
+    if(this.editEmployeeForm.invalid) {
+      console.log(this.editEmployeeForm.invalid)
+      this.editEmployeeForm.markAllAsTouched()
+    }
+    else  {
+      this.employeeService.updateEmployee(this.employeeDetails.employee_id,this.editEmployeeForm.value).subscribe((res:any)=>{
+        console.log(res)
+        this.modal.dismiss()
+      })
+    }
+     
   }
 
 }

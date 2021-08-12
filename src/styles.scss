@@ -8,7 +8,11 @@ margin: 0px;
 padding: 0px;
 box-sizing: border-box;
 }
+:root {
+  --primary-color: #000;
+}
 body{
+  
     margin: 0;
     padding: 0;
     font-family: 'Mulish', sans-serif;
@@ -602,6 +606,7 @@ input[type="checkbox"] {
   background: #499bc0 !important;
   opacity: 0.9;
   padding: 5px;
+  align-items: center;
 }
 
 .modal-dialog .modal-header h4 {
@@ -747,6 +752,7 @@ input[type="checkbox"] {
   }
   .modal-header {
     padding: 10px 5px;
+
   }
   .modal-dialog .modal-header h4 {
     font-size: 20px;
@@ -1262,4 +1268,18 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 button.btn.btn-primary:active{
   border: none !important;
   box-shadow: none !important;
+  background-color: #499bc0 !important;
 }
+
+button.btn.btn-primary {
+  cursor: pointer;
+}
+a {
+  cursor: pointer;
+}
+
+// paypal
+
+
+
+

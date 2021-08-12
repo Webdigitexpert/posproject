@@ -7,6 +7,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 import { CouponsService } from '../../services/coupons/coupons.service';
 import { OrdersService } from '../../services/orders/orders.service';
 import { environment } from 'src/environments/environment';
+import { constants } from "../../../../constants/constants"
 @Component({
   selector: 'app-delete',
   templateUrl: './delete.component.html',
@@ -23,7 +24,7 @@ export class DeleteComponent implements OnInit {
   public deleteItem: any
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public allCustomers =[]
 
 

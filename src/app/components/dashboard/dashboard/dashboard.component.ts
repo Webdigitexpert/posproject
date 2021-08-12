@@ -4,6 +4,7 @@ import { OrdersService } from 'src/app/shared/services/orders/orders.service';
 import { environment } from 'src/environments/environment';
 import { Chart } from 'angular-highcharts';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { constants } from 'src/constants/constants';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,7 @@ export class DashboardComponent implements OnInit {
   };
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public employeeSales: any;
   public ordersData = [];
   public orderDates = [];
@@ -81,7 +82,7 @@ export class DashboardComponent implements OnInit {
     private authService: AuthService
   ) { }
 
-  
+
 
   ngOnInit(): void {
     this.customerService._customers$.subscribe((res) => {
@@ -102,51 +103,60 @@ export class DashboardComponent implements OnInit {
         console.log(res);
         this.employeeOrders = res;
         this.loaderShow = false;
-        const dataSet = { }
-        res.forEach((element, index) => {
-          const date = element.order_date_and_time.split('T')[0];
-          dataSet[date] = dataSet[date] ? dataSet[date] + element.order_amount : element.order_amount;
-        });
-        const categories = [];
-        const data = [];
-        Object.keys(dataSet).forEach(element => {
-          categories.push(element);
-          data.push(dataSet[element]);
-        });
-
         this.ordersData = res;
-        this.chart = new Chart({
-          chart: {
-            type: 'column',
-          },
-          title: {
-            text: 'Total Sales',
-          },
-          credits: {
-            enabled: false,
-          },
-          xAxis: {
-            categories,
-            title: {
-              text: 'Order Dates',
-            },
-          },
-          yAxis: {
-            min: 0,
-            title: {
-              text: 'Order Amount',
-            },
-          },
+        this.graphDetails(res);
 
-          series: [
-            {
-              type: 'column',
-              data
-            },
-          ],
-        });
       });
   }
+
+
+  graphDetails(res) {
+    const dataSet = {}
+    res.forEach((element, index) => {
+      const date = element.order_date_and_time.split('T')[0];
+      dataSet[date] = dataSet[date] ? dataSet[date] + element.order_amount : element.order_amount;
+    });
+    const categories = [];
+    const data = [];
+    Object.keys(dataSet).forEach(element => {
+      categories.push(element);
+      data.push(dataSet[element]);
+    });
+
+
+    this.chart = new Chart({
+      chart: {
+        type: 'column',
+      },
+      title: {
+        text: 'Total Sales',
+      },
+      credits: {
+        enabled: false,
+      },
+      xAxis: {
+        categories,
+        title: {
+          text: 'Order Dates',
+        },
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Order Amount',
+        },
+      },
+
+      series: [
+        {
+          type: 'column',
+          data
+        },
+      ],
+    });
+  }
+
+
 
   editCustomerData(data: any) {
     this.customerService.updateCustomer(data._id).subscribe((res) => {
@@ -172,47 +182,7 @@ export class DashboardComponent implements OnInit {
       .subscribe((res) => {
         this.employeeSales = res;
         this.ordersData = res;
-        res.forEach((element) => {
-          this.orderDates.push(element.order_date_and_time);
-          this.orderamount.push(element.order_amount);
-          this.orderDates.forEach((date) => {
-            this.toShortDate = date.split('T');
-            console.log(this.toShortDate);
-            this.shortDate.push(this.toShortDate[0]);
-          });
-          console.log(this.orderDates);
-          console.log(this.orderamount);
-          this.chart = new Chart({
-            chart: {
-              type: 'column',
-            },
-            title: {
-              text: 'Total Sales',
-            },
-            credits: {
-              enabled: false,
-            },
-            xAxis: {
-              categories: this.shortDate,
-              title: {
-                text: 'Order Dates',
-              },
-            },
-            yAxis: {
-              min: 0,
-              title: {
-                text: 'Total Orders',
-              },
-            },
-
-            series: [
-              {
-                type: 'column',
-                data: this.orderamount,
-              },
-            ],
-          });
-        });
+        this.graphDetails(res)
       });
   }
 

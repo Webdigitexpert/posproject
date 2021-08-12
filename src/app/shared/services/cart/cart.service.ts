@@ -8,12 +8,12 @@ export class CartService {
 
   public _cart$: Subject<any> = new Subject();
 
-  public _cart = {
-    items: [],
-    customer: {},
-    coupon: {},
-    total: 0
-  };
+  // public _cart = {
+  //   items: [],
+  //   customer: {},
+  //   coupon: {},
+  //   total: 0
+  // };
 
   constructor() { }
 
@@ -29,7 +29,12 @@ export class CartService {
   }
 
   get cart() {
-    return JSON.parse(sessionStorage.getItem('cartData')) || this._cart;
+    return JSON.parse(sessionStorage.getItem('cartData')) || {
+      items: [],
+      customer: {},
+      coupon: {},
+      total: 0
+    };
   }
 
   set storeCart(cart) {
@@ -42,7 +47,6 @@ export class CartService {
   }
 
   updateCartTotal(cart) {
-    debugger
     let cartTotal = 0;
     cart.items.forEach(item => {
       cartTotal += item.qty * item.product_price;

@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { constants } from 'src/constants/constants';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   public fullScreen: boolean = true;
   public loaderShow: boolean = false;
   public errorMessage: string
-  public loaderTemplate = environment.loaderTemplate;
+  public loaderTemplate = constants.loaderTemplate;
   public loginForm: FormGroup
   public employeeDetails
 
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   public username = {
     type: 'text',
-    placeholder: 'Username',
-    field: 'Username'
+    placeholder: 'Enter Email',
+    field: 'Email'
   };
 
   public password = {
@@ -40,7 +41,6 @@ export class LoginComponent implements OnInit {
 
   loginEmployee() {
     this.loginForm.markAllAsTouched();
-    this.loaderShow = true;
     this.authService.employeeLogin(this.loginForm.value).subscribe((res: any) => {
       if (res.success) {
         this.employeeDetails = res

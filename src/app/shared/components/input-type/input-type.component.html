@@ -1,14 +1,72 @@
-<div class="inputData" [ngClass]="input_class">
-  <input [attr.list]="dataListID" autocomplete="off" [formControl]="control" [type]="data.type"
-    [placeholder]="data.placeholder" [name]="data.name">
+<div
+  *ngIf="data.type !== 'radio' && data.type !== 'checkbox'"
+  class="inputData"
+  [ngClass]="input_class"
+>
+  <input
+    [attr.list]="dataListID"
+    autocomplete="off"
+    [formControl]="control"
+    [type]="data.type"
+    [placeholder]="data.placeholder"
+    [name]="data.name"
+  />
   <datalist class="list" *ngIf="isDataList" [id]="dataListID">
-    <option *ngFor="let data of dataListOptions" [value]="data">
+    <option *ngFor="let data of dataListOptions" [value]="data"></option>
   </datalist>
 </div>
-<ng-container *ngIf="control && control.touched && control.errors">
-  <div class="errMsg" *ngIf="control.errors.required">* {{data.field}} is required.</div>
-  <div class="errMsg" *ngIf="control.errors?.maxlength">*{{data.field}} length less than or equals to
-    {{control.errors?.maxlength.requiredLength}}.</div>
-    <div class="errMsg" *ngIf="control.errors?.minlength">{{data.field}} should be minimum {{control.errors?.minlength.requiredLength}}</div>
-    <div class="errMsg" *ngIf="control.errors.pattern">Enter valid {{data.field}}</div>
+<ng-container
+  *ngIf="
+    data.type !== 'radio' &&
+    data.type !== 'checkbox' &&
+    control &&
+    control.touched &&
+    control.errors
+  "
+>
+  <div class="errMsg" *ngIf="control.errors.required">
+    * {{ data.field }} is required.
+  </div>
+  <div class="errMsg" *ngIf="control.errors?.maxlength">
+    *{{ data.field }} length less than or equals to
+    {{ control.errors?.maxlength.requiredLength }}.
+  </div>
+  <div class="errMsg" *ngIf="control.errors?.minlength">
+    {{ data.field }} should be minimum
+    {{ control.errors?.minlength.requiredLength }}
+  </div>
+  <div class="errMsg" *ngIf="control.errors.pattern">
+    Enter valid {{ data.field }}
+  </div>
+</ng-container>
+
+<!-- For checkbox and radio buttons -->
+
+<div
+  *ngIf="data.type == 'radio' || data.type == 'checkbox'"
+  class="inputData"
+  [ngClass]="input_class"
+>
+  <div class="listData" *ngFor="let option of data.list; let i = index">
+    <input
+      [name]="data.name"
+      [formControl]="control"
+      [type]="data.type"
+      (click)="setValue(option)"
+    />
+    {{ option }}
+  </div>
+</div>
+
+<ng-container
+  *ngIf="
+    control &&
+    control.touched &&
+    control.errors &&
+    (data.type == 'radio' || data.type == 'checkbox')
+  "
+>
+  <div class="errMsg" *ngIf="control.errors.required">
+    * {{ data.field }} is required.
+  </div>
 </ng-container>
